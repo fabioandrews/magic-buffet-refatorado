@@ -4,7 +4,7 @@
  */
 package entidadesDAO;
 
-import InterfaceDAO.BuscaInterface;
+
 import InterfaceDAO.BuscaMultiplaInterface;
 import InterfaceDAO.GenericInterface;
 import controler.Localizacao;
@@ -18,7 +18,7 @@ import view.Mensagens;
  *
  * @author Josiel
  */
-public class LocalizacaoDAO extends ConectionDAO implements GenericInterface, BuscaInterface, BuscaMultiplaInterface {
+public class LocalizacaoDAO extends ConectionDAO implements GenericInterface, BuscaMultiplaInterface {
 
     private Mensagens mensagem =  new Mensagens();
     @Override
@@ -105,7 +105,7 @@ public class LocalizacaoDAO extends ConectionDAO implements GenericInterface, Bu
         return localizacao;
     }
 
-    // TÁ COM PROBLEMA REFAZER
+    // TÃ� COM PROBLEMA REFAZER
     @Override
     public boolean atualizar(Object object) {
 

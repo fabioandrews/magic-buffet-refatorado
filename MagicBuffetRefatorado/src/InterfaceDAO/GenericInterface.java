@@ -13,4 +13,5 @@ public interface GenericInterface {
     public boolean criar(Object object);
     public boolean atualizar(Object object);
     public boolean remover(Object object);
+    public Object buscar(String... args);
 }

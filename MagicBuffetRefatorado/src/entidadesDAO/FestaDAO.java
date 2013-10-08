@@ -4,7 +4,6 @@
  */
 package entidadesDAO;
 
-import InterfaceDAO.BuscaInterface;
 import InterfaceDAO.BuscaMultiplaInterface;
 import InterfaceDAO.GenericInterface;
 import controler.Festa;
@@ -20,7 +19,7 @@ import view.Mensagens;
  *
  * @author Josiel
  */
-public class FestaDAO extends ConectionDAO implements GenericInterface, BuscaMultiplaInterface, BuscaInterface {
+public class FestaDAO extends ConectionDAO implements GenericInterface, BuscaMultiplaInterface {
 
 	
     

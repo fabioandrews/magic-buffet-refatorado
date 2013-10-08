@@ -4,7 +4,7 @@
  */
 package entidadesDAO;
 
-import InterfaceDAO.BuscaInterface;
+
 import InterfaceDAO.BuscaMultiplaInterface;
 import InterfaceDAO.GenericInterface;
 import controler.Item;
@@ -18,7 +18,7 @@ import view.Mensagens;
  *
  * @author Josiel
  */
-public class ItemDAO extends ConectionDAO implements GenericInterface, BuscaMultiplaInterface,BuscaInterface {
+public class ItemDAO extends ConectionDAO implements GenericInterface, BuscaMultiplaInterface {
     
     private Mensagens mensagem = new Mensagens();
 

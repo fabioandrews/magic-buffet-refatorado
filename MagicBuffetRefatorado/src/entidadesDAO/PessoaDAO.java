@@ -4,7 +4,7 @@
  */
 package entidadesDAO;
 
-import InterfaceDAO.BuscaInterface;
+
 import InterfaceDAO.GenericInterface;
 import controler.Pessoa;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import view.Mensagens;
  *
  * @author Josiel e Andreza
  */
-public class PessoaDAO extends ConectionDAO implements GenericInterface, BuscaInterface {
+public class PessoaDAO extends ConectionDAO implements GenericInterface {
 
     private Mensagens mensagem = new Mensagens();
     
