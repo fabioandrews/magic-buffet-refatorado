@@ -4,8 +4,8 @@
  */
 package entidadesDAO;
 
-import InterfaceDAO.BuscaMultiplaInterface;
-import InterfaceDAO.GenericInterface;
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
+import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ import view.Mensagens;
  *
  * @author Josiel
  */
-public class FestaDAO extends ConectionDAO implements GenericInterface, BuscaMultiplaInterface {
+public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOComBuscaMultiplaInterface {
 
 	
     

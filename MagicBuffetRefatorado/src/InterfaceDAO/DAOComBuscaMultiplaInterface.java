@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author andreza
  */
-public interface BuscaMultiplaInterface {
+public interface DAOComBuscaMultiplaInterface extends GenericDAOInterface{
     
     public ArrayList<Object> buscar();
     

@@ -5,8 +5,8 @@
 package entidadesDAO;
 
 
-import InterfaceDAO.BuscaMultiplaInterface;
-import InterfaceDAO.GenericInterface;
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
+import InterfaceDAO.GenericDAOInterface;
 import controler.Tema;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import view.Mensagens;
  *
  * @author Josiel
  */
-public class TemaDAO extends  ConectionDAO implements GenericInterface, BuscaMultiplaInterface {
+public class TemaDAO extends  ConectionDAO implements GenericDAOInterface, DAOComBuscaMultiplaInterface {
     
     private Mensagens mensagem = new Mensagens();
     

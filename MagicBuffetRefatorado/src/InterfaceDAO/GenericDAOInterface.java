@@ -8,7 +8,7 @@ package InterfaceDAO;
  *
  * @author andreza
  */
-public interface GenericInterface {
+public interface GenericDAOInterface {
     
     public boolean criar(Object object);
     public boolean atualizar(Object object);

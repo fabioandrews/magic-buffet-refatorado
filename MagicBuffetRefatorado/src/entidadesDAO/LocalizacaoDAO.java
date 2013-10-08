@@ -5,8 +5,8 @@
 package entidadesDAO;
 
 
-import InterfaceDAO.BuscaMultiplaInterface;
-import InterfaceDAO.GenericInterface;
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
+import InterfaceDAO.GenericDAOInterface;
 import controler.Localizacao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +18,7 @@ import view.Mensagens;
  *
  * @author Josiel
  */
-public class LocalizacaoDAO extends ConectionDAO implements GenericInterface, BuscaMultiplaInterface {
+public class LocalizacaoDAO extends ConectionDAO implements GenericDAOInterface, DAOComBuscaMultiplaInterface {
 
     private Mensagens mensagem =  new Mensagens();
     @Override
