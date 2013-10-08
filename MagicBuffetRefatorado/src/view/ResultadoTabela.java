@@ -4,16 +4,22 @@
  */
 package view;
 
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
+import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 import controler.Localizacao;
 import controler.Pessoa;
 import controler.Tema;
 import entidadesDAO.FestaDAO;
 import entidadesDAO.LocalizacaoDAO;
+
 import javax.swing.JOptionPane;
+
 import entidadesDAO.PessoaDAO;
 import entidadesDAO.TemaDAO;
+
 import java.util.ArrayList;
+
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -23,12 +29,21 @@ import javax.swing.DefaultComboBoxModel;
 public class ResultadoTabela extends javax.swing.JFrame {
 
     String tipoPessoa = "";
+    private DAOComBuscaMultiplaInterface DAOFestas;
+    private GenericDAOInterface DAOPessoas;
+    private DAOComBuscaMultiplaInterface DAOLocalizacao;
+    private DAOComBuscaMultiplaInterface DAOTemas;
     
     /**
      * Creates new form ResultadoTodosClientes
      */
-    public ResultadoTabela() {
+    public ResultadoTabela() 
+    {
         initComponents();
+        DAOFestas = new FestaDAO();
+        DAOPessoas = new PessoaDAO();
+        DAOLocalizacao = new LocalizacaoDAO();
+        DAOTemas = new TemaDAO();
     }
 
     /**
@@ -125,11 +140,10 @@ public class ResultadoTabela extends javax.swing.JFrame {
             Object valueAt = tabela.getValueAt(linha, 3);
             String id = valueAt.toString();             
             ResultadoFesta result = new ResultadoFesta();
-              FestaDAO festa = new FestaDAO();        
+                      
 
-                Festa f = (Festa) festa.buscar(id);
-                PessoaDAO p = new PessoaDAO();
-                Pessoa pessoa = (Pessoa) p.buscar(f.getPessoaCPF(), "CLIENTE");                
+                Festa f = (Festa) DAOFestas.buscar(id);
+                Pessoa pessoa = (Pessoa) DAOPessoas.buscar(f.getPessoaCPF(), "CLIENTE");                
                 result.cliente.setText(pessoa.getPnome());
                 result.cliente.setEditable(false);        
                 result.horario.setText(f.getHoraInicio().toString());
@@ -152,10 +166,9 @@ public class ResultadoTabela extends javax.swing.JFrame {
                                  pessoa.getBairro() + " - " + pessoa.getNumero());
                      }
                      else{
-                     LocalizacaoDAO localizacao = new LocalizacaoDAO();
                      Localizacao localiz;
                      String cep = f.getLocal();
-                     localiz = (Localizacao)localizacao.buscar(cep);
+                     localiz = (Localizacao)DAOLocalizacao.buscar(cep);
                      result.local.setText(localiz.getCEP() + " - " + localiz.getBairro()
                               + " - " + localiz.getRua());
                      
@@ -166,8 +179,7 @@ public class ResultadoTabela extends javax.swing.JFrame {
                  }
                 
                 
-                TemaDAO temas = new TemaDAO();
-                ArrayList<Object> t = temas.buscar();
+                ArrayList<Object> t = DAOTemas.buscar();
                 ArrayList<Tema> tema = new ArrayList<>();
                 
                 for(Object theme : t)
@@ -191,12 +203,11 @@ public class ResultadoTabela extends javax.swing.JFrame {
                 result.itensTema.setEnabled(false);
                 result.setVisible(true);            
         }
-        else {
-        PessoaDAO pessoa = new PessoaDAO();          
+        else {         
         int linha = tabela.getSelectedRow();
         Object valueAt = tabela.getValueAt(linha, 1);
         String cpf = valueAt.toString(); 
-        Pessoa p = (Pessoa) pessoa.buscar(cpf,tipoPessoa);
+        Pessoa p = (Pessoa) DAOPessoas.buscar(cpf,tipoPessoa);
         Resultado result = new Resultado();
         
         result.setNome(p.getPnome());
@@ -227,12 +238,11 @@ public class ResultadoTabela extends javax.swing.JFrame {
         // TODO add your handling code here:
     int resposta = JOptionPane.showConfirmDialog( null,"Tem certeza que quer exlcuir o cliente do sistema?","Confirmação", JOptionPane.YES_NO_OPTION);
         if(resposta == JOptionPane.YES_OPTION){
-            PessoaDAO pessoa = new PessoaDAO();
             int linha = tabela.getSelectedRow();            
             Object valueAt = tabela.getValueAt(linha, 1);
             String cpf = valueAt.toString();
-            Pessoa p = (Pessoa) pessoa.buscar(cpf,"CLIENTE");        
-            pessoa.remover(p);
+            Pessoa p = (Pessoa) DAOPessoas.buscar(cpf,"CLIENTE");        
+            DAOPessoas.remover(p);
             JOptionPane.showMessageDialog(this,"Cliente Removido");
             TelaBuscar tela = TelaBuscar.getInstance();
             tela.modelo.removeRow(linha);

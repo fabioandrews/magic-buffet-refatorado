@@ -4,13 +4,16 @@
  */
 package view;
 
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import controler.Item;
 import controler.Pacote;
 import entidadesDAO.ItemDAO;
 import entidadesDAO.PacoteDAO;
+
 import java.awt.List;
 import java.rmi.server.UID;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +25,16 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastrarpacote
      */
-    public TelaCadastrarpacote() {
+	
+	private DAOComBuscaMultiplaInterface DAOItens;
+	private PacoteDAO DAOPacotes;
+	
+    public TelaCadastrarpacote() 
+    {
         initComponents();
+        
+        DAOItens = new ItemDAO();
+        DAOPacotes = new PacoteDAO();
     }
 
     /**
@@ -202,12 +213,11 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
     
     private void SALVARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALVARActionPerformed
         
-        PacoteDAO pacoteDAO = new PacoteDAO();
         Pacote pacote = new Pacote();
         String nome = textoNomePacote.getText();
         
         
-        if(pacoteDAO.buscarPorNome(nome).getPacoteNome() != null){
+        if(DAOPacotes.buscarPorNome(nome).getPacoteNome() != null){
             JOptionPane.showMessageDialog(this, "Nome de pacote já cadastrado");            
         }   
         else {
@@ -237,7 +247,7 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         UID id = new UID();
       
         pacote.setIdPacote(String.valueOf(id));        
-        pacoteDAO.criar(pacote);
+        DAOPacotes.criar(pacote);
         TelaInicial telaInicial = TelaInicial.getInstance();
         this.dispose();
         telaInicial.setVisible(true);
@@ -246,7 +256,6 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
     
     private void calcularPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularPrecoActionPerformed
         Item item;
-        ItemDAO it = new ItemDAO();
         if (tabela.getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Selecione algum item");
         } else {            
@@ -258,7 +267,7 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
             for (int i = 0; i < tabela.getSelectedRowCount(); i++) {
                 linha = linhaSelecionadas[i];                
                 String valueAt = tabela.getValueAt(linha, 1).toString();
-                item = it.buscar(valueAt);
+                item = (Item) DAOItens.buscar(valueAt);
                 System.out.println(item.getPrecoUnidade());
                 valor = valor + item.getPrecoUnidade();                
             }

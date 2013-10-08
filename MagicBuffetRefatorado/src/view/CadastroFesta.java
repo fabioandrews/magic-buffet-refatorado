@@ -4,6 +4,8 @@
  */
 package view;
 
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
+import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 import controler.Item;
 import controler.Localizacao;
@@ -16,10 +18,12 @@ import entidadesDAO.LocalizacaoDAO;
 import entidadesDAO.PacoteDAO;
 import entidadesDAO.PessoaDAO;
 import entidadesDAO.TemaDAO;
+
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.sql.Time;
 import java.util.Calendar;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -30,10 +34,17 @@ import javax.swing.JOptionPane;
 public final class CadastroFesta extends javax.swing.JFrame {
 
     public boolean checkData = false;
+    private DAOComBuscaMultiplaInterface DAOTemas;
+    private DAOComBuscaMultiplaInterface DAOPacotes;
+    private DAOComBuscaMultiplaInterface DAOFestas;
+    private GenericDAOInterface DAOPessoas;
     
     public void prencherOpcoesTema(){
-        TemaDAO temas = new TemaDAO();
-        ArrayList<Object> temaObj  = temas.buscar();;
+    	DAOTemas = new TemaDAO();
+    	DAOPacotes = new PacoteDAO();
+    	DAOPessoas = new PessoaDAO();
+    	DAOFestas = new FestaDAO();
+        ArrayList<Object> temaObj  = DAOTemas.buscar();;
         ArrayList<Tema> tema  = new ArrayList<>();
         
         for(Object t : temaObj)
@@ -52,8 +63,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
         
     
     public void prencherOpcoesPacote(){
-        PacoteDAO pacotes = new PacoteDAO();
-        ArrayList<Object> pacote =  pacotes.buscar();
+        ArrayList<Object> pacote =  this.DAOPacotes.buscar();
         ArrayList<Pacote> pk = new ArrayList<>();                
         
         for(Object p : pacote)
@@ -441,8 +451,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
     private void checarCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checarCPFActionPerformed
         String cpf = textocpf.getText();        
         Pessoa pessoa;
-        PessoaDAO person = new PessoaDAO();
-        pessoa = (Pessoa) person.buscar(cpf, "CLIENTE");        
+        pessoa = (Pessoa) DAOPessoas.buscar(cpf, "CLIENTE");        
         if(pessoa.getPnome() != null){            
             textoNome.setText(pessoa.getPnome());
             textoNome.setEnabled(true);
@@ -573,7 +582,6 @@ public final class CadastroFesta extends javax.swing.JFrame {
         }
         else {
             Festa festa = new Festa();
-            FestaDAO festas = new FestaDAO();
 
             festa.setPacote(itensPacote.getSelectedItem().toString());
             festa.setTema(itensTema.getSelectedItem().toString());                           
@@ -631,7 +639,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
             }        
 
             JOptionPane.showMessageDialog(this,"Tem certeza que deseja salvar a festa?");
-            festas.criar(festa); 
+            DAOFestas.criar(festa); 
             JOptionPane.showMessageDialog(this,"Festa cadastrada");
         }
 

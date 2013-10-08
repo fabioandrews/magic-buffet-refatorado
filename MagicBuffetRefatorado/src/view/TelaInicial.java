@@ -4,10 +4,12 @@
  */
 package view;
 
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import controler.Item;
 import controler.Pacote;
 import entidadesDAO.ItemDAO;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,10 +24,13 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     
      private static TelaInicial instance;
+     private static DAOComBuscaMultiplaInterface DAOTrabalhaComItens;
     
-    public static TelaInicial getInstance(){
+    public static TelaInicial getInstance()
+    {
         if(instance == null){
-            instance = new TelaInicial();        
+            instance = new TelaInicial();
+            DAOTrabalhaComItens = new ItemDAO();
         }       
             return instance;        
     }
@@ -199,8 +204,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void PACOTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PACOTEActionPerformed
         DefaultTableModel modelo;     
-        ItemDAO pacote = new ItemDAO();
-        ArrayList<Object> ListaPacotes = pacote.buscar();
+        ArrayList<Object> ListaPacotes = DAOTrabalhaComItens.buscar();
         ArrayList<Item> it = new ArrayList<>();
         
         for(Object p : ListaPacotes)
