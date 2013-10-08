@@ -5,8 +5,10 @@
  */
 package view;
 
+import InterfaceDAO.GenericDAOInterface;
 import controler.Tema;
 import entidadesDAO.TemaDAO;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +20,10 @@ public class CadastroDeTema extends javax.swing.JFrame {
     /**
      * Creates new form CadastroDeTEma
      */
+	GenericDAOInterface interfaceGenericaCriacaoDeTema;//interface generica para acessar DAO que cria tema no BD
+	
     public CadastroDeTema() {
+    	interfaceGenericaCriacaoDeTema = new TemaDAO();
         initComponents();
     }
 
@@ -116,13 +121,13 @@ public class CadastroDeTema extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
-        TemaDAO tema = new TemaDAO();
+        
         Tema theme = new Tema();
         String nome = nomeTema.getText();
         String codigo = nome.substring(0,1) + nome.substring(nome.length() / 2, nome.length()/2+1) ;
         theme.setIdTema("MF" + codigo);        
         theme.setTnome(nomeTema.getText());        
-        tema.criar(theme);
+        interfaceGenericaCriacaoDeTema.criar(theme);
         JOptionPane.showMessageDialog(this, "Tema criado com sucesso!");
         this.dispose();
         TelaInicial tela = TelaInicial.getInstance();                

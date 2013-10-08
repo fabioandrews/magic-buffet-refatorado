@@ -4,10 +4,12 @@
  */
 package view;
 
+import InterfaceDAO.GenericDAOInterface;
 import controler.Gerente;
 import controler.Pessoa;
 import entidadesDAO.GerenteDAO;
 import entidadesDAO.PessoaDAO;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +21,8 @@ public class Cadastros extends javax.swing.JFrame {
     /**
      * Creates new form Cadastros
      */
+	private GenericDAOInterface interfaceDaoDadosCadastro = new PessoaDAO();//um DAO genérico para acesso a cadastro de pessoas
+	
     public Cadastros() {
         initComponents();
     }
@@ -495,7 +499,7 @@ public class Cadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_textoTelefone1ActionPerformed
 
     private void botaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvar1ActionPerformed
-        PessoaDAO cl = new PessoaDAO();
+        
         Pessoa p = new Pessoa();
         if (tipoCadastro.getText().contains("Cliente")) {
             p.setCpf(textoCPF1.getText());
@@ -520,7 +524,7 @@ public class Cadastros extends javax.swing.JFrame {
             p.setCidade(textoCidade1.getText());
             p.setCep(textoCEP1.getText());
             System.out.println("cep");
-            cl.criar(p);
+            interfaceDaoDadosCadastro.criar(p);
             JOptionPane.showMessageDialog(this, "Cliente Criado");
         } else if (tipoCadastro.getText().contains("Gerente")) {
             GerenteDAO gerente = new GerenteDAO();
@@ -562,7 +566,7 @@ public class Cadastros extends javax.swing.JFrame {
             p.setTelefone(textoTelefone1.getText());
             p.setCidade(textoCidade1.getText());
             p.setCep(textoCEP1.getText());
-            cl.criar(p);
+            interfaceDaoDadosCadastro.criar(p);
             JOptionPane.showMessageDialog(this, "Monitor Criado");
         }
 

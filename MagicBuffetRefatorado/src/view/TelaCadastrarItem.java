@@ -4,8 +4,10 @@
  */
 package view;
 
+import InterfaceDAO.GenericDAOInterface;
 import controler.Item;
 import entidadesDAO.ItemDAO;
+import exceptioDAO.DAOException;
 
 /**
  *
@@ -16,8 +18,12 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastrarItem
      */
+	private GenericDAOInterface daoAcessoCadastroDeItens; //um DAO genérico que serve para acessar cadastros de itens
+	
     public TelaCadastrarItem() {
+    	daoAcessoCadastroDeItens = new ItemDAO();
         initComponents();
+        
     }
 
     /**
@@ -185,7 +191,7 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
 
     private void SALVARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALVARActionPerformed
         Item item = new Item();
-        ItemDAO idao = new ItemDAO();
+        
 
         String nome = textoNomeItem.getText();
         String codigo = nome.substring(0, 1) + nome.substring(nome.length() / 2, nome.length() / 2 + 1);
@@ -198,7 +204,7 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
         item.setPrecoUnidade(preco);
 
 
-        idao.criar(item);
+        daoAcessoCadastroDeItens.criar(item);
         TelaInicial telaInicial = TelaInicial.getInstance();
         this.dispose();
         telaInicial.setVisible(true);

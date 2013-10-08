@@ -4,8 +4,11 @@
  */
 package view;
 
+import InterfaceDAO.GenericDAOInterface;
 import controler.Pessoa;
+
 import javax.swing.JOptionPane;
+
 import entidadesDAO.PessoaDAO;
 
 /**
@@ -17,8 +20,10 @@ public class Resultado extends javax.swing.JFrame {
     /**
      * Creates new form ResultadoCliente
      */
-    private  String tipo;    
-
+    private  String tipo; 
+    private GenericDAOInterface daoAcessaDadosPessoas;// um DAO gen�rico para acesso a dados de pessoas cadastradas.
+    
+   
 
     
     public String getTipo() {
@@ -67,7 +72,8 @@ public class Resultado extends javax.swing.JFrame {
     
     
     public Resultado() {
-        initComponents();
+    	daoAcessaDadosPessoas = new PessoaDAO();
+    	initComponents();   
     }
     
 
@@ -312,10 +318,9 @@ public class Resultado extends javax.swing.JFrame {
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
         // TODO add your handling code here:
         int resposta = JOptionPane.showConfirmDialog( null,"Tem certeza que quer exlcuir o cliente do sistema?","Confirmação", JOptionPane.YES_NO_OPTION);
-        if(resposta == JOptionPane.YES_OPTION){
-            PessoaDAO pessoa = new PessoaDAO();                                
-            Pessoa p = (Pessoa) pessoa.buscar(textoCPF.getText(),tipo);        
-            pessoa.remover(p);
+        if(resposta == JOptionPane.YES_OPTION){                            
+            Pessoa p = (Pessoa) daoAcessaDadosPessoas.buscar(textoCPF.getText(),tipo);        
+            daoAcessaDadosPessoas.remover(p);
             JOptionPane.showMessageDialog(this,"Cliente Removido");
             this.dispose();
         }       
@@ -349,9 +354,8 @@ public class Resultado extends javax.swing.JFrame {
         }
         else{            
             int resposta = JOptionPane.showConfirmDialog( null,"Tem certeza que quer editar?","Confirmação", JOptionPane.YES_NO_OPTION);
-            if(resposta == JOptionPane.YES_OPTION){
-                PessoaDAO pessoa = new PessoaDAO();                   
-                Pessoa p = (Pessoa)pessoa.buscar(textoCPF.getText(),tipo);
+            if(resposta == JOptionPane.YES_OPTION){                
+                Pessoa p = (Pessoa)daoAcessaDadosPessoas.buscar(textoCPF.getText(),tipo);
                 p.setBairro(textoBairro.getText());
                 p.setCep(textoCep.getText());
                 p.setCidade(textoCidade.getText());
@@ -362,7 +366,7 @@ public class Resultado extends javax.swing.JFrame {
                 p.setRua(textoRua.getText());
                 p.setTelefone(textoTelefone.getText()); 
                 p.setTipoPessoa(tipo);
-                pessoa.atualizar(p);   
+                daoAcessaDadosPessoas.atualizar(p);   
                 JOptionPane.showMessageDialog(this,"Cliente Editado");
                 this.dispose();
                 
