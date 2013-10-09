@@ -20,7 +20,7 @@ public class CadastroDeTema extends javax.swing.JFrame {
     /**
      * Creates new form CadastroDeTEma
      */
-	GenericDAOInterface interfaceGenericaCriacaoDeTema;//interface generica para acessar DAO que cria tema no BD
+	private GenericDAOInterface interfaceGenericaCriacaoDeTema;//interface generica para acessar DAO que cria tema no BD
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

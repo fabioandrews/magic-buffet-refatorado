@@ -56,26 +56,26 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField textoBairro;
-    public javax.swing.JTextField textoBairro1;
+    private javax.swing.JTextField textoBairro1;
     private javax.swing.JTextField textoCEP;
-    public javax.swing.JTextField textoCEP1;
+    private javax.swing.JTextField textoCEP1;
     private javax.swing.JTextField textoCPF;
-    public javax.swing.JTextField textoCPF1;
+    private javax.swing.JTextField textoCPF1;
     private javax.swing.JTextField textoCidade;
-    public javax.swing.JTextField textoCidade1;
-    public javax.swing.JTextField textoLogin;
+    private javax.swing.JTextField textoCidade1;
+    private javax.swing.JTextField textoLogin;
     private javax.swing.JTextField textoNome;
-    public javax.swing.JTextField textoNome1;
+    private javax.swing.JTextField textoNome1;
     private javax.swing.JTextField textoNumero;
-    public javax.swing.JTextField textoNumero1;
+    private javax.swing.JTextField textoNumero1;
     private javax.swing.JTextField textoRG;
-    public javax.swing.JTextField textoRG1;
+    private javax.swing.JTextField textoRG1;
     private javax.swing.JTextField textoRua;
     private javax.swing.JTextField textoRua1;
-    public javax.swing.JPasswordField textoSenha;
+    private javax.swing.JPasswordField textoSenha;
     private javax.swing.JTextField textoTelefone;
-    public javax.swing.JTextField textoTelefone1;
-    public javax.swing.JLabel tipoCadastro;
+    private javax.swing.JTextField textoTelefone1;
+    private javax.swing.JLabel tipoCadastro;
 	
     public Cadastros() {
         initComponents();
@@ -103,8 +103,8 @@ public class Cadastros extends javax.swing.JFrame {
 
 
 
-        tipoCadastro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        tipoCadastro.setText("Cadastrar Novo Cliente");
+        getTipoCadastro().setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getTipoCadastro().setText("Cadastrar Novo Cliente");
 
 
         textoNome1.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +157,7 @@ public class Cadastros extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textoCEP1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textoCidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(getTextoCidade1(), javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -175,12 +175,12 @@ public class Cadastros extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Login)
                                 .addGap(18, 18, 18)
-                                .addComponent(textoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(getTextoLogin(), javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(89, 89, 89)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tipoCadastro)
+                                .addComponent(getTextoSenha(), javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(getTipoCadastro())
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
@@ -188,11 +188,11 @@ public class Cadastros extends javax.swing.JFrame {
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textoCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(getTextoCPF1(), javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(40, 40, 40)
                                         .addComponent(jLabel18)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                                        .addComponent(textoRG1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(getTextoRG1(), javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(textoNome1))))
                         .addContainerGap(57, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -205,16 +205,16 @@ public class Cadastros extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tipoCadastro)
+                .addComponent(getTipoCadastro())
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getTextoCPF1(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(textoRG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getTextoRG1(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +230,7 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel11)
-                    .addComponent(textoCidade1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getTextoCidade1(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -242,10 +242,10 @@ public class Cadastros extends javax.swing.JFrame {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getTextoLogin(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Login)
                     .addComponent(jLabel13)
-                    .addComponent(textoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(getTextoSenha(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvar1)
@@ -284,7 +284,7 @@ public class Cadastros extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
         botaoCancelar1 = new javax.swing.JButton();
-        textoCidade1 = new javax.swing.JTextField();
+        setTextoCidade1(new javax.swing.JTextField());
         textoTelefone1 = new javax.swing.JTextField();
         botaoSalvar1 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
@@ -292,11 +292,11 @@ public class Cadastros extends javax.swing.JFrame {
         textoCEP1 = new javax.swing.JTextField();
         textoRua1 = new javax.swing.JTextField();
         textoBairro1 = new javax.swing.JTextField();
-        textoCPF1 = new javax.swing.JTextField();
-        textoRG1 = new javax.swing.JTextField();
+        setTextoCPF1(new javax.swing.JTextField());
+        setTextoRG1(new javax.swing.JTextField());
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        tipoCadastro = new javax.swing.JLabel();
+        setTipoCadastro(new javax.swing.JLabel());
         jLabel14 = new javax.swing.JLabel();
         textoNome1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -306,10 +306,10 @@ public class Cadastros extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        textoLogin = new javax.swing.JTextField();
+        setTextoLogin(new javax.swing.JTextField());
         Login = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        textoSenha = new javax.swing.JPasswordField();
+        setTextoSenha(new javax.swing.JPasswordField());
 	}
 	
 	private void setarTextoEAcaoDosBotoesDaGUI()
@@ -389,7 +389,7 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
-        textoCidade1.addActionListener(new java.awt.event.ActionListener() {
+        getTextoCidade1().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoCidade1ActionPerformed(evt);
             }
@@ -432,19 +432,19 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
-        textoCPF1.addActionListener(new java.awt.event.ActionListener() {
+        getTextoCPF1().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoCPF1ActionPerformed(evt);
             }
         });
 
-        textoRG1.addActionListener(new java.awt.event.ActionListener() {
+        getTextoRG1().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoRG1ActionPerformed(evt);
             }
         });
 
-        textoLogin.addActionListener(new java.awt.event.ActionListener() {
+        getTextoLogin().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoLoginActionPerformed(evt);
             }
@@ -574,11 +574,11 @@ public class Cadastros extends javax.swing.JFrame {
     private void botaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvar1ActionPerformed
         
         Pessoa p = new Pessoa();
-        if (tipoCadastro.getText().contains("Cliente")) {
-            p.setCpf(textoCPF1.getText());
+        if (getTipoCadastro().getText().contains("Cliente")) {
+            p.setCpf(getTextoCPF1().getText());
             System.out.println("cpf");
             p.setPnome(textoNome1.getText());
-            String RG = textoRG1.getText();
+            String RG = getTextoRG1().getText();
             System.out.println("nome");
             System.out.println(RG);
             p.setRg(Integer.parseInt(RG));
@@ -594,17 +594,17 @@ public class Cadastros extends javax.swing.JFrame {
             p.setTipoPessoa(Pessoa.CLIENTE);
             p.setTelefone(textoTelefone1.getText());
             System.out.println("telefone");
-            p.setCidade(textoCidade1.getText());
+            p.setCidade(getTextoCidade1().getText());
             p.setCep(textoCEP1.getText());
             System.out.println("cep");
             interfaceDaoDadosCadastro.criar(p);
             JOptionPane.showMessageDialog(this, "Cliente Criado");
-        } else if (tipoCadastro.getText().contains("Gerente")) {
+        } else if (getTipoCadastro().getText().contains("Gerente")) {
             GerenteDAO gerente = new GerenteDAO();
             Gerente manager = new Gerente();
-            manager.setCpf(textoCPF1.getText());
+            manager.setCpf(getTextoCPF1().getText());
             manager.setPnome(textoNome1.getText());
-            String RG = textoRG1.getText();
+            String RG = getTextoRG1().getText();
             manager.setRg(Integer.parseInt(RG));
             manager.setRua(textoRua1.getText());
             String Numero = textoNumero1.getText();
@@ -615,20 +615,20 @@ public class Cadastros extends javax.swing.JFrame {
             manager.setCep(textoCEP1.getText());
             manager.setTipoPessoa(Pessoa.GERENTE);
             manager.setTelefone(textoTelefone1.getText());
-            manager.setCidade(textoCidade1.getText());
+            manager.setCidade(getTextoCidade1().getText());
             manager.setCep(textoCEP1.getText());
-            manager.setGerenteLogin(textoLogin.getText());
-            manager.setLogin(textoLogin.getText());
-            manager.setSenha(String.valueOf(textoSenha.getPassword()));
+            manager.setGerenteLogin(getTextoLogin().getText());
+            manager.setLogin(getTextoLogin().getText());
+            manager.setSenha(String.valueOf(getTextoSenha().getPassword()));
             gerente.criar(manager);
             gerente.criar(manager);
             JOptionPane.showMessageDialog(this, "Gerente Criado");
 
 
-        } else if (tipoCadastro.getText().contains("Monitor")) {
-            p.setCpf(textoCPF1.getText());            
+        } else if (getTipoCadastro().getText().contains("Monitor")) {
+            p.setCpf(getTextoCPF1().getText());            
             p.setPnome(textoNome1.getText());
-            String RG = textoRG1.getText();            
+            String RG = getTextoRG1().getText();            
             p.setRg(Integer.parseInt(RG));            
             p.setRua(textoRua1.getText());            
             String Numero = textoNumero1.getText();
@@ -637,7 +637,7 @@ public class Cadastros extends javax.swing.JFrame {
             p.setCep(textoCEP1.getText());
             p.setTipoPessoa(Pessoa.MONITOR);
             p.setTelefone(textoTelefone1.getText());
-            p.setCidade(textoCidade1.getText());
+            p.setCidade(getTextoCidade1().getText());
             p.setCep(textoCEP1.getText());
             interfaceDaoDadosCadastro.criar(p);
             JOptionPane.showMessageDialog(this, "Monitor Criado");
@@ -714,4 +714,52 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
     }
+
+	public javax.swing.JLabel getTipoCadastro() {
+		return tipoCadastro;
+	}
+
+	public void setTipoCadastro(javax.swing.JLabel tipoCadastro) {
+		this.tipoCadastro = tipoCadastro;
+	}
+
+	public javax.swing.JTextField getTextoCPF1() {
+		return textoCPF1;
+	}
+
+	public void setTextoCPF1(javax.swing.JTextField textoCPF1) {
+		this.textoCPF1 = textoCPF1;
+	}
+
+	public javax.swing.JTextField getTextoRG1() {
+		return textoRG1;
+	}
+
+	public void setTextoRG1(javax.swing.JTextField textoRG1) {
+		this.textoRG1 = textoRG1;
+	}
+
+	public javax.swing.JTextField getTextoCidade1() {
+		return textoCidade1;
+	}
+
+	public void setTextoCidade1(javax.swing.JTextField textoCidade1) {
+		this.textoCidade1 = textoCidade1;
+	}
+
+	public javax.swing.JTextField getTextoLogin() {
+		return textoLogin;
+	}
+
+	public void setTextoLogin(javax.swing.JTextField textoLogin) {
+		this.textoLogin = textoLogin;
+	}
+
+	public javax.swing.JPasswordField getTextoSenha() {
+		return textoSenha;
+	}
+
+	public void setTextoSenha(javax.swing.JPasswordField textoSenha) {
+		this.textoSenha = textoSenha;
+	}
 }

@@ -146,29 +146,29 @@ public class TelaInicial extends javax.swing.JFrame {
         System.out.println(resposta);
     //se monitor
      if(resposta == 2){
-       tela.tipoCadastro.setText("Cadastrar Novo Monitor");
-       tela.textoCPF1.setText("0");
-       tela.textoCPF1.setEnabled(false);
-       tela.textoRG1.setText("0");
-       tela.textoRG1.setEnabled(false);
-       tela.textoCidade1.setText("Mossoró");
-       tela.textoCidade1.setEnabled(false);
-       tela.textoLogin.setEnabled(false);
-       tela.textoSenha.setEnabled(false);
+       tela.getTipoCadastro().setText("Cadastrar Novo Monitor");
+       tela.getTextoCPF1().setText("0");
+       tela.getTextoCPF1().setEnabled(false);
+       tela.getTextoRG1().setText("0");
+       tela.getTextoRG1().setEnabled(false);
+       tela.getTextoCidade1().setText("Mossoró");
+       tela.getTextoCidade1().setEnabled(false);
+       tela.getTextoLogin().setEnabled(false);
+       tela.getTextoSenha().setEnabled(false);
        tela.setVisible(true);
        
     }
     else
     //se clilente
         if(resposta == 1 ){        
-            tela.textoLogin.setEnabled(false);
-            tela.textoSenha.setEnabled(false);
+            tela.getTextoLogin().setEnabled(false);
+            tela.getTextoSenha().setEnabled(false);
             tela.setVisible(true);
         }        
      else
             if( resposta == 0){
                 //se gerente
-                tela.tipoCadastro.setText("Cadastrar Novo Gerente");
+                tela.getTipoCadastro().setText("Cadastrar Novo Gerente");
                 tela.setVisible(true);
             }
      this.setVisible(false);
@@ -222,7 +222,7 @@ public class TelaInicial extends javax.swing.JFrame {
           }
               
               TelaCadastrarpacote tela = new  TelaCadastrarpacote();
-              tela.tabela.setModel(modelo);
+              tela.getTabela().setModel(modelo);
               tela.setVisible(true);
               this.setVisible(false);
     }//GEN-LAST:event_PACOTEActionPerformed

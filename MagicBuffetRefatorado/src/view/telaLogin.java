@@ -171,7 +171,7 @@ public class telaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Entrar;
     private javax.swing.JLabel Login;
-    public javax.swing.JTextField LoginTexto;
+    private javax.swing.JTextField LoginTexto;
     private javax.swing.JLabel SenhaLabel;
     private javax.swing.JPasswordField senhaTexto;
     // End of variables declaration//GEN-END:variables

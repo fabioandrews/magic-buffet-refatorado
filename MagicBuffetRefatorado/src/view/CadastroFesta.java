@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
  */
 public final class CadastroFesta extends javax.swing.JFrame {
 
-    public boolean checkData = false;
+    private boolean checkData = false;
     private DAOComBuscaMultiplaInterface DAOTemas;
     private DAOComBuscaMultiplaInterface DAOPacotes;
     private DAOComBuscaMultiplaInterface DAOFestas;

@@ -245,8 +245,8 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton CANCELAR;
-    public javax.swing.JButton SALVAR;
+    private javax.swing.JButton CANCELAR;
+    private javax.swing.JButton SALVAR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -255,8 +255,8 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTextField textoNomeItem;
-    public javax.swing.JTextField textoQuantidade;
-    public javax.swing.JTextField textopreco;
+    private javax.swing.JTextField textoNomeItem;
+    private javax.swing.JTextField textoQuantidade;
+    private javax.swing.JTextField textopreco;
     // End of variables declaration//GEN-END:variables
 }

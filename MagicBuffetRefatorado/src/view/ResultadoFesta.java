@@ -24,13 +24,13 @@ public class ResultadoFesta extends javax.swing.JFrame {
 	private GenericDAOInterface pessoaDAO;  
 	private DAOComBuscaMultiplaInterface localizacaoDAO;  
     
-    public javax.swing.JTextField cliente;
-    public javax.swing.JTextField convidados;
-    public javax.swing.JTextField data;
-    public javax.swing.JTextField estilo;
-    public javax.swing.JTextField horario;
-    public javax.swing.JTextField itensPacote;
-    public javax.swing.JComboBox itensTema;
+    private javax.swing.JTextField cliente;
+    private javax.swing.JTextField convidados;
+    private javax.swing.JTextField data;
+    private javax.swing.JTextField estilo;
+    private javax.swing.JTextField horario;
+    private javax.swing.JTextField itensPacote;
+    private javax.swing.JComboBox itensTema;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -41,7 +41,7 @@ public class ResultadoFesta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTextField local;
+    private javax.swing.JTextField local;
     
     //ResultadoFesta agora tem como parametro uma festa, já que sem ela, os componentes da GUI não teriam valores
     public ResultadoFesta(Festa f) 
@@ -75,7 +75,7 @@ public class ResultadoFesta extends javax.swing.JFrame {
         local = new javax.swing.JTextField();
         data = new javax.swing.JTextField();
         convidados = new javax.swing.JTextField();
-        itensTema = new javax.swing.JComboBox();
+        setItensTema(new javax.swing.JComboBox());
         jLabel9 = new javax.swing.JLabel();
         itensPacote = new javax.swing.JTextField();
         estilo = new javax.swing.JTextField();
@@ -143,7 +143,7 @@ public class ResultadoFesta extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(estilo, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(itensTema, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE))
+                                                    .addComponent(getItensTema(), javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE))
                                                 .addGap(28, 28, 28)
                                                 .addComponent(jLabel9)
                                                 .addGap(18, 18, 18)
@@ -165,7 +165,7 @@ public class ResultadoFesta extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(itensTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getItensTema(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(itensPacote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,4 +271,12 @@ public class ResultadoFesta extends javax.swing.JFrame {
               
           }
     }
+
+	public javax.swing.JComboBox getItensTema() {
+		return itensTema;
+	}
+
+	public void setItensTema(javax.swing.JComboBox itensTema) {
+		this.itensTema = itensTema;
+	}
 }

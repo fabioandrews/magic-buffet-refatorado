@@ -54,7 +54,7 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         CANCELAR = new javax.swing.JButton();
         SALVAR = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabela = new javax.swing.JTable();
+        setTabela(new javax.swing.JTable());
         calcularPreco = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         desconto = new javax.swing.JTextField();
@@ -94,7 +94,7 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
             }
         });
 
-        tabela.setModel(new javax.swing.table.DefaultTableModel(
+        getTabela().setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -105,7 +105,7 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
                 "Title 1"
             }
         ));
-        jScrollPane1.setViewportView(tabela);
+        jScrollPane1.setViewportView(getTabela());
 
         calcularPreco.setText("Calcular Preço");
         calcularPreco.addActionListener(new java.awt.event.ActionListener() {
@@ -227,13 +227,13 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         textoPreco.setText(String.valueOf(pacote.getPrecoPacote()));
         
         int[] linhaSelecionadas;
-        linhaSelecionadas = tabela.getSelectedRows();        
+        linhaSelecionadas = getTabela().getSelectedRows();        
         int linha;
         float valor = 0;
         ArrayList<String> itens = new ArrayList();
-        for (int i = 0; i < tabela.getSelectedRowCount(); i++) {
+        for (int i = 0; i < getTabela().getSelectedRowCount(); i++) {
             linha = linhaSelecionadas[i];            
-            String idItem = tabela.getValueAt(linha, 1).toString();            
+            String idItem = getTabela().getValueAt(linha, 1).toString();            
             itens.add(idItem);            
         }
         
@@ -255,17 +255,17 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
     
     private void calcularPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularPrecoActionPerformed
         Item item;
-        if (tabela.getSelectedRowCount() == 0) {
+        if (getTabela().getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Selecione algum item");
         } else {            
             int[] linhaSelecionadas;
-            linhaSelecionadas = tabela.getSelectedRows();            
+            linhaSelecionadas = getTabela().getSelectedRows();            
             int linha;
             float valor = 0;
             ArrayList<Item> itens = new ArrayList();
-            for (int i = 0; i < tabela.getSelectedRowCount(); i++) {
+            for (int i = 0; i < getTabela().getSelectedRowCount(); i++) {
                 linha = linhaSelecionadas[i];                
-                String valueAt = tabela.getValueAt(linha, 1).toString();
+                String valueAt = getTabela().getValueAt(linha, 1).toString();
                 item = (Item) DAOItens.buscar(valueAt);
                 System.out.println(item.getPrecoUnidade());
                 valor = valor + item.getPrecoUnidade();                
@@ -312,8 +312,8 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton CANCELAR;
-    public javax.swing.JButton SALVAR;
+    private javax.swing.JButton CANCELAR;
+    private javax.swing.JButton SALVAR;
     private javax.swing.JButton calcularPreco;
     private javax.swing.JTextField desconto;
     private javax.swing.JLabel jLabel1;
@@ -322,8 +322,25 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel nomePacote;
     private javax.swing.JLabel precoPacote;
-    public javax.swing.JTable tabela;
-    public javax.swing.JTextField textoNomePacote;
-    public volatile javax.swing.JTextField textoPreco;
+    private javax.swing.JTable tabela;
+    private javax.swing.JTextField textoNomePacote;
+    private volatile javax.swing.JTextField textoPreco;
     // End of variables declaration//GEN-END:variables
+
+	public synchronized javax.swing.JTextField getTextoPreco() {
+		return textoPreco;
+	}
+
+	public synchronized void setTextoPreco(javax.swing.JTextField textoPreco) {
+		this.textoPreco = textoPreco;
+	}
+
+	public javax.swing.JTable getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(javax.swing.JTable tabela) {
+		this.tabela = tabela;
+	}
+    
 }

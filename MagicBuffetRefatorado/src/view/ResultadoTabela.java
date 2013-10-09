@@ -161,9 +161,9 @@ public class ResultadoTabela extends javax.swing.JFrame {
                 }
 
                 DefaultComboBoxModel  model = new DefaultComboBoxModel(themes);
-                result.itensTema.setModel(model);
-                result.itensTema.setEditable(false);
-                result.itensTema.setEnabled(false);
+                result.getItensTema().setModel(model);
+                result.getItensTema().setEditable(false);
+                result.getItensTema().setEnabled(false);
                 result.setVisible(true);            
         }
         else {         
@@ -183,15 +183,15 @@ public class ResultadoTabela extends javax.swing.JFrame {
         result.setNumero(String.valueOf(p.getNumero()));        
         result.setRG(String.valueOf(p.getRg()));
         result.setTipo(tipoPessoa);
-        result.textoBairro.setEnabled(false);
-        result.textoNome.setEnabled(false);
-        result.textoCPF.setEnabled(false);
-        result.textoCep.setEnabled(false);
-        result.textoRG.setEnabled(false);
-        result.textoTelefone.setEnabled(false);
-        result.textoRua.setEnabled(false);
-        result.numeroTexto.setEnabled(false);
-        result.textoCidade.setEnabled(false);        
+        result.getTextoBairro().setEnabled(false);
+        result.getTextoNome().setEnabled(false);
+        result.getTextoCPF().setEnabled(false);
+        result.getTextoCep().setEnabled(false);
+        result.getTextoRG().setEnabled(false);
+        result.getTextoTelefone().setEnabled(false);
+        result.getTextoRua().setEnabled(false);
+        result.getNumeroTexto().setEnabled(false);
+        result.getTextoCidade().setEnabled(false);        
         this.dispose();
         result.setVisible(true);     
         }
