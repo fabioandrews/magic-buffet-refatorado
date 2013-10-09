@@ -56,22 +56,12 @@ public class PessoaDAO extends ConectionDAO implements GenericDAOInterface {
         String buscarPessoa = "SELECT * FROM pessoa WHERE cpf = '" + args[0] +
                 "' AND TipoPessoa = '" + args[1] + "'"; //busca apenas uma pessoa pelo CPF
         ResultSet result;
-        Pessoa pessoa = new Pessoa();
+        Pessoa pessoaResultadoDaBusca = new Pessoa();
         conectar(buscarPessoa);
         try {
             result = pstm.executeQuery();
             while (result.next()) {
-                pessoa.setCpf(result.getString("CPF"));
-                pessoa.setRg(result.getInt("RG"));
-                pessoa.setGerenteLogin(result.getString("Gerente_login"));
-                pessoa.setCep(result.getString("CEP"));
-                pessoa.setRua(result.getString("Rua"));
-                pessoa.setBairro(result.getString("Bairro"));
-                pessoa.setTelefone(result.getString("Telefone"));
-                pessoa.setNumero(result.getInt("Numero"));
-                pessoa.setPnome(result.getString("PNome"));
-                pessoa.setTipoPessoa(result.getString("TipoPessoa"));
-                pessoa.setCidade(result.getString("cidade"));
+                pessoaResultadoDaBusca = criarObjetoPessoaAPartirDeResultadosDeBusca(result);
 
             }
         } catch (SQLException ex) {
@@ -79,8 +69,25 @@ public class PessoaDAO extends ConectionDAO implements GenericDAOInterface {
             mensagem.imprimeErro("Erro ao Buscar uma Pessoa", ex.getMessage());
         }
         fechar();
-        return pessoa;
+        return pessoaResultadoDaBusca;
     }
+
+	private Pessoa criarObjetoPessoaAPartirDeResultadosDeBusca(ResultSet result
+			) throws SQLException {
+		Pessoa pessoaResultadoDaBusca = new Pessoa();
+		pessoaResultadoDaBusca.setCpf(result.getString("CPF"));
+		pessoaResultadoDaBusca.setRg(result.getInt("RG"));
+		pessoaResultadoDaBusca.setGerenteLogin(result.getString("Gerente_login"));
+		pessoaResultadoDaBusca.setCep(result.getString("CEP"));
+		pessoaResultadoDaBusca.setRua(result.getString("Rua"));
+		pessoaResultadoDaBusca.setBairro(result.getString("Bairro"));
+		pessoaResultadoDaBusca.setTelefone(result.getString("Telefone"));
+		pessoaResultadoDaBusca.setNumero(result.getInt("Numero"));
+		pessoaResultadoDaBusca.setPnome(result.getString("PNome"));
+		pessoaResultadoDaBusca.setTipoPessoa(result.getString("TipoPessoa"));
+		pessoaResultadoDaBusca.setCidade(result.getString("cidade"));
+		return pessoaResultadoDaBusca;
+	}
 
     //Atualiza uma determinada pessoa
     @Override
@@ -151,25 +158,15 @@ public class PessoaDAO extends ConectionDAO implements GenericDAOInterface {
 
             String sql = "SELECT * FROM pessoa WHERE TipoPessoa = '"+ tipo + "'";
         ArrayList<Pessoa> pessoas = new ArrayList<>();
-        ResultSet result;
+        ResultSet resultSetResultadoBusca;
         conectar(sql);
         
         try {
-            result = pstm.executeQuery();
-            while (result.next()) {
-                Pessoa pessoa = new Pessoa();
-                // pega todos os atributos da pessoa  
-                pessoa.setPnome(result.getString("PNome"));
-                pessoa.setBairro(result.getString("Bairro"));
-                pessoa.setCep(result.getString("CEP"));
-                pessoa.setNumero(result.getInt("Numero"));
-                pessoa.setRua(result.getString("Rua"));
-                pessoa.setCpf(result.getString("CPF"));
-                pessoa.setRg(result.getInt("RG"));
-                pessoa.setTelefone(result.getString("Telefone"));
-                pessoa.setCidade(result.getString("cidade"));
+            resultSetResultadoBusca = pstm.executeQuery();
+            while (resultSetResultadoBusca.next()) {
+                Pessoa pessoaResultadoDaBusca = this.criarObjetoPessoaAPartirDeResultadosDeBusca(resultSetResultadoBusca);
 
-                pessoas.add(pessoa);
+                pessoas.add(pessoaResultadoDaBusca);
             }
             return pessoas;
 
@@ -191,18 +188,7 @@ public class PessoaDAO extends ConectionDAO implements GenericDAOInterface {
             conectar(sql);
             result = pstm.executeQuery();
             while (result.next()) {
-                Pessoa pessoa = new Pessoa();
-                // pega todos os atributos da pessoa  
-                pessoa.setPnome(result.getString("PNome"));
-                pessoa.setBairro(result.getString("Bairro"));
-                pessoa.setCep(result.getString("CEP"));
-                pessoa.setNumero(result.getInt("Numero"));
-                pessoa.setRua(result.getString("Rua"));
-                pessoa.setCpf(result.getString("CPF"));
-                pessoa.setRg(result.getInt("RG"));
-                pessoa.setTelefone(result.getString("Telefone"));
-                pessoa.setCidade(result.getString("cidade"));
-
+                Pessoa pessoa = this.criarObjetoPessoaAPartirDeResultadosDeBusca(result);
                 pessoas.add(pessoa);
             }
             return pessoas;
