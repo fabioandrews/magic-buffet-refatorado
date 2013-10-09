@@ -7,10 +7,12 @@ package entidadesDAO;
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
+import controler.Pacote;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,8 +62,8 @@ public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOCo
     }
                      
     public ArrayList<Festa> buscarFesta(String data) {
-        
-        String buscarFestas = "SELECT * FROM festa WHERE datainicio LIKE '" + data + "'";
+        /**/
+        String buscarFestas = "SELECT * FROM festa WHERE datainicio = '" + data + "'";
         ArrayList<Festa> festas = new ArrayList<>();
         ResultSet result;
         
@@ -129,6 +131,11 @@ public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOCo
         return festas;
     }
 
+   /*private LinkedList<Object> converterConsultaEmObjetoFesta()
+   {
+	   
+   }*/
+   
     @Override
     public boolean criar(Object object) {
              String criarFesta = "INSERT INTO festa "
@@ -146,7 +153,14 @@ public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOCo
             pstm.setString(2, festa.getPessoaCPF());
             pstm.setString(3, festa.getTema());
             pstm.setString(4, festa.getLocal());
-            pstm.setString(5, festa.getPacote());
+            //pstm.setString(5, festa.getPacote());
+            
+            //vou buscar no BD por um pacote com esse nome para obter seu ID
+            PacoteDAO buscaPacotes = new PacoteDAO();
+            Pacote pacote = buscaPacotes.buscarPorNome(festa.getPacote());
+            String idPacote = pacote.getIdPacote();
+            
+            pstm.setString(5, idPacote);
             pstm.setString(6, festa.getDataInicio());
             pstm.setString(7, festa.getDataFim());
             pstm.setTime(8, festa.getHoraInicio());
