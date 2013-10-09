@@ -30,12 +30,12 @@ public class TelaInicial extends javax.swing.JFrame {
     {
         if(instance == null){
             instance = new TelaInicial();
-            DAOTrabalhaComItens = new ItemDAO();
         }       
             return instance;        
     }
     
     private TelaInicial() {
+    	DAOTrabalhaComItens = new ItemDAO();
         initComponents();
     }
 
