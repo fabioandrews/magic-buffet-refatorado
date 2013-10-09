@@ -4,14 +4,21 @@
  */
 package view;
 
+import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 import controler.Pessoa;
 import entidadesDAO.FestaDAO;
+
 import java.util.ArrayList;
+import java.util.Locale.Category;
+
 import javax.swing.table.DefaultTableModel;
+
 import entidadesDAO.PessoaDAO;
+
 import java.sql.Time;
 import java.util.Calendar;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -163,120 +170,35 @@ public class TelaBuscar extends javax.swing.JFrame {
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
 
         if (ClienteRB.isSelected()) {
-            PessoaDAO pessoa = new PessoaDAO();
+            PessoaDAO daoConsultaDadosPessoas = new PessoaDAO();
             if (cpfText.getText().equals("")) {
-                ArrayList<Pessoa> ListaPessoas = pessoa.buscarPessoas("CLIENTE");
-                ResultadoTabela resultado = new ResultadoTabela();
-                resultado.tipoPessoa = "CLIENTE";
-                modelo = new DefaultTableModel();
-                modelo.addColumn("Cliente");
-                modelo.addColumn("CPF");
-                
-
-                for (int i = 0; i < ListaPessoas.size(); i++) {
-                    String Cliente = ListaPessoas.get(i).getPnome();
-                    String cpf = ListaPessoas.get(i).getCpf();
-                    String[] linha = {Cliente, cpf};
-                    modelo.addRow(linha);
-                }
-                resultado.tabela.setModel(modelo);
-                resultado.setVisible(true);
-
+            	//ssem CPF para a busca? È busca por categoria dae pessoas!
+            	this.buscarPessoasPorCategoria(daoConsultaDadosPessoas, Pessoa.CLIENTE);
             } else {
-                Pessoa p = (Pessoa) pessoa.buscar(cpfText.getText(), "CLIENTE");
-                if (p.getPnome() == null) {
-                    JOptionPane.showMessageDialog(this, "Cliente n√£o encontrado");
-                } else {
-                    Resultado result = new Resultado();
-                    result.setNome(p.getPnome());
-                    result.setCpf(p.getCpf());
-                    result.setBairro(p.getBairro());
-                    result.setTelefone(p.getTelefone());
-                    result.setRua(p.getRua());
-                    result.setRG(String.valueOf(p.getRg()));
-                    result.setNumero(String.valueOf(p.getNumero()));
-                    result.setCep(p.getCep());
-                    result.setCidadee(p.getCidade());
-                    result.textoBairro.setEnabled(false);
-                    result.textoNome.setEnabled(false);
-                    result.textoCPF.setEnabled(false);
-                    result.textoCep.setEnabled(false);
-                    result.textoRG.setEnabled(false);
-                    result.textoTelefone.setEnabled(false);
-                    result.textoRua.setEnabled(false);
-                    result.numeroTexto.setEnabled(false);
-                    result.textoCidade.setEnabled(false);
-                    result.setTipo(Pessoa.CLIENTE);
-                    System.out.println(result.getTipo());
-                    result.setVisible(true);
-                }
+            	//foi especificado um CPF para busca de cliente
+            	this.buscarPessoaPorCPF(daoConsultaDadosPessoas, cpfText.getText(), Pessoa.CLIENTE);
             }
         } else if (MonitorRB.isSelected()) {
 
-            PessoaDAO pessoa = new PessoaDAO();
-            
+            PessoaDAO daoConsultaDadosPessoa = new PessoaDAO();
+            //inicio que pode ser extraÌdo: preparando tabela com resultado da consulta por monitores
             if (cpfText.getText().equals("")) {
-                ArrayList<Pessoa> ListaPessoas = pessoa.buscarPessoas("MONITOR");
-                ResultadoTabela resultado = new ResultadoTabela();
-                resultado.tipoPessoa = "MONITOR";
-                modelo = new DefaultTableModel();
-                modelo.addColumn("Monitor");
-                modelo.addColumn("CPF");
-
-                for (int i = 0; i < ListaPessoas.size(); i++) {
-                    String Monitor = ListaPessoas.get(i).getPnome();
-                    String cpf = ListaPessoas.get(i).getCpf();
-                    String[] linha = {Monitor, cpf};
-                    modelo.addRow(linha);
-                }
-                resultado.tabela.setModel(modelo);
-                resultado.setVisible(true);
+                this.buscarPessoasPorCategoria(daoConsultaDadosPessoa, Pessoa.MONITOR);
 
             } else {
-                Pessoa p = (Pessoa) pessoa.buscar(cpfText.getText(), "MONITOR");
-                if (p.getPnome() == null) {
-                    JOptionPane.showMessageDialog(this, "Monitor n√£o encontrado");
-                } else {
-                    Resultado result = new Resultado();
-                    result.setNome(p.getPnome());
-                    result.setCpf(p.getCpf());
-                    result.setBairro(p.getBairro());
-                    result.setTelefone(p.getTelefone());
-                    result.setRua(p.getRua());
-                    result.setRG(String.valueOf(p.getRg()));
-                    result.setNumero(String.valueOf(p.getNumero()));
-                    result.setCep(p.getCep());
-                    result.setCidadee(p.getCidade());
-                    result.textoBairro.setEnabled(false);
-                    result.textoNome.setEnabled(false);
-                    result.textoCPF.setEnabled(false);
-                    result.textoCep.setEnabled(false);
-                    result.textoRG.setEnabled(false);
-                    result.textoTelefone.setEnabled(false);
-                    result.textoRua.setEnabled(false);
-                    result.numeroTexto.setEnabled(false);
-                    result.textoCidade.setEnabled(false);
-                    result.setTipo(Pessoa.MONITOR);
-                    System.out.println(result.getTipo());
-                    result.setVisible(true);
-                }
+            	//foi especificado um CPF para busca de monitor
+            	this.buscarPessoaPorCPF(daoConsultaDadosPessoa, cpfText.getText(), Pessoa.MONITOR);
             }
         }
         else 
             if(FestaRB.isSelected()) {
                 Calendar date = data.getCalendar();
-                String dataBusca = date.get(Calendar.DAY_OF_MONTH) + "/" + 
-                      (date.get(Calendar.MONTH) + 1) 
-                        + "/" + date.get(Calendar.YEAR);
+                String dataBusca = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + date.get(Calendar.DAY_OF_MONTH); 
+                
                 
                 FestaDAO festas = new FestaDAO();
                 ArrayList<Festa> festa = new ArrayList();
                 festa = festas.buscarFesta(dataBusca);
-                
-                
-                
-                
-                
                 ResultadoTabela resultado = new ResultadoTabela();
                 
                 modelo = new DefaultTableModel();
@@ -285,9 +207,6 @@ public class TelaBuscar extends javax.swing.JFrame {
                 modelo.addColumn("Hor√°rio");
                 modelo.addColumn("Id");
                 
-                
-
-
                 for (int i = 0; i < festa.size(); i++) {
                     String CpfCliente = festa.get(i).getPessoaCPF();
                     Time horario = festa.get(i).getHoraInicio();
@@ -299,18 +218,74 @@ public class TelaBuscar extends javax.swing.JFrame {
                     
                     modelo.addRow(linha);
                 }
-                
                 resultado.tabela.setModel(modelo);
-                resultado.setVisible(true);
-
-                
-                
-                
-                
-                
+                resultado.setVisible(true);      
         }
     }//GEN-LAST:event_botaoBuscarActionPerformed
+    
+    /**
+     * consulta dados de pessoas(via DAO) de acordo com uma categoria(Ex: "Cliente", "Monitor") 
+     * @param daoConsultaDadosDePessoas DAO para consulta de dados de pessoas
+     * @param categoriaDaPessoa categoria das pessoas que se deseja buscar(Ex: "Cliente", "Monitor") 
+     */
+    private void buscarPessoasPorCategoria(PessoaDAO daoConsultaDadosDePessoas, String categoriaDaPessoa)
+    {
+    	ArrayList<Pessoa> ListaPessoas = daoConsultaDadosDePessoas.buscarPessoas(categoriaDaPessoa);
+        ResultadoTabela resultado = new ResultadoTabela();
+        resultado.tipoPessoa = categoriaDaPessoa;
+        modelo = new DefaultTableModel();
+        modelo.addColumn(categoriaDaPessoa);
+        modelo.addColumn("CPF");
 
+        for (int i = 0; i < ListaPessoas.size(); i++) {
+            String nomePessoa = ListaPessoas.get(i).getPnome();
+            String cpf = ListaPessoas.get(i).getCpf();
+            String[] linha = {nomePessoa, cpf};
+            modelo.addRow(linha);
+        }
+        resultado.tabela.setModel(modelo);
+        resultado.setVisible(true);
+    }
+
+    /**
+     * busca(usando um DAO) dados de Pessoas de acordo com um CPF especificado pelo usu·rio 
+     * @param daoConsultaDadosDePessoas DAO para consulta de pessoas
+     * @param cpfDaPessoa CPF especificado pelo usu·rio para consulta
+     * @param categoriaPessoa categoria da pessoa a pesquisar(Ex: "monitor", "cliente")
+     */
+    private void buscarPessoaPorCPF(GenericDAOInterface daoConsultaDadosDePessoas, 
+    		String cpfDaPessoa, String categoriaPessoa)
+    {
+    	 Pessoa p = (Pessoa) daoConsultaDadosDePessoas.buscar(cpfText.getText(), categoriaPessoa);
+         if (p.getPnome() == null) {
+        	 String mensagemDeErro = categoriaPessoa + " n„o encontrado";
+             JOptionPane.showMessageDialog(this, mensagemDeErro);
+         } else {
+             Resultado result = new Resultado();
+             result.setNome(p.getPnome());
+             result.setCpf(p.getCpf());
+             result.setBairro(p.getBairro());
+             result.setTelefone(p.getTelefone());
+             result.setRua(p.getRua());
+             result.setRG(String.valueOf(p.getRg()));
+             result.setNumero(String.valueOf(p.getNumero()));
+             result.setCep(p.getCep());
+             result.setCidadee(p.getCidade());
+             result.textoBairro.setEnabled(false);
+             result.textoNome.setEnabled(false);
+             result.textoCPF.setEnabled(false);
+             result.textoCep.setEnabled(false);
+             result.textoRG.setEnabled(false);
+             result.textoTelefone.setEnabled(false);
+             result.textoRua.setEnabled(false);
+             result.numeroTexto.setEnabled(false);
+             result.textoCidade.setEnabled(false);
+             result.setTipo(categoriaPessoa);
+             System.out.println(result.getTipo());
+             result.setVisible(true);
+         }
+    }
+    
     private void MonitorRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonitorRBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MonitorRBActionPerformed
