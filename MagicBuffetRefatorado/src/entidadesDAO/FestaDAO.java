@@ -12,7 +12,6 @@ import controler.Pacote;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,18 +38,7 @@ public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOCo
             result = pstm.executeQuery();
 
             while (result.next()) {
-
-                festa.setIdFesta(result.getString("IdFesta"));
-                festa.setPessoaCPF(result.getString("clienteCPF"));
-                festa.setTema(result.getString("idTema"));
-                festa.setLocal(result.getString("localizacaoCEP"));
-                festa.setPacote(result.getString("idPacote"));
-                festa.setDataInicio(result.getString("datainicio"));
-                festa.setDataFim(result.getString("dataFim"));
-                festa.setHoraInicio(result.getTime("horaInicio"));
-                festa.setExterno(result.getBoolean("externo"));
-                festa.setQuantidadeConvidados(result.getInt("quantidadeconvidados"));
-                festa.setEstiloFesta(result.getString("estiloFesta"));
+            	festa = this.converterResultadoConsultaEmObjetoFesta(result);
             }
 
         } catch (SQLException ex) {
@@ -71,21 +59,7 @@ public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOCo
         try {
             result = pstm.executeQuery();
             while (result.next()) {
-                
-                Festa festa = new Festa();
-
-                festa.setIdFesta(result.getString("IdFesta"));
-                festa.setPessoaCPF(result.getString("clienteCPF"));
-                festa.setTema(result.getString("idTema"));
-                festa.setLocal(result.getString("localizacaoCEP"));
-                festa.setPacote(result.getString("idPacote"));
-                festa.setDataInicio(result.getString("datainicio"));
-                festa.setDataFim(result.getString("dataFim"));
-                festa.setHoraInicio(result.getTime("horaInicio"));
-                festa.setExterno(result.getBoolean("externo"));
-                festa.setQuantidadeConvidados(result.getInt("quantidadeconvidados"));
-                festa.setEstiloFesta(result.getString("estiloFesta"));
-                
+            	Festa festa = this.converterResultadoConsultaEmObjetoFesta(result);
                 festas.add(festa);
             }
         } catch (SQLException ex) {
@@ -106,21 +80,7 @@ public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOCo
         try {
             result = pstm.executeQuery();
             while (result.next()) {
-                
-                Festa festa = new Festa();
-
-                festa.setIdFesta(result.getString("IdFesta"));
-                festa.setPessoaCPF(result.getString("clienteCPF"));
-                festa.setTema(result.getString("idTema"));
-                festa.setLocal(result.getString("localizacaoCEP"));
-                festa.setPacote(result.getString("idPacote"));
-                festa.setDataInicio(result.getString("datainicio"));
-                festa.setDataFim(result.getString("dataFim"));
-                festa.setHoraInicio(result.getTime("horaInicio"));
-                festa.setExterno(result.getBoolean("externo"));
-                festa.setQuantidadeConvidados(result.getInt("quantidadeconvidados"));
-                festa.setEstiloFesta(result.getString("estiloFesta"));
-                
+            	Festa festa = this.converterResultadoConsultaEmObjetoFesta(result);
                 festas.add(festa);
             }
         } catch (SQLException ex) {
@@ -131,10 +91,24 @@ public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOCo
         return festas;
     }
 
-   /*private LinkedList<Object> converterConsultaEmObjetoFesta()
+   private Festa converterResultadoConsultaEmObjetoFesta(ResultSet result) throws SQLException
    {
-	   
-   }*/
+	   Festa festa = new Festa();
+
+       festa.setIdFesta(result.getString("IdFesta"));
+       festa.setPessoaCPF(result.getString("clienteCPF"));
+       festa.setTema(result.getString("idTema"));
+       festa.setLocal(result.getString("localizacaoCEP"));
+       festa.setPacote(result.getString("idPacote"));
+       festa.setDataInicio(result.getString("datainicio"));
+       festa.setDataFim(result.getString("dataFim"));
+       festa.setHoraInicio(result.getTime("horaInicio"));
+       festa.setExterno(result.getBoolean("externo"));
+       festa.setQuantidadeConvidados(result.getInt("quantidadeconvidados"));
+       festa.setEstiloFesta(result.getString("estiloFesta"));
+       
+       return festa;
+   }
    
     @Override
     public boolean criar(Object object) {

@@ -7,7 +7,6 @@ package view;
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
-import controler.Localizacao;
 import controler.Pessoa;
 import controler.Tema;
 import entidadesDAO.FestaDAO;

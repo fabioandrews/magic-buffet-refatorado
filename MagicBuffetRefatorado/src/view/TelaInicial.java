@@ -6,7 +6,6 @@ package view;
 
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import controler.Item;
-import controler.Pacote;
 import entidadesDAO.ItemDAO;
 import java.util.ArrayList;
 

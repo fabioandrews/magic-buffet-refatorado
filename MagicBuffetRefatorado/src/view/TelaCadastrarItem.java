@@ -7,7 +7,6 @@ package view;
 import InterfaceDAO.GenericDAOInterface;
 import controler.Item;
 import entidadesDAO.ItemDAO;
-import exceptioDAO.DAOException;
 
 /**
  *

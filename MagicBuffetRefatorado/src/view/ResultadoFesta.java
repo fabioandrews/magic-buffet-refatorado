@@ -8,18 +8,9 @@ import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 import controler.Localizacao;
-import controler.Pacote;
 import controler.Pessoa;
-import controler.Tema;
-import entidadesDAO.FestaDAO;
 import entidadesDAO.LocalizacaoDAO;
-import entidadesDAO.PacoteDAO;
 import entidadesDAO.PessoaDAO;
-import entidadesDAO.TemaDAO;
-
-import java.util.ArrayList;
-
-import javax.swing.DefaultComboBoxModel;
 
 /**
  *

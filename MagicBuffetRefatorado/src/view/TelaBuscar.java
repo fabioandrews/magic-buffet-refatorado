@@ -10,7 +10,6 @@ import controler.Pessoa;
 import entidadesDAO.FestaDAO;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
 
 import javax.swing.table.DefaultTableModel;
 

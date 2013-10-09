@@ -4,12 +4,10 @@
  */
 package InterfaceDAO;
 
-import controler.Pessoa;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,39 +15,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import view.ResultadoTabela;
 
 public class ModelTable extends JFrame {
     private DefaultTableModel model;
 
      private JTable table;
-public ModelTable() {
+public ModelTable() 
+{
     super();
     model = new DefaultTableModel();
     model.addColumn("First Name");
     model.addColumn("Last Name");
     model.addColumn("Years");
 
-    String[] socrates = { "Socrates", "", "469-399 B.C." };
-    model.addRow(socrates);
-
-    String[] plato = { "Plato", "", "428-347 B.C." };
-    model.addRow(plato);
-
-    String[] aquinas = { "Thomas", "Aquinas", "1225-1274" };
-    model.addRow(aquinas);
-
-    String[] kierkegaard = { "Soren", "Kierkegaard", "1813-1855" };
-    model.addRow(kierkegaard);
-
-    String[] kant = { "Immanuel", "Kant", "1724-1804" };
-    model.addRow(kant);
-
-    String[] nietzsche = { "Friedrich", "Nietzsche", "1844-1900" };
-    model.addRow(nietzsche);
-
-    String[] arendt = { "Hannah", "Arendt", "1906-1975" };
-    model.addRow(arendt);
+    this.adicionarLinhasNoModel();
 
     table = new JTable(model);
 
@@ -81,6 +60,30 @@ public ModelTable() {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setSize(400, 300);
     setVisible(true);
-  } 
+  }
+
+  private void adicionarLinhasNoModel()
+  {
+	  String[] socrates = { "Socrates", "", "469-399 B.C." };
+	    model.addRow(socrates);
+
+	    String[] plato = { "Plato", "", "428-347 B.C." };
+	    model.addRow(plato);
+
+	    String[] aquinas = { "Thomas", "Aquinas", "1225-1274" };
+	    model.addRow(aquinas);
+
+	    String[] kierkegaard = { "Soren", "Kierkegaard", "1813-1855" };
+	    model.addRow(kierkegaard);
+
+	    String[] kant = { "Immanuel", "Kant", "1724-1804" };
+	    model.addRow(kant);
+
+	    String[] nietzsche = { "Friedrich", "Nietzsche", "1844-1900" };
+	    model.addRow(nietzsche);
+
+	    String[] arendt = { "Hannah", "Arendt", "1906-1975" };
+	    model.addRow(arendt);
+  }
 } 
   

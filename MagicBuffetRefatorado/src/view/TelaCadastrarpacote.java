@@ -10,7 +10,6 @@ import controler.Pacote;
 import entidadesDAO.ItemDAO;
 import entidadesDAO.PacoteDAO;
 
-import java.awt.List;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 

@@ -4,7 +4,6 @@
  */
 package InterfaceDAO;
 
-import controler.Pessoa;
 import java.util.ArrayList;
 
 /**
