@@ -139,44 +139,8 @@ public class ResultadoTabela extends javax.swing.JFrame {
             int linha = tabela.getSelectedRow();
             Object valueAt = tabela.getValueAt(linha, 3);
             String id = valueAt.toString();             
-            ResultadoFesta result = new ResultadoFesta();
-                      
-
-                Festa f = (Festa) DAOFestas.buscar(id);
-                Pessoa pessoa = (Pessoa) DAOPessoas.buscar(f.getPessoaCPF(), "CLIENTE");                
-                result.cliente.setText(pessoa.getPnome());
-                result.cliente.setEditable(false);        
-                result.horario.setText(f.getHoraInicio().toString());
-                result.horario.setEditable(false);
-                result.convidados.setText(String.valueOf(f.getQuantidadeConvidados()));
-                result.convidados.setEditable(false);
-                result.itensPacote.setText(f.getPacote());
-                result.itensPacote.setEditable(false);
-                result.data.setText(f.getDataInicio());
-                result.data.setEditable(false);
-                result.estilo.setText(f.getEstiloFesta());
-                result.estilo.setEditable(false);
-                 if(!f.isExterno()){
-                    result.local.setText("BUFFET");
-                 }
-                 else{
-                     if(f.getLocal().equalsIgnoreCase("Endereço do cliente")){
-                         
-                         result.local.setText(pessoa.getRua() +" - " +  
-                                 pessoa.getBairro() + " - " + pessoa.getNumero());
-                     }
-                     else{
-                     Localizacao localiz;
-                     String cep = f.getLocal();
-                     localiz = (Localizacao)DAOLocalizacao.buscar(cep);
-                     result.local.setText(localiz.getCEP() + " - " + localiz.getBairro()
-                              + " - " + localiz.getRua());
-                     
-                     
-              }
-                     
-                     
-                 }
+            Festa f = (Festa) DAOFestas.buscar(id);
+            ResultadoFesta result = new ResultadoFesta(f);
                 
                 
                 ArrayList<Object> t = DAOTemas.buscar();

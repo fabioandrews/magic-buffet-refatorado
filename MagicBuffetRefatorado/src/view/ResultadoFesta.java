@@ -4,15 +4,21 @@
  */
 package view;
 
+import InterfaceDAO.DAOComBuscaMultiplaInterface;
+import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
+import controler.Localizacao;
 import controler.Pacote;
 import controler.Pessoa;
 import controler.Tema;
 import entidadesDAO.FestaDAO;
+import entidadesDAO.LocalizacaoDAO;
 import entidadesDAO.PacoteDAO;
 import entidadesDAO.PessoaDAO;
 import entidadesDAO.TemaDAO;
+
 import java.util.ArrayList;
+
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -24,13 +30,35 @@ public class ResultadoFesta extends javax.swing.JFrame {
     /**
      * Creates new form ResultadoFesta
      */
-       
+	private GenericDAOInterface pessoaDAO;  
+	private DAOComBuscaMultiplaInterface localizacaoDAO;  
     
+    public javax.swing.JTextField cliente;
+    public javax.swing.JTextField convidados;
+    public javax.swing.JTextField data;
+    public javax.swing.JTextField estilo;
+    public javax.swing.JTextField horario;
+    public javax.swing.JTextField itensPacote;
+    public javax.swing.JComboBox itensTema;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JTextField local;
     
-    
-    public ResultadoFesta() {
+    //ResultadoFesta agora tem como parametro uma festa, j· que sem ela, os componentes da GUI n„o teriam valores
+    public ResultadoFesta(Festa f) 
+    {
         initComponents();
-    
+        pessoaDAO = new PessoaDAO();
+        localizacaoDAO = new LocalizacaoDAO();
+        inserirValoresNosComponentesDaGUIComBaseNaFesta(f);
     }
 
     /**
@@ -210,28 +238,46 @@ public class ResultadoFesta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ResultadoFesta().setVisible(true);
+                new ResultadoFesta(new Festa()).setVisible(true);
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField cliente;
-    public javax.swing.JTextField convidados;
-    public javax.swing.JTextField data;
-    public javax.swing.JTextField estilo;
-    public javax.swing.JTextField horario;
-    public javax.swing.JTextField itensPacote;
-    public javax.swing.JComboBox itensTema;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTextField local;
-    // End of variables declaration//GEN-END:variables
+    
+    private void inserirValoresNosComponentesDaGUIComBaseNaFesta(Festa f)
+    {
+    	 Pessoa pessoa = (Pessoa) pessoaDAO.buscar(f.getPessoaCPF(), "CLIENTE");                
+         this.cliente.setText(pessoa.getPnome());
+         this.cliente.setEditable(false);        
+         this.horario.setText(f.getHoraInicio().toString());
+         this.horario.setEditable(false);
+         this.convidados.setText(String.valueOf(f.getQuantidadeConvidados()));
+         this.convidados.setEditable(false);
+         this.itensPacote.setText(f.getPacote());
+         this.itensPacote.setEditable(false);
+         this.data.setText(f.getDataInicio());
+         this.data.setEditable(false);
+         this.estilo.setText(f.getEstiloFesta());
+         this.estilo.setEditable(false);
+          if(!f.isExterno()){
+             this.local.setText("BUFFET");
+          }
+          else{
+              if(f.getLocal().equalsIgnoreCase("Endere√ßo do cliente")){
+                  
+                  this.local.setText(pessoa.getRua() +" - " +  
+                          pessoa.getBairro() + " - " + pessoa.getNumero());
+              }
+              else{
+              Localizacao localiz;
+              String cep = f.getLocal();
+              localiz = (Localizacao)localizacaoDAO.buscar(cep);
+              this.local.setText(localiz.getCEP() + " - " + localiz.getBairro()
+                       + " - " + localiz.getRua());
+              
+              
+       }
+              
+              
+          }
+    }
 }

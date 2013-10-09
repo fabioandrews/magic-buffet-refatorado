@@ -23,6 +23,60 @@ public class Cadastros extends javax.swing.JFrame {
      */
 	private GenericDAOInterface interfaceDaoDadosCadastro = new PessoaDAO();//um DAO genérico para acesso a cadastro de pessoas
 	
+    private javax.swing.JLabel Login;
+    private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoCancelar1;
+    private javax.swing.JButton botaoSalvar;
+    private javax.swing.JButton botaoSalvar1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField textoBairro;
+    public javax.swing.JTextField textoBairro1;
+    private javax.swing.JTextField textoCEP;
+    public javax.swing.JTextField textoCEP1;
+    private javax.swing.JTextField textoCPF;
+    public javax.swing.JTextField textoCPF1;
+    private javax.swing.JTextField textoCidade;
+    public javax.swing.JTextField textoCidade1;
+    public javax.swing.JTextField textoLogin;
+    private javax.swing.JTextField textoNome;
+    public javax.swing.JTextField textoNome1;
+    private javax.swing.JTextField textoNumero;
+    public javax.swing.JTextField textoNumero1;
+    private javax.swing.JTextField textoRG;
+    public javax.swing.JTextField textoRG1;
+    private javax.swing.JTextField textoRua;
+    private javax.swing.JTextField textoRua1;
+    public javax.swing.JPasswordField textoSenha;
+    private javax.swing.JTextField textoTelefone;
+    public javax.swing.JTextField textoTelefone1;
+    public javax.swing.JLabel tipoCadastro;
+	
     public Cadastros() {
         initComponents();
     }
@@ -36,156 +90,10 @@ public class Cadastros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botaoCancelar = new javax.swing.JButton();
-        textoCidade = new javax.swing.JTextField();
-        textoTelefone = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
-        botaoSalvar = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        textoNumero = new javax.swing.JTextField();
-        textoCEP = new javax.swing.JTextField();
-        textoRua = new javax.swing.JTextField();
-        textoBairro = new javax.swing.JTextField();
-        textoCPF = new javax.swing.JTextField();
-        textoRG = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        textoNome = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
-        botaoCancelar1 = new javax.swing.JButton();
-        textoCidade1 = new javax.swing.JTextField();
-        textoTelefone1 = new javax.swing.JTextField();
-        botaoSalvar1 = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JSeparator();
-        textoNumero1 = new javax.swing.JTextField();
-        textoCEP1 = new javax.swing.JTextField();
-        textoRua1 = new javax.swing.JTextField();
-        textoBairro1 = new javax.swing.JTextField();
-        textoCPF1 = new javax.swing.JTextField();
-        textoRG1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        tipoCadastro = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        textoNome1 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
-        textoLogin = new javax.swing.JTextField();
-        Login = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        textoSenha = new javax.swing.JPasswordField();
+        this.inicializarComponentesUsadosNaGUI();
+        this.setarTextoEAcaoDosBotoesDaGUI();
+        this.setarTextosDasLabelsDaGUI();
 
-        botaoCancelar.setText("Cancelar");
-        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCancelarActionPerformed(evt);
-            }
-        });
-
-        textoCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCidadeActionPerformed(evt);
-            }
-        });
-
-        textoTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoTelefoneActionPerformed(evt);
-            }
-        });
-
-        botaoSalvar.setText("Salvar");
-        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSalvarActionPerformed(evt);
-            }
-        });
-
-        textoNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoNumeroActionPerformed(evt);
-            }
-        });
-
-        textoCEP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCEPActionPerformed(evt);
-            }
-        });
-
-        textoRua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoRuaActionPerformed(evt);
-            }
-        });
-
-        textoBairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoBairroActionPerformed(evt);
-            }
-        });
-
-        textoCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCPFActionPerformed(evt);
-            }
-        });
-
-        textoRG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoRGActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel10.setText("Cidade");
-
-        jLabel2.setText("CPF");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Cadastrar Novo Cliente");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Nome");
-
-        textoNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoNomeActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Numero");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Bairro");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Rua");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("RG");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Telefone");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("CEP");
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -193,78 +101,11 @@ public class Cadastros extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        botaoCancelar1.setText("Cancelar");
-        botaoCancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCancelar1ActionPerformed(evt);
-            }
-        });
 
-        textoCidade1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCidade1ActionPerformed(evt);
-            }
-        });
-
-        textoTelefone1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoTelefone1ActionPerformed(evt);
-            }
-        });
-
-        botaoSalvar1.setText("Salvar");
-        botaoSalvar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSalvar1ActionPerformed(evt);
-            }
-        });
-
-        textoNumero1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoNumero1ActionPerformed(evt);
-            }
-        });
-
-        textoCEP1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCEP1ActionPerformed(evt);
-            }
-        });
-
-        textoRua1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoRua1ActionPerformed(evt);
-            }
-        });
-
-        textoBairro1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoBairro1ActionPerformed(evt);
-            }
-        });
-
-        textoCPF1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCPF1ActionPerformed(evt);
-            }
-        });
-
-        textoRG1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoRG1ActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel11.setText("Cidade");
-
-        jLabel12.setText("CPF");
 
         tipoCadastro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tipoCadastro.setText("Cadastrar Novo Cliente");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel14.setText("Nome");
 
         textoNome1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,33 +113,11 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel15.setText("Numero");
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel16.setText("Bairro");
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel17.setText("Rua");
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel18.setText("RG");
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel19.setText("Telefone");
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel20.setText("CEP");
-
-        textoLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoLoginActionPerformed(evt);
-            }
-        });
+        
+        
 
         Login.setText("Login");
 
-        jLabel13.setText("Senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -436,6 +255,260 @@ public class Cadastros extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+	private void inicializarComponentesUsadosNaGUI() {
+		botaoCancelar = new javax.swing.JButton();
+        textoCidade = new javax.swing.JTextField();
+        textoTelefone = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        botaoSalvar = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        textoNumero = new javax.swing.JTextField();
+        textoCEP = new javax.swing.JTextField();
+        textoRua = new javax.swing.JTextField();
+        textoBairro = new javax.swing.JTextField();
+        textoCPF = new javax.swing.JTextField();
+        textoRG = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        textoNome = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextField1 = new javax.swing.JTextField();
+        botaoCancelar1 = new javax.swing.JButton();
+        textoCidade1 = new javax.swing.JTextField();
+        textoTelefone1 = new javax.swing.JTextField();
+        botaoSalvar1 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        textoNumero1 = new javax.swing.JTextField();
+        textoCEP1 = new javax.swing.JTextField();
+        textoRua1 = new javax.swing.JTextField();
+        textoBairro1 = new javax.swing.JTextField();
+        textoCPF1 = new javax.swing.JTextField();
+        textoRG1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tipoCadastro = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        textoNome1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        textoLogin = new javax.swing.JTextField();
+        Login = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        textoSenha = new javax.swing.JPasswordField();
+	}
+	
+	private void setarTextoEAcaoDosBotoesDaGUI()
+	{
+		botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
+
+        textoCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCidadeActionPerformed(evt);
+            }
+        });
+
+        textoTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoTelefoneActionPerformed(evt);
+            }
+        });
+
+        botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarActionPerformed(evt);
+            }
+        });
+
+        textoNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoNumeroActionPerformed(evt);
+            }
+        });
+
+        textoCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCEPActionPerformed(evt);
+            }
+        });
+
+        textoRua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoRuaActionPerformed(evt);
+            }
+        });
+
+        textoBairro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoBairroActionPerformed(evt);
+            }
+        });
+
+        textoCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCPFActionPerformed(evt);
+            }
+        });
+
+        textoRG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoRGActionPerformed(evt);
+            }
+        });
+
+        textoNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoNomeActionPerformed(evt);
+            }
+        });
+
+        botaoCancelar1.setText("Cancelar");
+        botaoCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelar1ActionPerformed(evt);
+            }
+        });
+
+        textoCidade1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCidade1ActionPerformed(evt);
+            }
+        });
+
+        textoTelefone1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoTelefone1ActionPerformed(evt);
+            }
+        });
+
+        botaoSalvar1.setText("Salvar");
+        botaoSalvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvar1ActionPerformed(evt);
+            }
+        });
+
+        textoNumero1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoNumero1ActionPerformed(evt);
+            }
+        });
+
+        textoCEP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCEP1ActionPerformed(evt);
+            }
+        });
+
+        textoRua1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoRua1ActionPerformed(evt);
+            }
+        });
+
+        textoBairro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoBairro1ActionPerformed(evt);
+            }
+        });
+
+        textoCPF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCPF1ActionPerformed(evt);
+            }
+        });
+
+        textoRG1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoRG1ActionPerformed(evt);
+            }
+        });
+
+        textoLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoLoginActionPerformed(evt);
+            }
+        });
+	}
+	
+	private void setarTextosDasLabelsDaGUI()
+	{
+		jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("Cidade");
+
+        jLabel2.setText("CPF");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Cadastrar Novo Cliente");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Nome");
+
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Numero");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setText("Bairro");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Rua");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("RG");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setText("Telefone");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setText("CEP");
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel11.setText("Cidade");
+
+        jLabel12.setText("CPF");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel14.setText("Nome");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel15.setText("Numero");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel16.setText("Bairro");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel17.setText("Rua");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel18.setText("RG");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel19.setText("Telefone");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel20.setText("CEP");
+        jLabel13.setText("Senha");
+	}
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
@@ -641,59 +714,4 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Login;
-    private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botaoCancelar1;
-    private javax.swing.JButton botaoSalvar;
-    private javax.swing.JButton botaoSalvar1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField textoBairro;
-    public javax.swing.JTextField textoBairro1;
-    private javax.swing.JTextField textoCEP;
-    public javax.swing.JTextField textoCEP1;
-    private javax.swing.JTextField textoCPF;
-    public javax.swing.JTextField textoCPF1;
-    private javax.swing.JTextField textoCidade;
-    public javax.swing.JTextField textoCidade1;
-    public javax.swing.JTextField textoLogin;
-    private javax.swing.JTextField textoNome;
-    public javax.swing.JTextField textoNome1;
-    private javax.swing.JTextField textoNumero;
-    public javax.swing.JTextField textoNumero1;
-    private javax.swing.JTextField textoRG;
-    public javax.swing.JTextField textoRG1;
-    private javax.swing.JTextField textoRua;
-    private javax.swing.JTextField textoRua1;
-    public javax.swing.JPasswordField textoSenha;
-    private javax.swing.JTextField textoTelefone;
-    public javax.swing.JTextField textoTelefone1;
-    public javax.swing.JLabel tipoCadastro;
-    // End of variables declaration//GEN-END:variables
 }
