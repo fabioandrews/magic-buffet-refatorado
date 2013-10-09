@@ -167,26 +167,26 @@ public class TelaBuscar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
-
+    	Pessoa pessoaQualquer = new Pessoa();
         if (ClienteRB.isSelected()) {
             PessoaDAO daoConsultaDadosPessoas = new PessoaDAO();
             if (cpfText.getText().equals("")) {
             	//ssem CPF para a busca? é busca por categoria dae pessoas!
-            	this.buscarPessoasPorCategoria(daoConsultaDadosPessoas, Pessoa.CLIENTE);
+            	this.buscarPessoasPorCategoria(daoConsultaDadosPessoas, pessoaQualquer.getStringCliente());
             } else {
             	//foi especificado um CPF para busca de cliente
-            	this.buscarPessoaPorCPF(daoConsultaDadosPessoas, cpfText.getText(), Pessoa.CLIENTE);
+            	this.buscarPessoaPorCPF(daoConsultaDadosPessoas, cpfText.getText(), pessoaQualquer.getStringCliente());
             }
         } else if (MonitorRB.isSelected()) {
 
             PessoaDAO daoConsultaDadosPessoa = new PessoaDAO();
             //inicio que pode ser extraído: preparando tabela com resultado da consulta por monitores
             if (cpfText.getText().equals("")) {
-                this.buscarPessoasPorCategoria(daoConsultaDadosPessoa, Pessoa.MONITOR);
+                this.buscarPessoasPorCategoria(daoConsultaDadosPessoa, pessoaQualquer.getStringMonitor());
 
             } else {
             	//foi especificado um CPF para busca de monitor
-            	this.buscarPessoaPorCPF(daoConsultaDadosPessoa, cpfText.getText(), Pessoa.MONITOR);
+            	this.buscarPessoaPorCPF(daoConsultaDadosPessoa, cpfText.getText(), pessoaQualquer.getStringMonitor());
             }
         }
         else 
@@ -210,7 +210,7 @@ public class TelaBuscar extends javax.swing.JFrame {
                     String CpfCliente = festa.get(i).getPessoaCPF();
                     Time horario = festa.get(i).getHoraInicio();
                     PessoaDAO p = new PessoaDAO();
-                    Pessoa pessoa = (Pessoa) p.buscar(CpfCliente, Pessoa.CLIENTE);                            
+                    Pessoa pessoa = (Pessoa) p.buscar(CpfCliente, pessoaQualquer.getStringCliente());                            
                     String nomeCliente = pessoa.getPnome();
                     String id = festa.get(i).getIdFesta();
                     String[] linha = {nomeCliente,CpfCliente, horario.toString(),id};

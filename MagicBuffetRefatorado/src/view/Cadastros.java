@@ -591,7 +591,7 @@ public class Cadastros extends javax.swing.JFrame {
             p.setBairro(textoBairro1.getText());
             System.out.println("bairro");
             p.setCep(textoCEP1.getText());
-            p.setTipoPessoa(Pessoa.CLIENTE);
+            p.setTipoPessoa(p.getStringCliente());
             p.setTelefone(textoTelefone1.getText());
             System.out.println("telefone");
             p.setCidade(getTextoCidade1().getText());
@@ -613,7 +613,7 @@ public class Cadastros extends javax.swing.JFrame {
             manager.setNumero(Integer.parseInt(Numero));
             manager.setBairro(textoBairro1.getText());
             manager.setCep(textoCEP1.getText());
-            manager.setTipoPessoa(Pessoa.GERENTE);
+            manager.setTipoPessoa(p.getStringGerente());
             manager.setTelefone(textoTelefone1.getText());
             manager.setCidade(getTextoCidade1().getText());
             manager.setCep(textoCEP1.getText());
@@ -635,7 +635,7 @@ public class Cadastros extends javax.swing.JFrame {
             p.setNumero(Integer.parseInt(Numero));            
             p.setBairro(textoBairro1.getText());            
             p.setCep(textoCEP1.getText());
-            p.setTipoPessoa(Pessoa.MONITOR);
+            p.setTipoPessoa(p.getStringMonitor());
             p.setTelefone(textoTelefone1.getText());
             p.setCidade(getTextoCidade1().getText());
             p.setCep(textoCEP1.getText());
