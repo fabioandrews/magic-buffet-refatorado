@@ -39,6 +39,49 @@ public final class CadastroFesta extends javax.swing.JFrame {
     private DAOComBuscaMultiplaInterface DAOFestas;
     private GenericDAOInterface DAOPessoas;
     
+    private javax.swing.JRadioButton Buffet;
+    private javax.swing.JRadioButton UsarEndereco;
+    private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoChecar;
+    private javax.swing.JButton botaoCriarPacote;
+    private javax.swing.JButton botaoSalvar;
+    private javax.swing.JButton buscarCliente;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton checarCPF;
+    private com.toedter.calendar.JDateChooser datafim;
+    private com.toedter.calendar.JDateChooser datainicio;
+    private javax.swing.JComboBox estilo;
+    private com.toedter.components.JSpinField horaSpin;
+    private javax.swing.JComboBox itensPacote;
+    private javax.swing.JComboBox itensTema;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JRadioButton localExterno;
+    private com.toedter.components.JSpinField minutosSpin;
+    private javax.swing.JTextField qntConvidados;
+    private javax.swing.JTextField textoBairro;
+    private javax.swing.JTextField textoCEP;
+    private javax.swing.JTextField textoCidade;
+    private javax.swing.JTextField textoNome;
+    private javax.swing.JTextField textoNumero;
+    private javax.swing.JTextField textoRua;
+    private javax.swing.JTextField textocpf;
+    
     public void prencherOpcoesTema(){
     	DAOTemas = new TemaDAO();
     	DAOPacotes = new PacoteDAO();
@@ -101,88 +144,11 @@ public final class CadastroFesta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        textocpf = new javax.swing.JTextField();
-        textoNome = new javax.swing.JTextField();
-        checarCPF = new javax.swing.JButton();
-        buscarCliente = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        itensTema = new javax.swing.JComboBox();
-        itensPacote = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        botaoCriarPacote = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        localExterno = new javax.swing.JRadioButton();
-        UsarEndereco = new javax.swing.JRadioButton();
-        Buffet = new javax.swing.JRadioButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel10 = new javax.swing.JLabel();
-        textoRua = new javax.swing.JTextField();
-        textoBairro = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        textoNumero = new javax.swing.JTextField();
-        textoCEP = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        botaoSalvar = new javax.swing.JButton();
-        textoCidade = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel15 = new javax.swing.JLabel();
-        estilo = new javax.swing.JComboBox();
-        botaoChecar = new javax.swing.JButton();
-        datainicio = new com.toedter.calendar.JDateChooser();
-        datafim = new com.toedter.calendar.JDateChooser();
-        horaSpin = new com.toedter.components.JSpinField();
-        minutosSpin = new com.toedter.components.JSpinField();
-        botaoCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        qntConvidados = new javax.swing.JTextField();
-
+        
+    	this.inicializarTodosOsComponentesDaGUI();
+    	this.setarTextosNosJLabelsDaGUI();
+    	this.setarTextoEAcaoDosBotoesDaGUI();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        checarCPF.setText("Checar CPF");
-        checarCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checarCPFActionPerformed(evt);
-            }
-        });
-
-        buscarCliente.setText("Buscar Cliente");
-        buscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarClienteActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("CPF");
-
-        jLabel3.setText("Nome");
-
-        jLabel4.setText("Tema");
-
-        jLabel5.setText("Pacote");
-
-        botaoCriarPacote.setText("Criar Novo Pacote");
-        botaoCriarPacote.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCriarPacoteActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Data Inico");
-
-        jLabel7.setText("Data FIm");
-
-        jLabel8.setText("Hora Inicial");
-
-        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        jLabel9.setText("Estilo");
 
         buttonGroup1.add(localExterno);
         localExterno.setText("Local Externo");
@@ -208,49 +174,17 @@ public final class CadastroFesta extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Rua");
 
         textoRua.setEditable(false);
 
-        jLabel11.setText("Bairro");
-
-        jLabel12.setText("Nº");
-
-        jLabel13.setText("CEP");
-
-        botaoSalvar.setText("Salvar");
-        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSalvarActionPerformed(evt);
-            }
-        });
-
-        jLabel14.setText("Cidade");
-
-        jLabel15.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        jLabel15.setText("Cadastro de uma nova Festa");
-
         estilo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Provençal", "Normal" }));
 
-        botaoChecar.setText("Checar Data");
-        botaoChecar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoChecarActionPerformed(evt);
-            }
-        });
 
         horaSpin.setMaximum(23);
         horaSpin.setMinimum(0);
 
         minutosSpin.setMaximum(59);
         minutosSpin.setMinimum(0);
-
-        botaoCancelar.setText("Cancelar");
-        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCancelarActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Quant. Convidados");
 
@@ -448,6 +382,119 @@ public final class CadastroFesta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inicializarTodosOsComponentesDaGUI()
+    {
+    	buttonGroup1 = new javax.swing.ButtonGroup();
+        textocpf = new javax.swing.JTextField();
+        textoNome = new javax.swing.JTextField();
+        checarCPF = new javax.swing.JButton();
+        buscarCliente = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        itensTema = new javax.swing.JComboBox();
+        itensPacote = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        botaoCriarPacote = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        localExterno = new javax.swing.JRadioButton();
+        UsarEndereco = new javax.swing.JRadioButton();
+        Buffet = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        textoRua = new javax.swing.JTextField();
+        textoBairro = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        textoNumero = new javax.swing.JTextField();
+        textoCEP = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        botaoSalvar = new javax.swing.JButton();
+        textoCidade = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel15 = new javax.swing.JLabel();
+        estilo = new javax.swing.JComboBox();
+        botaoChecar = new javax.swing.JButton();
+        datainicio = new com.toedter.calendar.JDateChooser();
+        datafim = new com.toedter.calendar.JDateChooser();
+        horaSpin = new com.toedter.components.JSpinField();
+        minutosSpin = new com.toedter.components.JSpinField();
+        botaoCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        qntConvidados = new javax.swing.JTextField();
+    }
+    
+    private void setarTextosNosJLabelsDaGUI()
+    {
+    	 jLabel1.setText("Quant. Convidados");
+    	 jLabel2.setText("CPF");
+         jLabel3.setText("Nome");
+         jLabel4.setText("Tema");
+         jLabel5.setText("Pacote");
+         jLabel6.setText("Data Inico");
+         jLabel7.setText("Data FIm");
+         jLabel8.setText("Hora Inicial");
+         jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+         jLabel9.setText("Estilo");
+         jLabel10.setText("Rua");
+         jLabel11.setText("Bairro");
+         jLabel12.setText("Nº");
+         jLabel13.setText("CEP");
+         jLabel14.setText("Cidade");
+         jLabel15.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+         jLabel15.setText("Cadastro de uma nova Festa");
+    }
+    
+    private void setarTextoEAcaoDosBotoesDaGUI()
+    {
+    	checarCPF.setText("Checar CPF");
+        checarCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checarCPFActionPerformed(evt);
+            }
+        });
+
+        buscarCliente.setText("Buscar Cliente");
+        buscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarClienteActionPerformed(evt);
+            }
+        });
+
+        botaoCriarPacote.setText("Criar Novo Pacote");
+        botaoCriarPacote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCriarPacoteActionPerformed(evt);
+            }
+        });
+
+        botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarActionPerformed(evt);
+            }
+        });
+
+        botaoChecar.setText("Checar Data");
+        botaoChecar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoChecarActionPerformed(evt);
+            }
+        });
+
+        botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
+    }
+    
+    
     private void checarCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checarCPFActionPerformed
         String cpf = textocpf.getText();        
         Pessoa pessoa;
@@ -500,59 +547,10 @@ public final class CadastroFesta extends javax.swing.JFrame {
         }
         
         else{
-                for (int fest = 0; fest < festa.size(); fest++) {
-                    System.out.println("entrou no for 1");
-                    Festa e_festa = festa.get(fest);
-                    System.out.println("peguei uma festa");
-                    String f = e_festa.getPacote();
-                    System.out.println("peguei o pacote da festa");
-                    Pacote pak = pacote.buscarPorNome(f);
-                    System.out.println("busquei o pacote");                  
-                    ArrayList<Item> listaItens = it.buscarItensPacote(pak);
-                    System.out.println("busquei itens");                    
-                    System.out.println("criei um array de itens" + listaItens.size());                    
-                    for (int j = 0; j < listaItens.size(); j++) {
-                            System.out.println("entrei no for 2");
-                            String itp = itensMeuPacote.get(j).getNomeItem();
-                            System.out.println("itp = item do pacote");
-                        for (int i = 0; i < listaItens.size(); i++) {
-                            System.out.println("entrei no 3");
-                            if(listaItens.get(i).getNomeItem().equalsIgnoreCase(itp)){                                                                    
-                                itensLocados.add(itp);                                
-                            }
-                            else {
-                                itensOk.add(itp);
-                            }
-                        }
-                    }
-   
-                 }
+                this.itensMeuPacoteApareceEmFesta(itensMeuPacote, itensOk, itensLocados, festa);
                 
                 
-                String mensagem = "";
-                int quantidade = 0;
-                for (int i = 0; i < itensLocados.size(); i++) {                    
-                    String iL = itensLocados.get(i);
-                    for (int j = 0; j < itensLocados.size(); j++) {
-                        if(j == i) {
-                            j++;
-                        }
-                        else{                            
-                            if(itensLocados.get(j).equals(iL)){
-                                quantidade++;
-                            }
-                            
-                            Item iten = it.buscarNome(iL);
-                            if(iten.getQuantidadeTotal() > quantidade){
-                                mensagem = mensagem + "Não há " + iL + " disponivel(eis) para a data\n";
-                            }
-                            else {
-                                mensagem = mensagem + iL + " esta disponivel para a data\n";
-                            }
-                        }
-                    }
-                   
-                }
+                String mensagem = verificarSeItensLocadosEstaoDisponiveisParaData(it, itensLocados);
                 
                 if(itensOk.size() > 0) {
                  mensagem = mensagem + " itens disponiveis \n";
@@ -575,6 +573,74 @@ public final class CadastroFesta extends javax.swing.JFrame {
         checkData = true;
     }//GEN-LAST:event_botaoChecarActionPerformed
 
+
+
+    /*a funcao retorna uma string que � tipo um log sobre se os itens locados estao disponiveis para a data ou nao*/
+	private String verificarSeItensLocadosEstaoDisponiveisParaData(ItemDAO it, ArrayList<String> itensLocados) {
+		String mensagem = "";
+		int quantidade = 0;
+		for (int i = 0; i < itensLocados.size(); i++) {                    
+		    String iL = itensLocados.get(i);
+		    for (int j = 0; j < itensLocados.size(); j++) {
+		        if(j == i) {
+		            j++;
+		        }
+		        else{                            
+		            if(itensLocados.get(j).equals(iL)){
+		                quantidade++;
+		            }
+		            
+		            Item iten = it.buscarNome(iL);
+		            if(iten.getQuantidadeTotal() > quantidade){
+		                mensagem = mensagem + "Não há " + iL + " disponivel(eis) para a data\n";
+		            }
+		            else {
+		                mensagem = mensagem + iL + " esta disponivel para a data\n";
+		            }
+		        }
+		    }
+		   
+		}
+		return mensagem;
+	}
+
+
+
+	private void itensMeuPacoteApareceEmFesta(
+			ArrayList<Item> itensMeuPacote, ArrayList<String> itensOk,
+			ArrayList<String> itensLocados, ArrayList<Festa> festa) 
+	{
+		ItemDAO it = new ItemDAO();
+		PacoteDAO pacote = new PacoteDAO();
+		for (int fest = 0; fest < festa.size(); fest++) {
+		    System.out.println("entrou no for 1");
+		    Festa e_festa = festa.get(fest);
+		    System.out.println("peguei uma festa");
+		    String f = e_festa.getPacote();
+		    System.out.println("peguei o pacote da festa");
+		    Pacote pak = pacote.buscarPorNome(f);
+		    System.out.println("busquei o pacote");                  
+		    ArrayList<Item> listaItens = it.buscarItensPacote(pak);
+		    System.out.println("busquei itens");                    
+		    System.out.println("criei um array de itens" + listaItens.size());                    
+		    for (int j = 0; j < listaItens.size(); j++) {
+		            System.out.println("entrei no for 2");
+		            String itp = itensMeuPacote.get(j).getNomeItem();
+		            System.out.println("itp = item do pacote");
+		        for (int i = 0; i < listaItens.size(); i++) {
+		            System.out.println("entrei no 3");
+		            if(listaItens.get(i).getNomeItem().equalsIgnoreCase(itp)){                                                                    
+		                itensLocados.add(itp);                                
+		            }
+		            else {
+		                itensOk.add(itp);
+		            }
+		        }
+		    }
+   
+		 }
+	}
+
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         
         if(!checkData) {
@@ -591,14 +657,11 @@ public final class CadastroFesta extends javax.swing.JFrame {
             festa.setLocal(textoCEP.getText());
 
 
-            Calendar d = datafim.getCalendar();                
-            String data = d.get(Calendar.DAY_OF_MONTH) + "/" + (d.get(Calendar.MONTH)+1)
-                           + "/" + d.get(Calendar.YEAR);
+            Calendar d = datafim.getCalendar();  
+            String data = d.get(Calendar.YEAR) + "/" + (d.get(Calendar.MONTH)+1) + "/" + d.get(Calendar.DAY_OF_MONTH);
             festa.setDataFim(data);        
-            Calendar dataInicial = datafim.getCalendar();                
-            String datainit = dataInicial.get(Calendar.DAY_OF_MONTH) + "/" + 
-                          (dataInicial.get(Calendar.MONTH) + 1) 
-                            + "/" + dataInicial.get(Calendar.YEAR);
+            Calendar dataInicial = datafim.getCalendar();   
+            String datainit = dataInicial.get(Calendar.YEAR) + "/" + (dataInicial.get(Calendar.MONTH) + 1)  + "/" + dataInicial.get(Calendar.DAY_OF_MONTH);
 
             if(data == null){
                 data = datainit;
@@ -738,48 +801,4 @@ public final class CadastroFesta extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Buffet;
-    private javax.swing.JRadioButton UsarEndereco;
-    private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botaoChecar;
-    private javax.swing.JButton botaoCriarPacote;
-    private javax.swing.JButton botaoSalvar;
-    private javax.swing.JButton buscarCliente;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton checarCPF;
-    private com.toedter.calendar.JDateChooser datafim;
-    private com.toedter.calendar.JDateChooser datainicio;
-    private javax.swing.JComboBox estilo;
-    private com.toedter.components.JSpinField horaSpin;
-    private javax.swing.JComboBox itensPacote;
-    private javax.swing.JComboBox itensTema;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JRadioButton localExterno;
-    private com.toedter.components.JSpinField minutosSpin;
-    private javax.swing.JTextField qntConvidados;
-    private javax.swing.JTextField textoBairro;
-    private javax.swing.JTextField textoCEP;
-    private javax.swing.JTextField textoCidade;
-    private javax.swing.JTextField textoNome;
-    private javax.swing.JTextField textoNumero;
-    private javax.swing.JTextField textoRua;
-    private javax.swing.JTextField textocpf;
-    // End of variables declaration//GEN-END:variables
 }
