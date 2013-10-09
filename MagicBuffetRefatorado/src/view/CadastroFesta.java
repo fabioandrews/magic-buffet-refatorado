@@ -660,7 +660,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
             Calendar d = datafim.getCalendar();  
             String data = d.get(Calendar.YEAR) + "/" + (d.get(Calendar.MONTH)+1) + "/" + d.get(Calendar.DAY_OF_MONTH);
             festa.setDataFim(data);        
-            Calendar dataInicial = datafim.getCalendar();   
+            Calendar dataInicial = datainicio.getCalendar();   
             String datainit = dataInicial.get(Calendar.YEAR) + "/" + (dataInicial.get(Calendar.MONTH) + 1)  + "/" + dataInicial.get(Calendar.DAY_OF_MONTH);
 
             if(data == null){
