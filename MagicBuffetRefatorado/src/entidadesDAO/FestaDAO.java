@@ -4,8 +4,8 @@
  */
 package entidadesDAO;
 
-import InterfaceDAO.DAOComBuscaMultiplaInterface;
-import InterfaceDAO.GenericDAOInterface;
+
+import InterfaceDAO.InterfaceFestaDAO;
 import controler.Festa;
 import controler.Pacote;
 
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Josiel
  */
-public class FestaDAO extends ConectionDAO implements GenericDAOInterface, DAOComBuscaMultiplaInterface {
+public class FestaDAO extends ConectionDAO implements InterfaceFestaDAO {
 
 	
     

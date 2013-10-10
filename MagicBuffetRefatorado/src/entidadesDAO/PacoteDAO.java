@@ -5,8 +5,8 @@
 package entidadesDAO;
 
 
-import InterfaceDAO.DAOComBuscaMultiplaInterface;
-import InterfaceDAO.GenericDAOInterface;
+
+import InterfaceDAO.InterfacePacoteDAO;
 import controler.Pacote;
 
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author Josiel
  */
-public class PacoteDAO extends ConectionDAO implements GenericDAOInterface, DAOComBuscaMultiplaInterface {
+public class PacoteDAO extends ConectionDAO implements InterfacePacoteDAO {
 
     private Mensagens mensagem = new Mensagens();
     

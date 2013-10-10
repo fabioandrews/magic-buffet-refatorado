@@ -5,7 +5,7 @@
 package entidadesDAO;
 
 
-import InterfaceDAO.GenericDAOInterface;
+import InterfaceDAO.InterfacePessoaDAO;
 import controler.Pessoa;
 
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Josiel e Andreza
  */
-public class PessoaDAO extends ConectionDAO implements GenericDAOInterface {
+public class PessoaDAO extends ConectionDAO implements InterfacePessoaDAO {
 
     private Mensagens mensagem = new Mensagens();
     

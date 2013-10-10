@@ -6,7 +6,6 @@ package entidadesDAO;
 
 
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
-import InterfaceDAO.GenericDAOInterface;
 import controler.Tema;
 
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Josiel
  */
-public class TemaDAO extends  ConectionDAO implements GenericDAOInterface, DAOComBuscaMultiplaInterface {
+public class TemaDAO extends  ConectionDAO implements DAOComBuscaMultiplaInterface {
     
     private Mensagens mensagem = new Mensagens();
     
