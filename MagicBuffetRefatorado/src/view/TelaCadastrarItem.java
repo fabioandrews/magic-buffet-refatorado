@@ -6,7 +6,7 @@ package view;
 
 import InterfaceDAO.GenericDAOInterface;
 import controler.Item;
-import entidadesDAO.ItemDAO;
+import entidadesDAO.FabricaDeDAO;
 
 /**
  *
@@ -20,7 +20,7 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
 	private GenericDAOInterface daoAcessoCadastroDeItens; //um DAO genérico que serve para acessar cadastros de itens
 	
     public TelaCadastrarItem() {
-    	daoAcessoCadastroDeItens = new ItemDAO();
+    	daoAcessoCadastroDeItens = FabricaDeDAO.criarItemDAO();
         initComponents();
         
     }

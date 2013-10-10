@@ -7,11 +7,14 @@ package view;
 import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 import controler.Pessoa;
-import entidadesDAO.FestaDAO;
 
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
+
+import entidadesDAO.FabricaDeDAO;
+import entidadesDAO.FestaDAO;
+
 
 import entidadesDAO.PessoaDAO;
 
@@ -168,18 +171,18 @@ public class TelaBuscar extends javax.swing.JFrame {
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
     	Pessoa pessoaQualquer = new Pessoa();
+    	PessoaDAO daoConsultaDadosPessoa = FabricaDeDAO.criarPessoaDAOConcreto();
         if (ClienteRB.isSelected()) {
-            PessoaDAO daoConsultaDadosPessoas = new PessoaDAO();
+    
             if (cpfText.getText().equals("")) {
             	//ssem CPF para a busca? é busca por categoria dae pessoas!
-            	this.buscarPessoasPorCategoria(daoConsultaDadosPessoas, pessoaQualquer.getStringCliente());
+            	this.buscarPessoasPorCategoria(daoConsultaDadosPessoa, pessoaQualquer.getStringCliente());
             } else {
             	//foi especificado um CPF para busca de cliente
-            	this.buscarPessoaPorCPF(daoConsultaDadosPessoas, cpfText.getText(), pessoaQualquer.getStringCliente());
+            	this.buscarPessoaPorCPF(daoConsultaDadosPessoa, cpfText.getText(), pessoaQualquer.getStringCliente());
             }
         } else if (MonitorRB.isSelected()) {
 
-            PessoaDAO daoConsultaDadosPessoa = new PessoaDAO();
             //inicio que pode ser extraído: preparando tabela com resultado da consulta por monitores
             if (cpfText.getText().equals("")) {
                 this.buscarPessoasPorCategoria(daoConsultaDadosPessoa, pessoaQualquer.getStringMonitor());
@@ -195,7 +198,7 @@ public class TelaBuscar extends javax.swing.JFrame {
                 String dataBusca = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + date.get(Calendar.DAY_OF_MONTH); 
                 
                 
-                FestaDAO festas = new FestaDAO();
+                FestaDAO festas = FabricaDeDAO.criarFestaDAOConcreto();
                 ArrayList<Festa> festa = new ArrayList();
                 festa = festas.buscarFesta(dataBusca);
                 ResultadoTabela resultado = new ResultadoTabela();
