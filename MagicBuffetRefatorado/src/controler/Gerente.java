@@ -25,6 +25,12 @@ public class Gerente extends Pessoa{
     	this.senha = senha;
     	this.login = login;
     }
+    
+    public Gerente(String login, String senha)
+    {
+    	this.login = login;
+    	this.senha = senha;
+    }
    
 
     public String getSenha() {
