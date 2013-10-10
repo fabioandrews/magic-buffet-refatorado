@@ -44,27 +44,27 @@ public class FabricaDeDAO
 	
 	
 	//criacao de DAOs concretos
-	public GerenteDAO criarGerenteDAO()
+	public static GerenteDAO criarGerenteDAO()
 	{
 		return new GerenteDAO();
 	}
 	
-	public FestaDAO criarFestaDAOConcreto()
+	public static FestaDAO criarFestaDAOConcreto()
 	{
 		return new FestaDAO();
 	}
 	
-	public ItemDAO criarItemDAOConcreto()
+	public static ItemDAO criarItemDAOConcreto()
 	{
 		return new ItemDAO();
 	}
 	
-	public PacoteDAO criarPacoteDAOConcreto()
+	public static PacoteDAO criarPacoteDAOConcreto()
 	{
 		return new PacoteDAO();
 	}
 	
-	public PessoaDAO criarPessoaDAOConcreto()
+	public static PessoaDAO criarPessoaDAOConcreto()
 	{
 		return new PessoaDAO();
 	}
