@@ -6,6 +6,9 @@ package view;
 
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import InterfaceDAO.GenericDAOInterface;
+import InterfaceDAO.InterfaceFestaDAO;
+import InterfaceDAO.InterfaceItemDAO;
+import InterfaceDAO.InterfacePacoteDAO;
 import controler.Festa;
 import controler.Item;
 import controler.Localizacao;
@@ -13,9 +16,6 @@ import controler.Pacote;
 import controler.Pessoa;
 import controler.Tema;
 import entidadesDAO.FabricaDeDAO;
-import entidadesDAO.FestaDAO;
-import entidadesDAO.ItemDAO;
-import entidadesDAO.PacoteDAO;
 
 import java.rmi.server.UID;
 import java.util.ArrayList;
@@ -525,14 +525,14 @@ public final class CadastroFesta extends javax.swing.JFrame {
     private void botaoChecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoChecarActionPerformed
         
         String meuPacote = itensPacote.getSelectedItem().toString();
-        ItemDAO it = FabricaDeDAO.criarItemDAOConcreto();
-        PacoteDAO pacote = FabricaDeDAO.criarPacoteDAOConcreto();
+        InterfaceItemDAO it = FabricaDeDAO.criarItemDAO();
+        InterfacePacoteDAO pacote = FabricaDeDAO.criarPacoteDAO();
         Pacote p = pacote.buscarPorNome(meuPacote);
         ArrayList<Item> itensMeuPacote = it.buscarItensPacote(p);        
         ArrayList<String> itensOk = new ArrayList<>();
         ArrayList<String> itensLocados = new ArrayList<>();
         
-        FestaDAO festas = FabricaDeDAO.criarFestaDAOConcreto();
+        InterfaceFestaDAO festas = FabricaDeDAO.criarFestaDAO();
         ArrayList<Festa> festa;                  
         Calendar dataInicial = datainicio.getCalendar();
         String datainit = dataInicial.get(Calendar.DAY_OF_MONTH) + "/" + 
@@ -573,7 +573,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
 		return mensagem;
 	}
 	
-	private String verificarSeBuffetLocadoNesseDia(FestaDAO festas, String datainit, String mensagem)
+	private String verificarSeBuffetLocadoNesseDia(InterfaceFestaDAO festas, String datainit, String mensagem)
 	{
 		if(Buffet.isSelected()){
 			ArrayList<Festa> fest = festas.buscarFesta(datainit);
@@ -590,7 +590,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
 
 
     /*a funcao retorna uma string que é tipo um log sobre se os itens locados estao disponiveis para a data ou nao*/
-	private String verificarSeItensLocadosEstaoDisponiveisParaData(ItemDAO it, ArrayList<String> itensLocados) {
+	private String verificarSeItensLocadosEstaoDisponiveisParaData(InterfaceItemDAO it, ArrayList<String> itensLocados) {
 		String mensagem = "";
 		int quantidade = 0;
 		for (int i = 0; i < itensLocados.size(); i++) {                    
@@ -625,8 +625,8 @@ public final class CadastroFesta extends javax.swing.JFrame {
 			ArrayList<Item> itensMeuPacote, ArrayList<String> itensOk,
 			ArrayList<String> itensLocados, ArrayList<Festa> festa) 
 	{
-		ItemDAO it = FabricaDeDAO.criarItemDAOConcreto();
-		PacoteDAO pacote = FabricaDeDAO.criarPacoteDAOConcreto();
+		InterfaceItemDAO it = FabricaDeDAO.criarItemDAO();
+		InterfacePacoteDAO pacote = FabricaDeDAO.criarPacoteDAO();
 		for (int fest = 0; fest < festa.size(); fest++) {
 		    System.out.println("entrou no for 1");
 		    Festa e_festa = festa.get(fest);

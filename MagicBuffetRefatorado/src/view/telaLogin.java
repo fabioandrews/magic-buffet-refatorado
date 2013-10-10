@@ -4,6 +4,7 @@
  */
 package view;
 
+import InterfaceDAO.InterfacePessoaDAO;
 import controler.Gerente;
 
 import javax.swing.JOptionPane;
@@ -119,7 +120,7 @@ public class telaLogin extends javax.swing.JFrame {
 
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
         // TODO add your handling code here:
-        GerenteDAO gerente = FabricaDeDAO.criarGerenteDAO();
+        InterfacePessoaDAO gerente = FabricaDeDAO.criarGerenteDAO();
         Gerente manager = (Gerente) gerente.buscar(LoginTexto.getText());
         
         if(manager.getLogin() == null)

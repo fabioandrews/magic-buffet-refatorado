@@ -3,6 +3,10 @@ package entidadesDAO;
 
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import InterfaceDAO.GenericDAOInterface;
+import InterfaceDAO.InterfaceFestaDAO;
+import InterfaceDAO.InterfaceItemDAO;
+import InterfaceDAO.InterfacePacoteDAO;
+import InterfaceDAO.InterfacePessoaDAO;
 
 public class FabricaDeDAO 
 {
@@ -12,21 +16,21 @@ public class FabricaDeDAO
 		return dao;
 	}
 	
-	public static DAOComBuscaMultiplaInterface criarPacoteDAO()
+	public static InterfacePacoteDAO criarPacoteDAO()
 	{
-		DAOComBuscaMultiplaInterface dao = new PacoteDAO();
+		InterfacePacoteDAO dao = new PacoteDAO();
 		return dao;
 	}
 	
-	public static DAOComBuscaMultiplaInterface criarFestaDAO()
+	public static InterfaceFestaDAO criarFestaDAO()
 	{
-		DAOComBuscaMultiplaInterface dao = new FestaDAO();
+		InterfaceFestaDAO dao = new FestaDAO();
 		return dao;
 	}
 	
-	public static GenericDAOInterface criarPessoaDAO()
+	public static InterfacePessoaDAO criarPessoaDAO()
 	{
-		GenericDAOInterface dao = new PessoaDAO();
+		InterfacePessoaDAO dao = new PessoaDAO();
 		return dao;
 	}
 	
@@ -36,37 +40,17 @@ public class FabricaDeDAO
 		return dao;
 	}
 	
-	public static DAOComBuscaMultiplaInterface criarItemDAO()
+	public static InterfaceItemDAO criarItemDAO()
 	{
-		DAOComBuscaMultiplaInterface dao = new ItemDAO();
+		InterfaceItemDAO dao = new ItemDAO();
 		return dao;
 	}
-	
-	
-	//criacao de DAOs concretos
-	public static GerenteDAO criarGerenteDAO()
+
+	public static InterfacePessoaDAO criarGerenteDAO()
 	{
 		return new GerenteDAO();
 	}
 	
-	public static FestaDAO criarFestaDAOConcreto()
-	{
-		return new FestaDAO();
-	}
 	
-	public static ItemDAO criarItemDAOConcreto()
-	{
-		return new ItemDAO();
-	}
-	
-	public static PacoteDAO criarPacoteDAOConcreto()
-	{
-		return new PacoteDAO();
-	}
-	
-	public static PessoaDAO criarPessoaDAOConcreto()
-	{
-		return new PessoaDAO();
-	}
 	
 }

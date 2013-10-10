@@ -5,6 +5,8 @@
 package view;
 
 import InterfaceDAO.GenericDAOInterface;
+import InterfaceDAO.InterfaceFestaDAO;
+import InterfaceDAO.InterfacePessoaDAO;
 import controler.Festa;
 import controler.Pessoa;
 
@@ -13,7 +15,6 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 import entidadesDAO.FabricaDeDAO;
-import entidadesDAO.FestaDAO;
 
 
 import entidadesDAO.PessoaDAO;
@@ -171,7 +172,7 @@ public class TelaBuscar extends javax.swing.JFrame {
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
     	Pessoa pessoaQualquer = new Pessoa();
-    	PessoaDAO daoConsultaDadosPessoa = FabricaDeDAO.criarPessoaDAOConcreto();
+    	InterfacePessoaDAO daoConsultaDadosPessoa = FabricaDeDAO.criarPessoaDAO();
         if (ClienteRB.isSelected()) {
     
             if (cpfText.getText().equals("")) {
@@ -198,7 +199,7 @@ public class TelaBuscar extends javax.swing.JFrame {
                 String dataBusca = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + date.get(Calendar.DAY_OF_MONTH); 
                 
                 
-                FestaDAO festas = FabricaDeDAO.criarFestaDAOConcreto();
+                InterfaceFestaDAO festas = FabricaDeDAO.criarFestaDAO();
                 ArrayList<Festa> festa = new ArrayList();
                 festa = festas.buscarFesta(dataBusca);
                 ResultadoTabela resultado = new ResultadoTabela();
@@ -230,7 +231,7 @@ public class TelaBuscar extends javax.swing.JFrame {
      * @param daoConsultaDadosDePessoas DAO para consulta de dados de pessoas
      * @param categoriaDaPessoa categoria das pessoas que se deseja buscar(Ex: "Cliente", "Monitor") 
      */
-    private void buscarPessoasPorCategoria(PessoaDAO daoConsultaDadosDePessoas, String categoriaDaPessoa)
+    private void buscarPessoasPorCategoria(InterfacePessoaDAO daoConsultaDadosDePessoas, String categoriaDaPessoa)
     {
     	ArrayList<Pessoa> ListaPessoas = daoConsultaDadosDePessoas.buscarPessoas(categoriaDaPessoa);
         ResultadoTabela resultado = new ResultadoTabela();
