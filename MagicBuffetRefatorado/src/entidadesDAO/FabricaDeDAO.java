@@ -36,9 +36,9 @@ public class FabricaDeDAO
 		return dao;
 	}
 	
-	public static GenericDAOInterface criarItemDAO()
+	public static DAOComBuscaMultiplaInterface criarItemDAO()
 	{
-		GenericDAOInterface dao = new ItemDAO();
+		DAOComBuscaMultiplaInterface dao = new ItemDAO();
 		return dao;
 	}
 	
