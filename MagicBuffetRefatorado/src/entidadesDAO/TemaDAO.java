@@ -8,10 +8,10 @@ package entidadesDAO;
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import InterfaceDAO.GenericDAOInterface;
 import controler.Tema;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import view.Mensagens;
 
 /**
  *

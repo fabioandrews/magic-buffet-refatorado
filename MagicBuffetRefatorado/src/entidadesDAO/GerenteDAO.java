@@ -5,9 +5,9 @@
 package entidadesDAO;
 
 import controler.Gerente;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import view.Mensagens;
 
 
 /**
