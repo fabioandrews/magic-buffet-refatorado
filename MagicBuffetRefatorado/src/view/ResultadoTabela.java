@@ -135,39 +135,48 @@ public class ResultadoTabela extends javax.swing.JFrame {
     private void InformacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformacoesActionPerformed
         // TODO add your handling code here:
         if(tipoPessoa.equals("")){  
-            int linha = tabela.getSelectedRow();
-            Object valueAt = tabela.getValueAt(linha, 3);
-            String id = valueAt.toString();             
-            Festa f = (Festa) DAOFestas.buscar(id);
-            ResultadoFesta result = new ResultadoFesta(f);
-                
-                
-                ArrayList<Object> t = DAOTemas.buscar();
-                ArrayList<Tema> tema = new ArrayList<>();
-                
-                for(Object theme : t)
-                    tema.add((Tema) theme);
-                
-                String[] themes = new String[tema.size()];
-                String temaSelecionado = f.getTema();                
-                for (int i = 0; i < tema.size(); i++) {
-                    if(tema.get(i).getTnome().equals(temaSelecionado)) {
-                        String aux = themes[0];                                
-                        themes[0] = temaSelecionado;
-                        themes[i] = aux;                        
-                    }
-                    
-                    themes[i] = tema.get(i).getTnome();
-                }
-
-                DefaultComboBoxModel  model = new DefaultComboBoxModel(themes);
-                result.getItensTema().setModel(model);
-                result.getItensTema().setEditable(false);
-                result.getItensTema().setEnabled(false);
-                result.setVisible(true);            
+            mostrarInformacoesDeUmaFesta();            
         }
         else {         
-        int linha = tabela.getSelectedRow();
+        mostrarInformacoesDeUmaPessoa();     
+        }
+    }//GEN-LAST:event_InformacoesActionPerformed
+
+	private void mostrarInformacoesDeUmaFesta() {
+		int linha = tabela.getSelectedRow();
+		Object valueAt = tabela.getValueAt(linha, 3);
+		String idFesta = valueAt.toString();             
+		Festa festaResultadoDaBusca = (Festa) DAOFestas.buscar(idFesta);
+		ResultadoFesta resultadoConsultaFesta = new ResultadoFesta(festaResultadoDaBusca);
+		    
+		    
+		    ArrayList<Object> objetosTemasCadastrados = DAOTemas.buscar();
+		    ArrayList<Tema> temasCadastrados = new ArrayList<>();
+		    
+		    for(Object objetoTemaCadastrado : objetosTemasCadastrados)
+		        temasCadastrados.add((Tema) objetoTemaCadastrado);
+		    
+		    String[] temasAMostrarProUsuario = new String[temasCadastrados.size()];
+		    String temaSelecionado = festaResultadoDaBusca.getTema();                
+		    for (int i = 0; i < temasCadastrados.size(); i++) {
+		        if(temasCadastrados.get(i).getTnome().equals(temaSelecionado)) {
+		            String aux = temasAMostrarProUsuario[0];                                
+		            temasAMostrarProUsuario[0] = temaSelecionado;
+		            temasAMostrarProUsuario[i] = aux;                        
+		        }
+		        
+		        temasAMostrarProUsuario[i] = temasCadastrados.get(i).getTnome();
+		    }
+
+		    DefaultComboBoxModel  model = new DefaultComboBoxModel(temasAMostrarProUsuario);
+		    resultadoConsultaFesta.getItensTema().setModel(model);
+		    resultadoConsultaFesta.getItensTema().setEditable(false);
+		    resultadoConsultaFesta.getItensTema().setEnabled(false);
+		    resultadoConsultaFesta.setVisible(true);
+	}
+
+	private void mostrarInformacoesDeUmaPessoa() {
+		int linha = tabela.getSelectedRow();
         Object valueAt = tabela.getValueAt(linha, 1);
         String cpf = valueAt.toString(); 
         Pessoa p = (Pessoa) DAOPessoas.buscar(cpf,tipoPessoa);
@@ -193,9 +202,8 @@ public class ResultadoTabela extends javax.swing.JFrame {
         result.getNumeroTexto().setEnabled(false);
         result.getTextoCidade().setEnabled(false);        
         this.dispose();
-        result.setVisible(true);     
-        }
-    }//GEN-LAST:event_InformacoesActionPerformed
+        result.setVisible(true);
+	}
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         // TODO add your handling code here:
