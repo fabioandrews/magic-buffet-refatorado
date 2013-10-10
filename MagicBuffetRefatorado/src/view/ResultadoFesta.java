@@ -9,8 +9,7 @@ import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 import controler.Localizacao;
 import controler.Pessoa;
-import entidadesDAO.LocalizacaoDAO;
-import entidadesDAO.PessoaDAO;
+import entidadesDAO.FabricaDeDAO;
 
 /**
  *
@@ -47,8 +46,8 @@ public class ResultadoFesta extends javax.swing.JFrame {
     public ResultadoFesta(Festa f) 
     {
         initComponents();
-        pessoaDAO = new PessoaDAO();
-        localizacaoDAO = new LocalizacaoDAO();
+        pessoaDAO = FabricaDeDAO.criarPessoaDAO();
+        localizacaoDAO = FabricaDeDAO.criarLocalizacaoDAO();
         inserirValoresNosComponentesDaGUIComBaseNaFesta(f);
     }
 

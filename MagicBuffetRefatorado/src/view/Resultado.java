@@ -9,7 +9,7 @@ import controler.Pessoa;
 
 import javax.swing.JOptionPane;
 
-import entidadesDAO.PessoaDAO;
+import entidadesDAO.FabricaDeDAO;
 
 /**
  *
@@ -72,7 +72,7 @@ public class Resultado extends javax.swing.JFrame {
     
     
     public Resultado() {
-    	daoAcessaDadosPessoas = new PessoaDAO();
+    	daoAcessaDadosPessoas = FabricaDeDAO.criarPessoaDAO();
     	initComponents();   
     }
     

@@ -7,7 +7,7 @@ package view;
 
 import InterfaceDAO.GenericDAOInterface;
 import controler.Tema;
-import entidadesDAO.TemaDAO;
+import entidadesDAO.FabricaDeDAO;
 
 import javax.swing.JOptionPane;
 
@@ -28,8 +28,9 @@ public class CadastroDeTema extends javax.swing.JFrame {
     private javax.swing.JTextField nomeTema;
     private javax.swing.JButton salvar;
 
-    public CadastroDeTema() {
-    	interfaceGenericaCriacaoDeTema = new TemaDAO();
+    public CadastroDeTema() 
+    {
+    	interfaceGenericaCriacaoDeTema = FabricaDeDAO.criarTemaDAO();
         initComponents();
     }
 

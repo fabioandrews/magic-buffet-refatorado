@@ -9,16 +9,9 @@ import InterfaceDAO.GenericDAOInterface;
 import controler.Festa;
 import controler.Pessoa;
 import controler.Tema;
-import entidadesDAO.FestaDAO;
-import entidadesDAO.LocalizacaoDAO;
-
+import entidadesDAO.FabricaDeDAO;
 import javax.swing.JOptionPane;
-
-import entidadesDAO.PessoaDAO;
-import entidadesDAO.TemaDAO;
-
 import java.util.ArrayList;
-
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -30,7 +23,6 @@ public class ResultadoTabela extends javax.swing.JFrame {
     String tipoPessoa = "";
     private DAOComBuscaMultiplaInterface DAOFestas;
     private GenericDAOInterface DAOPessoas;
-    private DAOComBuscaMultiplaInterface DAOLocalizacao;
     private DAOComBuscaMultiplaInterface DAOTemas;
     
     /**
@@ -39,10 +31,9 @@ public class ResultadoTabela extends javax.swing.JFrame {
     public ResultadoTabela() 
     {
         initComponents();
-        DAOFestas = new FestaDAO();
-        DAOPessoas = new PessoaDAO();
-        DAOLocalizacao = new LocalizacaoDAO();
-        DAOTemas = new TemaDAO();
+        DAOFestas = FabricaDeDAO.criarFestaDAO();
+        DAOPessoas = FabricaDeDAO.criarPessoaDAO();
+        DAOTemas = FabricaDeDAO.criarTemaDAO();
     }
 
     /**

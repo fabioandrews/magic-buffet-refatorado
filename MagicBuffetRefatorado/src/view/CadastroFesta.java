@@ -12,12 +12,10 @@ import controler.Localizacao;
 import controler.Pacote;
 import controler.Pessoa;
 import controler.Tema;
+import entidadesDAO.FabricaDeDAO;
 import entidadesDAO.FestaDAO;
 import entidadesDAO.ItemDAO;
-import entidadesDAO.LocalizacaoDAO;
 import entidadesDAO.PacoteDAO;
-import entidadesDAO.PessoaDAO;
-import entidadesDAO.TemaDAO;
 
 import java.rmi.server.UID;
 import java.util.ArrayList;
@@ -37,6 +35,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
     private DAOComBuscaMultiplaInterface DAOTemas;
     private DAOComBuscaMultiplaInterface DAOPacotes;
     private DAOComBuscaMultiplaInterface DAOFestas;
+    private DAOComBuscaMultiplaInterface DAOLocalizacao;
     private GenericDAOInterface DAOPessoas;
     
     private javax.swing.JRadioButton Buffet;
@@ -83,10 +82,11 @@ public final class CadastroFesta extends javax.swing.JFrame {
     private javax.swing.JTextField textocpf;
     
     public void prencherOpcoesTema(){
-    	DAOTemas = new TemaDAO();
-    	DAOPacotes = new PacoteDAO();
-    	DAOPessoas = new PessoaDAO();
-    	DAOFestas = new FestaDAO();
+    	DAOTemas = FabricaDeDAO.criarTemaDAO();
+    	DAOPacotes = FabricaDeDAO.criarPacoteDAO();
+    	DAOPessoas = FabricaDeDAO.criarPessoaDAO();
+    	DAOFestas = FabricaDeDAO.criarFestaDAO();
+    	DAOLocalizacao = FabricaDeDAO.criarLocalizacaoDAO();
         ArrayList<Object> temaObj  = DAOTemas.buscar();;
         ArrayList<Tema> tema  = new ArrayList<>();
         
@@ -525,14 +525,14 @@ public final class CadastroFesta extends javax.swing.JFrame {
     private void botaoChecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoChecarActionPerformed
         
         String meuPacote = itensPacote.getSelectedItem().toString();
-        ItemDAO it = new ItemDAO();
-        PacoteDAO pacote = new PacoteDAO();
+        ItemDAO it = FabricaDeDAO.criarItemDAOConcreto();
+        PacoteDAO pacote = FabricaDeDAO.criarPacoteDAOConcreto();
         Pacote p = pacote.buscarPorNome(meuPacote);
         ArrayList<Item> itensMeuPacote = it.buscarItensPacote(p);        
         ArrayList<String> itensOk = new ArrayList<>();
         ArrayList<String> itensLocados = new ArrayList<>();
         
-        FestaDAO festas = new FestaDAO();
+        FestaDAO festas = FabricaDeDAO.criarFestaDAOConcreto();
         ArrayList<Festa> festa;                  
         Calendar dataInicial = datainicio.getCalendar();
         String datainit = dataInicial.get(Calendar.DAY_OF_MONTH) + "/" + 
@@ -625,8 +625,8 @@ public final class CadastroFesta extends javax.swing.JFrame {
 			ArrayList<Item> itensMeuPacote, ArrayList<String> itensOk,
 			ArrayList<String> itensLocados, ArrayList<Festa> festa) 
 	{
-		ItemDAO it = new ItemDAO();
-		PacoteDAO pacote = new PacoteDAO();
+		ItemDAO it = FabricaDeDAO.criarItemDAOConcreto();
+		PacoteDAO pacote = FabricaDeDAO.criarPacoteDAOConcreto();
 		for (int fest = 0; fest < festa.size(); fest++) {
 		    System.out.println("entrou no for 1");
 		    Festa e_festa = festa.get(fest);
@@ -721,8 +721,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
     }
     
     private void criarLocalizacao()
-    {
-    	LocalizacaoDAO locais = new LocalizacaoDAO();                          
+    {                         
         String bairro = textoBairro.getText();
         String cep = textoCEP.getText();
         String rua = textoRua.getText();
@@ -732,7 +731,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
         String idLocalizacao = id.toString();                                    
 
         Localizacao local = new Localizacao(bairro, cep, rua, numero, cidade, idLocalizacao);
-        locais.criar(local);
+        DAOLocalizacao.criar(local);
     }
     
     private void localExternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localExternoActionPerformed

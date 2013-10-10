@@ -7,8 +7,8 @@ package view;
 import InterfaceDAO.GenericDAOInterface;
 import controler.Gerente;
 import controler.Pessoa;
+import entidadesDAO.FabricaDeDAO;
 import entidadesDAO.GerenteDAO;
-import entidadesDAO.PessoaDAO;
 
 import javax.swing.JOptionPane;
 
@@ -21,7 +21,8 @@ public class Cadastros extends javax.swing.JFrame {
     /**
      * Creates new form Cadastros
      */
-	private GenericDAOInterface interfaceDaoDadosCadastro = new PessoaDAO();//um DAO genérico para acesso a cadastro de pessoas
+	private GenericDAOInterface interfaceDaoDadosCadastro = FabricaDeDAO.criarPessoaDAO();//um DAO genérico para acesso a cadastro de pessoas
+	
 	
     private javax.swing.JLabel Login;
     private javax.swing.JButton botaoCancelar;
