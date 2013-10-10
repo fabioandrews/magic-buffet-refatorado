@@ -15,6 +15,19 @@ public class Item {
     private int quantidadeTotal;
     private float precoUnidade;
 
+    public Item(String idItem, String nomeItem, int quantidadeTotal, float precoUnidade)
+    {
+    	this.idItem = idItem;
+    	this.nomeItem = nomeItem;
+    	this.quantidadeTotal = quantidadeTotal;
+    	this.precoUnidade = precoUnidade;
+    }
+    
+    public Item()
+    {
+    	
+    }
+    
     public String getIdItem() {
         return idItem;
     }

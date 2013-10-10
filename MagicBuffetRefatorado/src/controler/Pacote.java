@@ -17,7 +17,19 @@ public class Pacote {
     private float precoPacote;
     private ArrayList<String> itensPacote;
 
-
+    public Pacote()
+    {
+    	
+    }
+    
+    public Pacote(String idPacote, String nomePacote, float precoPacote, ArrayList<String> itensPacote)
+    {
+    	this.idPacote = idPacote;
+    	this.nomePacote = nomePacote;
+    	this.precoPacote = precoPacote;
+    	this.itensPacote = itensPacote;
+    }
+    
     public ArrayList<String> getItensPacote() {
         return itensPacote;
     }
