@@ -24,6 +24,39 @@ public class Resultado extends javax.swing.JFrame {
     private GenericDAOInterface daoAcessaDadosPessoas;// um DAO genérico para acesso a dados de pessoas cadastradas.
     
    
+   public Resultado(String nome, String cpf, String bairro, String telefone, String rua, String rg, String numero, String cep, String cidade, String categoriaPessoa)
+   {
+	   daoAcessaDadosPessoas = FabricaDeDAO.criarPessoaDAO();
+	   initComponents();   
+	   
+	   this.textoNome.setText(nome);
+	   this.textoCPF.setText(cpf);
+	   this.textoBairro.setText(bairro);
+	   this.textoTelefone.setText(telefone);
+	   this.textoRua.setText(rua);
+	   this.textoRG.setText(rg);
+	   this.numeroTexto.setText(numero);
+	   this.textoCep.setText(cep);
+	   this.textoCidade.setText(cidade);
+	   this.tipo = categoriaPessoa;
+	   
+	   this.textoBairro.setEnabled(true);
+	   this.textoNome.setEnabled(false);
+       this.textoCPF.setEnabled(false);
+       this.textoCep.setEnabled(false);
+       this.textoRG.setEnabled(false);
+       this.textoTelefone.setEnabled(false);
+       this.textoRua.setEnabled(false);
+       this.numeroTexto.setEnabled(false);
+       this.textoCidade.setEnabled(false);
+       System.out.println(tipo);
+       this.setVisible(true);
+   }
+   
+   public Resultado() {
+   	daoAcessaDadosPessoas = FabricaDeDAO.criarPessoaDAO();
+   	initComponents();   
+   }
 
     
     public String getTipo() {
@@ -63,17 +96,6 @@ public class Resultado extends javax.swing.JFrame {
 
     public void setTelefone(String telefone) {
         getTextoTelefone().setText(telefone);                
-    }
-
-  
-    public void setNome(String nome) {
-        getTextoNome().setText(nome);        
-    }
-    
-    
-    public Resultado() {
-    	daoAcessaDadosPessoas = FabricaDeDAO.criarPessoaDAO();
-    	initComponents();   
     }
     
 
@@ -502,4 +524,13 @@ public class Resultado extends javax.swing.JFrame {
     private javax.swing.JTextField textoRua;
     private javax.swing.JTextField textoTelefone;
     // End of variables declaration//GEN-END:variables
+
+
+	public javax.swing.JLabel getNomeLabel() {
+		return nomeLabel;
+	}
+
+	public void setNome(String nome) {
+		this.nomeLabel.setText(nome);
+	}
 }

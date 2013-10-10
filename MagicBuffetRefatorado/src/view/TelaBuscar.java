@@ -262,29 +262,20 @@ public class TelaBuscar extends javax.swing.JFrame {
          if (p.getPnome() == null) {
         	 String mensagemDeErro = categoriaPessoa + " não encontrado";
              JOptionPane.showMessageDialog(this, mensagemDeErro);
-         } else {
-             Resultado result = new Resultado();
-             result.setNome(p.getPnome());
-             result.setCpf(p.getCpf());
-             result.setBairro(p.getBairro());
-             result.setTelefone(p.getTelefone());
-             result.setRua(p.getRua());
-             result.setRG(String.valueOf(p.getRg()));
-             result.setNumero(String.valueOf(p.getNumero()));
-             result.setCep(p.getCep());
-             result.setCidadee(p.getCidade());
-             result.getTextoBairro().setEnabled(false);
-             result.getTextoNome().setEnabled(false);
-             result.getTextoCPF().setEnabled(false);
-             result.getTextoCep().setEnabled(false);
-             result.getTextoRG().setEnabled(false);
-             result.getTextoTelefone().setEnabled(false);
-             result.getTextoRua().setEnabled(false);
-             result.getNumeroTexto().setEnabled(false);
-             result.getTextoCidade().setEnabled(false);
-             result.setTipo(categoriaPessoa);
-             System.out.println(result.getTipo());
-             result.setVisible(true);
+         } 
+         else 
+         {
+             String nome = p.getPnome();
+             String cpf = p.getCpf();
+             String bairro = p.getBairro();
+             String telefone = p.getTelefone();
+             String rua = p.getRua();
+             String rg = String.valueOf(p.getRg());
+             String numero = String.valueOf(p.getNumero());
+             String cep = p.getCep();
+             String cidade = p.getCidade();
+            
+             Resultado result = new Resultado(nome,cpf,bairro,telefone,rua,rg,numero,cep,cidade,categoriaPessoa);
          }
     }
     
