@@ -575,70 +575,22 @@ public class Cadastros extends javax.swing.JFrame {
         
         Pessoa p = new Pessoa();
         if (getTipoCadastro().getText().contains("Cliente")) {
-            p.setCpf(getTextoCPF1().getText());
-            System.out.println("cpf");
-            p.setPnome(textoNome1.getText());
-            String RG = getTextoRG1().getText();
-            System.out.println("nome");
-            System.out.println(RG);
-            p.setRg(Integer.parseInt(RG));
-            System.out.println("rg");
-            p.setRua(textoRua1.getText());
-            System.out.println("rua");
-            String Numero = textoNumero1.getText();
-            p.setNumero(Integer.parseInt(Numero));
-            System.out.println("numero");
-            p.setBairro(textoBairro1.getText());
-            System.out.println("bairro");
-            p.setCep(textoCEP1.getText());
-            p.setTipoPessoa(p.getStringCliente());
-            p.setTelefone(textoTelefone1.getText());
-            System.out.println("telefone");
-            p.setCidade(getTextoCidade1().getText());
-            p.setCep(textoCEP1.getText());
-            System.out.println("cep");
-            interfaceDaoDadosCadastro.criar(p);
-            JOptionPane.showMessageDialog(this, "Cliente Criado");
+           p = this.prepararPessoaParaCadastro(Pessoa.getStringCliente());
+           interfaceDaoDadosCadastro.criar(p);
+           JOptionPane.showMessageDialog(this, "Cliente Criado");
         } else if (getTipoCadastro().getText().contains("Gerente")) {
-            GerenteDAO gerente = new GerenteDAO();
-            Gerente manager = new Gerente();
-            manager.setCpf(getTextoCPF1().getText());
-            manager.setPnome(textoNome1.getText());
-            String RG = getTextoRG1().getText();
-            manager.setRg(Integer.parseInt(RG));
-            manager.setRua(textoRua1.getText());
-            String Numero = textoNumero1.getText();
-                if(Numero.equals("")) 
-                    Numero = "0";
-            manager.setNumero(Integer.parseInt(Numero));
-            manager.setBairro(textoBairro1.getText());
-            manager.setCep(textoCEP1.getText());
-            manager.setTipoPessoa(p.getStringGerente());
-            manager.setTelefone(textoTelefone1.getText());
-            manager.setCidade(getTextoCidade1().getText());
-            manager.setCep(textoCEP1.getText());
+            GerenteDAO gerenteDAO = new GerenteDAO();
+            Gerente manager = (Gerente) this.prepararPessoaParaCadastro(Pessoa.getStringGerente());
+            
             manager.setGerenteLogin(getTextoLogin().getText());
             manager.setLogin(getTextoLogin().getText());
             manager.setSenha(String.valueOf(getTextoSenha().getPassword()));
-            gerente.criar(manager);
-            gerente.criar(manager);
+            gerenteDAO.criar(manager);
             JOptionPane.showMessageDialog(this, "Gerente Criado");
 
 
         } else if (getTipoCadastro().getText().contains("Monitor")) {
-            p.setCpf(getTextoCPF1().getText());            
-            p.setPnome(textoNome1.getText());
-            String RG = getTextoRG1().getText();            
-            p.setRg(Integer.parseInt(RG));            
-            p.setRua(textoRua1.getText());            
-            String Numero = textoNumero1.getText();
-            p.setNumero(Integer.parseInt(Numero));            
-            p.setBairro(textoBairro1.getText());            
-            p.setCep(textoCEP1.getText());
-            p.setTipoPessoa(p.getStringMonitor());
-            p.setTelefone(textoTelefone1.getText());
-            p.setCidade(getTextoCidade1().getText());
-            p.setCep(textoCEP1.getText());
+            p = this.prepararPessoaParaCadastro(Pessoa.getStringMonitor());
             interfaceDaoDadosCadastro.criar(p);
             JOptionPane.showMessageDialog(this, "Monitor Criado");
         }
@@ -647,6 +599,38 @@ public class Cadastros extends javax.swing.JFrame {
             this.dispose();
             telaInicial.setVisible(true);
     }//GEN-LAST:event_botaoSalvar1ActionPerformed
+    
+    private Pessoa prepararPessoaParaCadastro(String categoriaDaPessoa)
+    {
+    	  Pessoa p = new Pessoa();
+    	  if(categoriaDaPessoa.compareTo(Pessoa.getStringGerente()) == 0)
+    	  {
+    		  //estamos preparando um gerente para cadstro. Ele é uma extensão de pessoa
+    		  p = new Gerente();
+    	  }
+    	  p.setCpf(getTextoCPF1().getText());
+          System.out.println("cpf");
+          p.setPnome(textoNome1.getText());
+          String RG = getTextoRG1().getText();
+          System.out.println("nome");
+          System.out.println(RG);
+          p.setRg(Integer.parseInt(RG));
+          System.out.println("rg");
+          p.setRua(textoRua1.getText());
+          System.out.println("rua");
+          String Numero = textoNumero1.getText();
+          p.setNumero(Integer.parseInt(Numero));
+          System.out.println("numero");
+          p.setBairro(textoBairro1.getText());
+          System.out.println("bairro");
+          p.setCep(textoCEP1.getText());
+          p.setTipoPessoa(categoriaDaPessoa);
+          p.setTelefone(textoTelefone1.getText());
+          System.out.println("telefone");
+          p.setCidade(getTextoCidade1().getText());
+          System.out.println("cep");
+          return p;
+    }
 
     private void textoNumero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNumero1ActionPerformed
         // TODO add your handling code here:
