@@ -5,10 +5,10 @@
 package view;
 
 import InterfaceDAO.GenericDAOInterface;
+import InterfaceDAO.InterfacePessoaDAO;
 import controler.Gerente;
 import controler.Pessoa;
 import entidadesDAO.FabricaDeDAO;
-import entidadesDAO.GerenteDAO;
 
 import javax.swing.JOptionPane;
 
@@ -580,7 +580,7 @@ public class Cadastros extends javax.swing.JFrame {
            interfaceDaoDadosCadastro.criar(p);
            JOptionPane.showMessageDialog(this, "Cliente Criado");
         } else if (getTipoCadastro().getText().contains("Gerente")) {
-            GerenteDAO gerenteDAO = new GerenteDAO();
+            InterfacePessoaDAO gerenteDAO = FabricaDeDAO.criarGerenteDAO();
             Gerente manager = (Gerente) this.prepararPessoaParaCadastro(Pessoa.getStringGerente());
             
             manager.setGerenteLogin(getTextoLogin().getText());

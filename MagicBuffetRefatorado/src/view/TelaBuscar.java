@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import entidadesDAO.FabricaDeDAO;
 
 
-import entidadesDAO.PessoaDAO;
 
 import java.sql.Time;
 import java.util.Calendar;
@@ -213,7 +212,7 @@ public class TelaBuscar extends javax.swing.JFrame {
                 for (int i = 0; i < festa.size(); i++) {
                     String CpfCliente = festa.get(i).getPessoaCPF();
                     Time horario = festa.get(i).getHoraInicio();
-                    PessoaDAO p = new PessoaDAO();
+                    InterfacePessoaDAO p = FabricaDeDAO.criarPessoaDAO();
                     Pessoa pessoa = (Pessoa) p.buscar(CpfCliente, pessoaQualquer.getStringCliente());                            
                     String nomeCliente = pessoa.getPnome();
                     String id = festa.get(i).getIdFesta();
