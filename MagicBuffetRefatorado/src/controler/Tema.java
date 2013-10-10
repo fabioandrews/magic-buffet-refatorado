@@ -12,6 +12,17 @@ public class Tema {
     private String idTema;
     private String Tnome;
 
+    public Tema()
+    {
+    	
+    }
+    
+    public Tema(String idTema, String nomeTema)
+    {
+    	this.idTema = idTema;
+    	this.Tnome = nomeTema;
+    }
+    
     public String getIdTema() {
         return idTema;
     }

@@ -27,7 +27,32 @@ public class Pessoa {
     private String telefone;
     private String cidade;
 
+    public Pessoa()
+    {
+    	
+    }
     
+    public Pessoa(String cpf, int rg, String gerenteLogin, String cep, String rua, String bairro, 
+    		String telefone,int numero, String Pnome, String tipoPessoa, String cidade)
+    {
+    	this.cpf = cpf;
+    	this.rg = rg;
+    	this.gerenteLogin = gerenteLogin;
+    	this.cep = cep;
+    	this.rua = rua;
+    	this.bairro = bairro;
+    	this.telefone = telefone;
+    	this.numero = numero;
+    	this.Pnome = Pnome;
+    	this.tipoPessoa = tipoPessoa;
+    	this.cidade = cidade;
+    }
+    
+    public Pessoa(String cpf, int rg, String cep, String rua, String bairro, 
+    		String telefone,int numero, String Pnome, String tipoPessoa, String cidade)
+    {
+    	new Pessoa(cpf, rg, "", cep, rua, bairro, telefone, numero, Pnome, tipoPessoa, cidade);
+    }
     
     public String getCpf() {
         return cpf;

@@ -12,6 +12,20 @@ public class Gerente extends Pessoa{
     
     private String senha;
     private String login;
+    
+    public Gerente()
+    {
+    	
+    }
+    
+    public Gerente(String cpf, int rg, String gerenteLogin, String cep, String rua, String bairro, 
+    		String telefone,int numero, String Pnome, String tipoPessoa, String cidade, String senha, String login)
+    {
+    	super(cpf, rg, gerenteLogin, cep, rua, bairro, telefone, numero, Pnome, tipoPessoa, cidade);
+    	this.senha = senha;
+    	this.login = login;
+    }
+   
 
     public String getSenha() {
         return senha;
