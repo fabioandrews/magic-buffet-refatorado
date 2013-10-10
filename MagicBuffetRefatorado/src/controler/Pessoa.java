@@ -10,9 +10,9 @@ package controler;
  */
 public class Pessoa {
     
-    private String CLIENTE = "CLIENTE";
-    private String GERENTE = "GERENTE";
-    private String MONITOR = "MONITOR";
+    private static String CLIENTE = "CLIENTE";
+    private static String GERENTE = "GERENTE";
+    private static String MONITOR = "MONITOR";
           
 
     private String cpf;
@@ -117,15 +117,15 @@ public class Pessoa {
         this.cidade = cidade;
     }
 
-	public String getStringCliente() {
+	public static String getStringCliente() {
 		return CLIENTE;
 	}
 
-	public String getStringGerente() {
+	public static String getStringGerente() {
 		return GERENTE;
 	}
 
-	public String getStringMonitor() {
+	public static String getStringMonitor() {
 		return MONITOR;
 	}
     
