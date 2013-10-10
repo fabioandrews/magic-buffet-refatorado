@@ -7,7 +7,7 @@ package view;
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import controler.Item;
 import controler.Pacote;
-import entidadesDAO.ItemDAO;
+import entidadesDAO.FabricaDeDAO;
 import entidadesDAO.PacoteDAO;
 
 import java.rmi.server.UID;
@@ -32,8 +32,8 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
     {
         initComponents();
         
-        DAOItens = new ItemDAO();
-        DAOPacotes = new PacoteDAO();
+        DAOItens = FabricaDeDAO.criarItemDAO();
+        DAOPacotes = FabricaDeDAO.criarPacoteDAOConcreto();
     }
 
     /**

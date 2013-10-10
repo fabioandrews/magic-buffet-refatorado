@@ -6,7 +6,8 @@ package view;
 
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import controler.Item;
-import entidadesDAO.ItemDAO;
+import entidadesDAO.FabricaDeDAO;
+
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -34,7 +35,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }
     
     private TelaInicial() {
-    	DAOTrabalhaComItens = new ItemDAO();
+    	DAOTrabalhaComItens = FabricaDeDAO.criarItemDAO();
         initComponents();
     }
 
