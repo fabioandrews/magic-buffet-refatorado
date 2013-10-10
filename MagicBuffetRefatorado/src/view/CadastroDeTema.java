@@ -136,14 +136,22 @@ public class CadastroDeTema extends javax.swing.JFrame {
         
         Tema theme = new Tema();
         String nome = nomeTema.getText();
-        String codigo = nome.substring(0,1) + nome.substring(nome.length() / 2, nome.length()/2+1) ;
-        theme.setIdTema("MF" + codigo);        
-        theme.setTnome(nomeTema.getText());        
-        interfaceGenericaCriacaoDeTema.criar(theme);
-        JOptionPane.showMessageDialog(this, "Tema criado com sucesso!");
-        this.dispose();
-        TelaInicial tela = TelaInicial.getInstance();                
-        tela.setVisible(true);
+        
+        if(nome.length() > 11)
+        {
+        	JOptionPane.showMessageDialog(null, "o tema é grande demais, por favor insira um nome com menos de 11 caracteres");
+        }
+        else
+        {
+        	String codigo = nome.substring(0,1) + nome.substring(nome.length() / 2, nome.length()/2+1) ;
+            theme.setIdTema("MF" + codigo);        
+            theme.setTnome(nomeTema.getText());        
+            interfaceGenericaCriacaoDeTema.criar(theme);
+            JOptionPane.showMessageDialog(this, "Tema criado com sucesso!");
+            this.dispose();
+            TelaInicial tela = TelaInicial.getInstance();                
+            tela.setVisible(true);
+        }
     }//GEN-LAST:event_salvarActionPerformed
 
     /**

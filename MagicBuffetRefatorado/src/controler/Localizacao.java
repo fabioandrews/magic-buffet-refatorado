@@ -17,6 +17,20 @@ public class Localizacao {
     private String bairro;
     private String Cidade;
 
+    public Localizacao()
+    {
+    	
+    }
+    
+    public Localizacao(String bairro, String cep, String rua, int numero, String cidade,String idLocalizacao)
+    {
+    	this.bairro = bairro;
+    	this.CEP = cep;
+    	this.rua = rua;
+    	this.numero = numero;
+    	this.Cidade = cidade;
+    	this.idLocalizacao = idLocalizacao;
+    }
     public String getIdLocalizacao() {
         return idLocalizacao;
     }

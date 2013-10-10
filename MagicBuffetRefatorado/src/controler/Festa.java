@@ -28,6 +28,25 @@ public class Festa {
     private int quantidadeConvidados; //tres campos separando as idades
     private String estiloFesta;
 
+    public Festa()
+    {
+    	
+    }
+    
+    public Festa(String pacote, String tema, String estilo, String pessoaCpf, int quantosConvidados, String local, String dataFim, String dataInicio, Time horaInicio, boolean externo)
+    {
+    	this.pacote = pacote;
+    	this.tema = tema;
+    	this.estiloFesta = estilo;
+    	this.pessoaCPF = pessoaCpf;
+    	this.quantidadeConvidados = quantosConvidados;
+    	this.local = local;
+    	this.dataFim = dataFim;
+    	this.dataInicio = dataInicio;
+    	this.horaInicio = horaInicio;
+    	this.externo = externo;
+    	
+    }
     public String getIdFesta() {
         return IdFesta;
     }

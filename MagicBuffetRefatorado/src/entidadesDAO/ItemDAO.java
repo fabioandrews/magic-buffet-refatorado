@@ -171,7 +171,8 @@ public class ItemDAO extends ConectionDAO implements GenericDAOInterface, DAOCom
         return null;      
     }
     
-     public ArrayList<Item> buscarItensPacote(Pacote pacote) {
+     public ArrayList<Item> buscarItensPacote(Pacote pacote) 
+     {
 
         String buscarItens = "SELECT * FROM pacote_contem_item WHERE nomePacote LIKE '" 
                                 + pacote.getPacoteNome() + "'";

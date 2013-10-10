@@ -552,26 +552,40 @@ public final class CadastroFesta extends javax.swing.JFrame {
                 
                 String mensagem = verificarSeItensLocadosEstaoDisponiveisParaData(it, itensLocados);
                 
-                if(itensOk.size() > 0) {
-                 mensagem = mensagem + " itens disponiveis \n";
-                    for (int j = 0; j < itensOk.size(); j++) {
-                         mensagem = mensagem + itensOk.get(j) + "\n";
-                    }
-                }                           
-        
-            if(Buffet.isSelected()){
-                ArrayList<Festa> fest = festas.buscarFesta(datainit);
-                for (int i = 0; i < fest.size(); i++) {
-                    if(!fest.get(i).isExterno()){
-                        mensagem = mensagem + " Buffet já está locado nesse dia\n";
-                    }
-                }
-            }
-        JOptionPane.showMessageDialog(this, mensagem);
+                mensagem = verificarSeItensDisponiveis(itensOk, mensagem);
+                mensagem = verificarSeBuffetLocadoNesseDia(festas, datainit, mensagem);
+                JOptionPane.showMessageDialog(this, mensagem);
         }
          
         checkData = true;
     }//GEN-LAST:event_botaoChecarActionPerformed
+
+
+
+	private String verificarSeItensDisponiveis(ArrayList<String> itensOk, String mensagem) 
+	{
+		if(itensOk.size() > 0) {
+		 mensagem = mensagem + " itens disponiveis \n";
+		    for (int j = 0; j < itensOk.size(); j++) {
+		         mensagem = mensagem + itensOk.get(j) + "\n";
+		    }
+		}                           
+		return mensagem;
+	}
+	
+	private String verificarSeBuffetLocadoNesseDia(FestaDAO festas, String datainit, String mensagem)
+	{
+		if(Buffet.isSelected()){
+			ArrayList<Festa> fest = festas.buscarFesta(datainit);
+			for (int i = 0; i < fest.size(); i++) {
+			    if(!fest.get(i).isExterno()){
+			        mensagem = mensagem + " Buffet já está locado nesse dia\n";
+			    }
+			}
+	         }
+		
+		return mensagem;
+	}
 
 
 
@@ -585,7 +599,8 @@ public final class CadastroFesta extends javax.swing.JFrame {
 		        if(j == i) {
 		            j++;
 		        }
-		        else{                            
+		        else
+		        {
 		            if(itensLocados.get(j).equals(iL)){
 		                quantidade++;
 		            }
@@ -647,67 +662,79 @@ public final class CadastroFesta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Verifique a data antes de salvar");
         }
         else {
-            Festa festa = new Festa();
 
-            festa.setPacote(itensPacote.getSelectedItem().toString());
-            festa.setTema(itensTema.getSelectedItem().toString());                           
-            festa.setEstiloFesta(estilo.getSelectedItem().toString());
-            festa.setPessoaCPF(textocpf.getText());
-            festa.setQuantidadeConvidados(Integer.parseInt(qntConvidados.getText()));
-            festa.setLocal(textoCEP.getText());
-
-
-            Calendar d = datafim.getCalendar();  
-            String data = d.get(Calendar.YEAR) + "/" + (d.get(Calendar.MONTH)+1) + "/" + d.get(Calendar.DAY_OF_MONTH);
-            festa.setDataFim(data);        
-            Calendar dataInicial = datainicio.getCalendar();   
-            String datainit = dataInicial.get(Calendar.YEAR) + "/" + (dataInicial.get(Calendar.MONTH) + 1)  + "/" + dataInicial.get(Calendar.DAY_OF_MONTH);
-
-            if(data == null){
-                data = datainit;
-            }
-
-            festa.setDataFim(data);
-            festa.setDataInicio(datainit);
+            String pacote = itensPacote.getSelectedItem().toString();
+            String tema = itensTema.getSelectedItem().toString();                           
+            String estiloFesta = estilo.getSelectedItem().toString();
+            String cpf = textocpf.getText();
+            int quantosConvidados = Integer.parseInt(qntConvidados.getText());
+            String localFesta = textoCEP.getText();
 
 
+            String dataFim = this.obterDataFim();       
+            
+            String datainicio = this.obterDataInicio();
 
-            int hora = horaSpin.getValue();
-            int minuto = minutosSpin.getValue();        
-            Time hour = new Time(hora, minuto, 0);                
-            festa.setHoraInicio(hour);
+            Time horaInicio = this.obterHoraInicio();                
 
-
-
-
-
+            boolean externoFesta = false;
+            
             if(Buffet.isSelected()){            
-                festa.setExterno(false);            
+                externoFesta = false;            
             } 
             else {
                 if(UsarEndereco.isSelected() || localExterno.isSelected()){
-                        festa.setExterno(true);
-                        LocalizacaoDAO locais = new LocalizacaoDAO();
-                        Localizacao local = new Localizacao();                           
-                        local.setBairro(textoBairro.getText());
-                        local.setCEP(textoCEP.getText());
-                        local.setRua(textoRua.getText());
-                        local.setNumero(Integer.parseInt(textoNumero.getText()));
-                        local.setCidade(textoCidade.getText());                              
-                        UID id = new UID();
-                        local.setIdLocalizacao(id.toString());                                    
-
-                        locais.criar(local);
+                	    externoFesta = true;
+                        this.criarLocalizacao();
                 }                
             }        
 
             JOptionPane.showMessageDialog(this,"Tem certeza que deseja salvar a festa?");
+            Festa festa = new Festa(pacote,tema,estiloFesta,cpf,quantosConvidados,localFesta,dataFim,datainicio,horaInicio,externoFesta);
             DAOFestas.criar(festa); 
             JOptionPane.showMessageDialog(this,"Festa cadastrada");
         }
 
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
+    private String obterDataInicio()
+    {
+    	Calendar dataInicial = datainicio.getCalendar();   
+        String datainicio = dataInicial.get(Calendar.YEAR) + "/" + (dataInicial.get(Calendar.MONTH) + 1)  + "/" + dataInicial.get(Calendar.DAY_OF_MONTH);
+        return datainicio;
+    }
+    
+    private String obterDataFim()
+    {
+    	Calendar d = datafim.getCalendar();  
+        String data = d.get(Calendar.YEAR) + "/" + (d.get(Calendar.MONTH)+1) + "/" + d.get(Calendar.DAY_OF_MONTH);
+        String dataFim = data; 
+        return dataFim;
+    }
+    
+    private Time obterHoraInicio()
+    {
+    	int hora = horaSpin.getValue();
+        int minuto = minutosSpin.getValue();        
+        Time horaInicio = new Time(hora, minuto, 0);
+        return horaInicio;
+    }
+    
+    private void criarLocalizacao()
+    {
+    	LocalizacaoDAO locais = new LocalizacaoDAO();                          
+        String bairro = textoBairro.getText();
+        String cep = textoCEP.getText();
+        String rua = textoRua.getText();
+        int numero = Integer.parseInt(textoNumero.getText());
+        String cidade = textoCidade.getText();                              
+        UID id = new UID();
+        String idLocalizacao = id.toString();                                    
+
+        Localizacao local = new Localizacao(bairro, cep, rua, numero, cidade, idLocalizacao);
+        locais.criar(local);
+    }
+    
     private void localExternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localExternoActionPerformed
         textoBairro.setEditable(true);
         textoCEP.setEditable(true);
@@ -750,8 +777,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
         textoCidade.setEnabled(false);
         textoNumero.setEnabled(false);           
         Pessoa pessoa;
-        PessoaDAO pessoas = new PessoaDAO();
-        pessoa = (Pessoa) pessoas.buscar(textocpf.getText(), "CLIENTE");
+        pessoa = (Pessoa) this.DAOPessoas.buscar(textocpf.getText(), "CLIENTE");
                 
         textoBairro.setText(pessoa.getBairro());
         textoCEP.setText(pessoa.getCep());
@@ -766,39 +792,6 @@ public final class CadastroFesta extends javax.swing.JFrame {
         TelaInicial tela = TelaInicial.getInstance();
         tela.setVisible(true);
     }//GEN-LAST:event_botaoCancelarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroFesta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroFesta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroFesta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroFesta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroFesta().setVisible(true);
-            }
-        });
-    }
+    
+    
 }
