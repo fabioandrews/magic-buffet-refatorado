@@ -173,7 +173,7 @@ public class ResultadoTabela extends javax.swing.JFrame {
         Pessoa p = (Pessoa) DAOPessoas.buscar(cpf,tipoPessoa);
         Resultado result = new Resultado();
         
-        result.setNome(p.getPnome());
+        result.setTextoNome(p.getPnome());
         result.setCep(p.getCep());
         result.setCidadee(p.getCidade());
         result.setCpf(p.getCpf());

@@ -110,7 +110,7 @@ public class Resultado extends javax.swing.JFrame {
 
         nomeLabel = new javax.swing.JLabel();
         cpfLabel = new javax.swing.JLabel();
-        setTextoNome(new javax.swing.JTextField());
+        textoNome = new javax.swing.JTextField();
         setTextoCPF(new javax.swing.JTextField());
         RGLabel = new javax.swing.JLabel();
         setTextoRG(new javax.swing.JTextField());
@@ -205,7 +205,7 @@ public class Resultado extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jLabel1.setText("InformaÃ§Ãµes do Cliente");
+        jLabel1.setText("Informações do Cliente");
 
         fecharButton.setText("Fechar");
         fecharButton.addActionListener(new java.awt.event.ActionListener() {
@@ -446,8 +446,8 @@ public class Resultado extends javax.swing.JFrame {
 		return textoNome;
 	}
 
-	public void setTextoNome(javax.swing.JTextField textoNome) {
-		this.textoNome = textoNome;
+	public void setTextoNome(String textoNome) {
+		this.textoNome.setText(textoNome);
 	}
 	public javax.swing.JTextField getTextoCPF() {
 		return textoCPF;
