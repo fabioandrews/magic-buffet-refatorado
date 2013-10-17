@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.text.ParseException;
+
 import InterfaceDAO.GenericDAOInterface;
 import InterfaceDAO.InterfacePessoaDAO;
 import controler.Gerente;
@@ -11,6 +13,8 @@ import controler.Pessoa;
 import entidadesDAO.FabricaDeDAO;
 
 import javax.swing.JOptionPane;
+
+import org.omg.CORBA.VersionSpecHelper;
 
 /**
  *
@@ -75,7 +79,7 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JTextField textoRua1;
     private javax.swing.JPasswordField textoSenha;
     private javax.swing.JTextField textoTelefone;
-    private javax.swing.JTextField textoTelefone1;
+    private javax.swing.JFormattedTextField textoTelefone1;
     private javax.swing.JLabel tipoCadastro;
 	
     public Cadastros() {
@@ -286,10 +290,16 @@ public class Cadastros extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         botaoCancelar1 = new javax.swing.JButton();
         setTextoCidade1(new javax.swing.JTextField());
-        textoTelefone1 = new javax.swing.JTextField();
+        textoNumero1 = new javax.swing.JTextField();
+        textoTelefone1 = new javax.swing.JFormattedTextField();
+        try {
+			textoTelefone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "telefone inválido");
+			e.printStackTrace();
+		}
         botaoSalvar1 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
-        textoNumero1 = new javax.swing.JTextField();
         textoCEP1 = new javax.swing.JTextField();
         textoRua1 = new javax.swing.JTextField();
         textoBairro1 = new javax.swing.JTextField();
@@ -573,38 +583,74 @@ public class Cadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_textoTelefone1ActionPerformed
 
     private void botaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvar1ActionPerformed
-        
-        Pessoa p = new Pessoa();
-        if (getTipoCadastro().getText().contains("Cliente")) {
-           p = this.prepararPessoaParaCadastro(Pessoa.getStringCliente());
-           interfaceDaoDadosCadastro.criar(p);
-           JOptionPane.showMessageDialog(this, "Cliente Criado");
-        } else if (getTipoCadastro().getText().contains("Gerente")) {
-            InterfacePessoaDAO gerenteDAO = FabricaDeDAO.criarGerenteDAO();
-            Gerente manager = (Gerente) this.prepararPessoaParaCadastro(Pessoa.getStringGerente());
+       
+    	if(getTipoCadastro().getText().contains("Monitor"))
+    	{
+    		//monitores podem digitar CPFs inválidos e mesmo assim conseguir cadastro
+    		String nomeEspecificado = textoNome1.getText();
+        	String telefoneEspecificado = textoTelefone1.getText();
+        	if(VerificadorCamposFormulario.nomeEhValido(nomeEspecificado, "Nome Da Pessoa") == true &&
+        			VerificadorCamposFormulario.telefoneEhValido(telefoneEspecificado) == true )
+        	{
+        		Pessoa p = this.prepararPessoaParaCadastro(Pessoa.getStringMonitor());
+                interfaceDaoDadosCadastro.criar(p);
+                JOptionPane.showMessageDialog(this, "Monitor Criado");
+                TelaInicial telaInicial = TelaInicial.getInstance();
+                this.dispose();
+                telaInicial.setVisible(true);
+        	}
             
-            manager.setGerenteLogin(getTextoLogin().getText());
-            manager.setLogin(getTextoLogin().getText());
-            manager.setSenha(String.valueOf(getTextoSenha().getPassword()));
-            gerenteDAO.criar(manager);
-            JOptionPane.showMessageDialog(this, "Gerente Criado");
+            
+    	}
+    	else if(this.algumAtributoImportanteParaCadastroNaoFoiPreenchidoCorretamente() == false)
+        {
+        	Pessoa p = new Pessoa();
+            if (getTipoCadastro().getText().contains("Cliente")) {
+               p = this.prepararPessoaParaCadastro(Pessoa.getStringCliente());
+               interfaceDaoDadosCadastro.criar(p);
+               JOptionPane.showMessageDialog(this, "Cliente Criado");
+            } else if (getTipoCadastro().getText().contains("Gerente")) {
+                InterfacePessoaDAO gerenteDAO = FabricaDeDAO.criarGerenteDAO();
+                Gerente manager = (Gerente) this.prepararPessoaParaCadastro(Pessoa.getStringGerente());
+                
+                manager.setGerenteLogin(getTextoLogin().getText());
+                manager.setLogin(getTextoLogin().getText());
+                manager.setSenha(String.valueOf(getTextoSenha().getPassword()));
+                gerenteDAO.criar(manager);
+                JOptionPane.showMessageDialog(this, "Gerente Criado");
 
 
-        } else if (getTipoCadastro().getText().contains("Monitor")) {
-            p = this.prepararPessoaParaCadastro(Pessoa.getStringMonitor());
-            interfaceDaoDadosCadastro.criar(p);
-            JOptionPane.showMessageDialog(this, "Monitor Criado");
+            }
+
+                TelaInicial telaInicial = TelaInicial.getInstance();
+                this.dispose();
+                telaInicial.setVisible(true);
         }
-
-            TelaInicial telaInicial = TelaInicial.getInstance();
-            this.dispose();
-            telaInicial.setVisible(true);
+        
     }//GEN-LAST:event_botaoSalvar1ActionPerformed
+    
+    private boolean algumAtributoImportanteParaCadastroNaoFoiPreenchidoCorretamente()
+    {
+    	//atributos importantes: CPF, PNome, TipoPessoa e Telefone
+    	String cpfEspecificado = getTextoCPF1().getText();
+    	String nomeEspecificado = textoNome1.getText();
+    	String telefoneEspecificado = textoTelefone1.getText();
+    	if(VerificadorCamposFormulario.nomeEhValido(nomeEspecificado, "Nome Da Pessoa") == false || 
+    			VerificadorCamposFormulario.telefoneEhValido(telefoneEspecificado) == false ||
+    			VerificadorCamposFormulario.cpfEhValido(cpfEspecificado) == false)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
     
     private Pessoa prepararPessoaParaCadastro(String categoriaDaPessoa)
     {
     	  Pessoa p = new Pessoa();
-    	  if(categoriaDaPessoa.compareTo(Pessoa.getStringGerente()) == 0)
+    	  if(categoriaDaPessoa.compareTo(Pessoa.getStringGerente()) == 0 )
     	  {
     		  //estamos preparando um gerente para cadstro. Ele é uma extensão de pessoa
     		  p = new Gerente();
@@ -615,12 +661,27 @@ public class Cadastros extends javax.swing.JFrame {
           String RG = getTextoRG1().getText();
           System.out.println("nome");
           System.out.println(RG);
-          p.setRg(Integer.parseInt(RG));
+          try
+          {
+        	  p.setRg(Integer.parseInt(RG)); 
+          }
+          catch(NumberFormatException exc)
+          {
+        	  p.setRg(0);
+          }
           System.out.println("rg");
           p.setRua(textoRua1.getText());
           System.out.println("rua");
           String Numero = textoNumero1.getText();
-          p.setNumero(Integer.parseInt(Numero));
+          try
+          {
+        	  p.setNumero(Integer.parseInt(Numero));
+          }
+          catch(NumberFormatException exc)
+          {
+        	  p.setNumero(0);
+          }
+          
           System.out.println("numero");
           p.setBairro(textoBairro1.getText());
           System.out.println("bairro");
@@ -632,6 +693,8 @@ public class Cadastros extends javax.swing.JFrame {
           System.out.println("cep");
           return p;
     }
+    
+   
 
     private void textoNumero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNumero1ActionPerformed
         // TODO add your handling code here:
