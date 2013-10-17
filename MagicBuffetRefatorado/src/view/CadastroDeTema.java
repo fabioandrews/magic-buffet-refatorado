@@ -138,7 +138,7 @@ public class CadastroDeTema extends javax.swing.JFrame {
         Tema theme = new Tema();
         String nome = nomeTema.getText();
         
-        if(nome.length() > 11)
+        if(nome.length() > 45)
         {
         	JOptionPane.showMessageDialog(null, "o tema é grande demais, por favor insira um nome com menos de 11 caracteres");
         }
