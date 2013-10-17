@@ -191,7 +191,7 @@ public class ResultadoFesta extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -244,7 +244,13 @@ public class ResultadoFesta extends javax.swing.JFrame {
          this.convidados.setEditable(false);
          this.itensPacote.setText(f.getPacote());
          this.itensPacote.setEditable(false);
-         this.data.setText(f.getDataInicio());
+         String dataInicio = f.getDataInicio();
+         //a data de início do BD vem em yy-mm-dd 00:00:00. queremos no formato dd-mm-yy. Vamo convertê-la!
+         String [] dataInicioDividida = dataInicio.split(" ");
+         String dataInvertida = dataInicioDividida[0];
+         String [] diaMesEAno = dataInvertida.split("-");
+         String dataNormal = diaMesEAno[2] + "-"+ diaMesEAno[1] + "-" + diaMesEAno[0];
+         this.data.setText(dataNormal);
          this.data.setEditable(false);
          this.estilo.setText(f.getEstiloFesta());
          this.estilo.setEditable(false);

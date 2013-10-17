@@ -203,8 +203,11 @@ public class ResultadoTabela extends javax.swing.JFrame {
             int linha = tabela.getSelectedRow();            
             Object valueAt = tabela.getValueAt(linha, 1);
             String cpf = valueAt.toString();
-            Pessoa p = (Pessoa) DAOPessoas.buscar(cpf,"CLIENTE");        
+           
+            Pessoa p = (Pessoa) DAOPessoas.buscar(cpf, "CLIENTE");
             DAOPessoas.remover(p);
+           
+            
             JOptionPane.showMessageDialog(this,"Cliente Removido");
             TelaBuscar tela = TelaBuscar.getInstance();
             tela.modelo.removeRow(linha);
