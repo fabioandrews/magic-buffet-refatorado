@@ -172,6 +172,8 @@ public final class CadastroFesta extends javax.swing.JFrame {
                 UsarEnderecoActionPerformed(evt);
             }
         });
+        
+        localExterno.setSelected(true);
 
         buttonGroup1.add(Buffet);
         Buffet.setText("Buffet");

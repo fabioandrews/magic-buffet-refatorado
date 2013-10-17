@@ -142,6 +142,10 @@ public class CadastroDeTema extends javax.swing.JFrame {
         {
         	JOptionPane.showMessageDialog(null, "o tema é grande demais, por favor insira um nome com menos de 11 caracteres");
         }
+        else if(nome.length() == 0)
+        {
+        	JOptionPane.showMessageDialog(null, "digite um nome para o tema");
+        }
         else
         {
         	String codigo = nome.substring(0,1) + nome.substring(nome.length() / 2, nome.length()/2+1) ;
