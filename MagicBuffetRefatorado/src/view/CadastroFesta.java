@@ -173,7 +173,6 @@ public final class CadastroFesta extends javax.swing.JFrame {
             }
         });
         
-        localExterno.setSelected(true);
 
         buttonGroup1.add(Buffet);
         Buffet.setText("Buffet");
@@ -182,6 +181,8 @@ public final class CadastroFesta extends javax.swing.JFrame {
                 BuffetActionPerformed(evt);
             }
         });
+        
+        Buffet.setSelected(true);
         
         /*quando o textfield mudar, o cpf deve ser checado novamente*/
         textocpf.getDocument().addDocumentListener(new DocumentListener() {
