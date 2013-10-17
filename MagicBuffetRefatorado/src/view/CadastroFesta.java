@@ -17,6 +17,9 @@ import controler.Pessoa;
 import controler.Tema;
 import entidadesDAO.FabricaDeDAO;
 
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.sql.Time;
@@ -24,6 +27,9 @@ import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -32,6 +38,7 @@ import javax.swing.JOptionPane;
 public final class CadastroFesta extends javax.swing.JFrame {
 
     private boolean checkData = false;
+    private boolean checkCliente = false; //tem de checar o cpf
     private DAOComBuscaMultiplaInterface DAOTemas;
     private DAOComBuscaMultiplaInterface DAOPacotes;
     private DAOComBuscaMultiplaInterface DAOFestas;
@@ -173,9 +180,28 @@ public final class CadastroFesta extends javax.swing.JFrame {
                 BuffetActionPerformed(evt);
             }
         });
-
-
+        
+        /*quando o textfield mudar, o cpf deve ser checado novamente*/
+        textocpf.getDocument().addDocumentListener(new DocumentListener() {
+        	  public void changedUpdate(DocumentEvent e) {
+        		  	checkCliente = false;
+        		    
+        		  }
+        		  public void removeUpdate(DocumentEvent e) {
+        			  checkCliente = false;
+        		  }
+        		  public void insertUpdate(DocumentEvent e) {
+        			  checkCliente = false;
+        		  }
+        	   });
+        
+        textoNome.setEditable(false);
         textoRua.setEditable(false);
+        JTextField textFieldDataFim = (JTextField)(datafim.getDateEditor().getUiComponent());
+        textFieldDataFim.setEditable(false);
+        
+        JTextField textFieldDataInicio = (JTextField)(datainicio.getDateEditor().getUiComponent());
+        textFieldDataInicio.setEditable(false);
 
         estilo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Proven√ßal", "Normal" }));
 
@@ -492,6 +518,15 @@ public final class CadastroFesta extends javax.swing.JFrame {
                 botaoCancelarActionPerformed(evt);
             }
         });
+        
+        datainicio.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent e) 
+            {
+                checkData = false; 
+            }
+            }
+        );
     }
     
     
@@ -499,13 +534,16 @@ public final class CadastroFesta extends javax.swing.JFrame {
         String cpf = textocpf.getText();        
         Pessoa pessoa;
         pessoa = (Pessoa) DAOPessoas.buscar(cpf, "CLIENTE");        
-        if(pessoa.getPnome() != null){            
+        if(pessoa.getPnome() != null)
+        {            
             textoNome.setText(pessoa.getPnome());
             textoNome.setEnabled(true);
+            this.checkCliente = true;
         }
         else {
             JOptionPane.showMessageDialog(this, "CPF n√£√µ encontrado, cadastre o cliente");
         }
+        
         
     }//GEN-LAST:event_checarCPFActionPerformed
 
@@ -535,29 +573,34 @@ public final class CadastroFesta extends javax.swing.JFrame {
         InterfaceFestaDAO festas = FabricaDeDAO.criarFestaDAO();
         ArrayList<Festa> festa;                  
         Calendar dataInicial = datainicio.getCalendar();
-        String datainit = dataInicial.get(Calendar.DAY_OF_MONTH) + "/" + 
-                      (dataInicial.get(Calendar.MONTH) + 1) 
-                        + "/" + dataInicial.get(Calendar.YEAR);
         
-        festa = festas.buscarFesta(datainit); //array de feestas em uma data
-        System.out.println(festa);
-        int k = 2;
-        if(festa.isEmpty()){
-            JOptionPane.showMessageDialog(this,"Data Dispon√≠vel");            
+        if(VerificadorCamposFormulario.dataEhValida(dataInicial) == true)
+        {
+        	String datainit = dataInicial.get(Calendar.DAY_OF_MONTH) + "/" + 
+                    (dataInicial.get(Calendar.MONTH) + 1) 
+                      + "/" + dataInicial.get(Calendar.YEAR);
+      
+        	festa = festas.buscarFesta(datainit); //array de feestas em uma data
+        	System.out.println(festa);
+        	int k = 2;
+        	if(festa.isEmpty()){
+          JOptionPane.showMessageDialog(this,"Data Dispon√≠vel");            
+        	}
+      
+        	else{
+              this.itensMeuPacoteApareceEmFesta(itensMeuPacote, itensOk, itensLocados, festa);
+              
+              
+              String mensagem = verificarSeItensLocadosEstaoDisponiveisParaData(it, itensLocados);
+              
+              mensagem = verificarSeItensDisponiveis(itensOk, mensagem);
+              mensagem = verificarSeBuffetLocadoNesseDia(festas, datainit, mensagem);
+              JOptionPane.showMessageDialog(this, mensagem);
+        	}
+       
+        	checkData = true;
         }
         
-        else{
-                this.itensMeuPacoteApareceEmFesta(itensMeuPacote, itensOk, itensLocados, festa);
-                
-                
-                String mensagem = verificarSeItensLocadosEstaoDisponiveisParaData(it, itensLocados);
-                
-                mensagem = verificarSeItensDisponiveis(itensOk, mensagem);
-                mensagem = verificarSeBuffetLocadoNesseDia(festas, datainit, mensagem);
-                JOptionPane.showMessageDialog(this, mensagem);
-        }
-         
-        checkData = true;
     }//GEN-LAST:event_botaoChecarActionPerformed
 
 
@@ -618,9 +661,7 @@ public final class CadastroFesta extends javax.swing.JFrame {
 		}
 		return mensagem;
 	}
-
-
-
+	
 	private void itensMeuPacoteApareceEmFesta(
 			ArrayList<Item> itensMeuPacote, ArrayList<String> itensOk,
 			ArrayList<String> itensLocados, ArrayList<Festa> festa) 
@@ -661,38 +702,62 @@ public final class CadastroFesta extends javax.swing.JFrame {
         if(!checkData) {
             JOptionPane.showMessageDialog(this, "Verifique a data antes de salvar");
         }
-        else {
+        else if(!checkCliente)
+        {
+        	JOptionPane.showMessageDialog(this, "Verifique o cpf do cliente antes de salvar");
+        }
+        else 
+        {
 
             String pacote = itensPacote.getSelectedItem().toString();
             String tema = itensTema.getSelectedItem().toString();                           
             String estiloFesta = estilo.getSelectedItem().toString();
             String cpf = textocpf.getText();
-            int quantosConvidados = Integer.parseInt(qntConvidados.getText());
             String localFesta = textoCEP.getText();
-
-
-            String dataFim = this.obterDataFim();       
             
-            String datainicio = this.obterDataInicio();
-
-            Time horaInicio = this.obterHoraInicio();                
-
-            boolean externoFesta = false;
+            boolean algumCampoPreenchidoIncorretamente = algumDosCamposFoiPreenchidoIncorretamente(cpf, qntConvidados.getText());
             
-            if(Buffet.isSelected()){            
-                externoFesta = false;            
-            } 
-            else {
-                if(UsarEndereco.isSelected() || localExterno.isSelected()){
-                	    externoFesta = true;
-                        this.criarLocalizacao();
-                }                
-            }        
+            if(algumCampoPreenchidoIncorretamente == false)
+            {
+            	int quantosConvidados = Integer.parseInt(qntConvidados.getText());
+                String dataFim = this.obterDataFim();       
+                
+                String datainicio = this.obterDataInicio();    
+                if(datainicio.length() != 0 & dataInicioEhMaiorQueDataFim() == false)
+                {
+                	Time horaInicio = this.obterHoraInicio();                
 
-            JOptionPane.showMessageDialog(this,"Tem certeza que deseja salvar a festa?");
-            Festa festa = new Festa(pacote,tema,estiloFesta,cpf,quantosConvidados,localFesta,dataFim,datainicio,horaInicio,externoFesta);
-            DAOFestas.criar(festa); 
-            JOptionPane.showMessageDialog(this,"Festa cadastrada");
+                    boolean externoFesta = false;
+                    
+                    if(Buffet.isSelected())
+                    {
+                            externoFesta = false;
+                            int resultadoDoDialog = JOptionPane.showConfirmDialog(this,"Tem certeza que deseja salvar a festa?");
+                        	if(resultadoDoDialog == JOptionPane.YES_OPTION)
+                        	{
+                        		Festa festa = new Festa(pacote,tema,estiloFesta,cpf,quantosConvidados,localFesta,dataFim,datainicio,horaInicio,externoFesta);
+                            	DAOFestas.criar(festa); 
+                            	JOptionPane.showMessageDialog(this,"Festa cadastrada");
+                        	}
+                    } 
+                    else 
+                    {
+                        boolean criarLocalizacaoEhPossivel = criarLocalizacaoEhPossivel();
+                        if((UsarEndereco.isSelected() || localExterno.isSelected()) && criarLocalizacaoEhPossivel == true)
+                        {
+                            externoFesta = true;
+                            this.criarLocalizacao();
+                            int resultadoDoDialog = JOptionPane.showConfirmDialog(this,"Tem certeza que deseja salvar a festa?");
+                            if(resultadoDoDialog == JOptionPane.YES_OPTION)
+                            {
+                            	Festa festa = new Festa(pacote,tema,estiloFesta,cpf,quantosConvidados,localFesta,dataFim,datainicio,horaInicio,externoFesta);
+                            	DAOFestas.criar(festa); 
+                            	JOptionPane.showMessageDialog(this,"Festa cadastrada");
+                            }
+                        }                
+                    }        
+                }
+            }
         }
 
     }//GEN-LAST:event_botaoSalvarActionPerformed
@@ -700,16 +765,59 @@ public final class CadastroFesta extends javax.swing.JFrame {
     private String obterDataInicio()
     {
     	Calendar dataInicial = datainicio.getCalendar();   
-        String datainicio = dataInicial.get(Calendar.YEAR) + "/" + (dataInicial.get(Calendar.MONTH) + 1)  + "/" + dataInicial.get(Calendar.DAY_OF_MONTH);
-        return datainicio;
+    	boolean dataEhValida = VerificadorCamposFormulario.dataEhValida(dataInicial);
+    	if(dataEhValida == false)
+    	{
+    		return "";
+    	}
+    	else
+    	{
+    		String datainicio = dataInicial.get(Calendar.YEAR) + "/" + (dataInicial.get(Calendar.MONTH) + 1)  + "/" + dataInicial.get(Calendar.DAY_OF_MONTH);
+            return datainicio;
+    	}
     }
     
     private String obterDataFim()
     {
-    	Calendar d = datafim.getCalendar();  
-        String data = d.get(Calendar.YEAR) + "/" + (d.get(Calendar.MONTH)+1) + "/" + d.get(Calendar.DAY_OF_MONTH);
-        String dataFim = data; 
-        return dataFim;
+    	Calendar d = datafim.getCalendar();
+    	try
+    	{
+    		String data = d.get(Calendar.YEAR) + "/" + (d.get(Calendar.MONTH)+1) + "/" + d.get(Calendar.DAY_OF_MONTH);
+    	    String dataFim = data; 
+    	    return dataFim;
+    	}
+    	catch(Exception e)
+    	{
+    		//se der alguma data invalida tipo "", retorna null
+    		return null;
+    	}
+    }
+    
+    private boolean dataInicioEhMaiorQueDataFim()
+    {
+    	Calendar dataInicial = datainicio.getCalendar();
+    	Calendar dataFinal = datafim.getCalendar();
+    	
+    	String dataFimEmString = obterDataFim();
+    	
+    	if(dataFimEmString == null)
+    	{
+    		//a data de inicio nao eh menor que a do fim porque a do fim nao existe
+    		return false;
+    	}
+    	else
+    	{
+    		int valorDaComparacao = dataInicial.compareTo(dataFinal);
+    		if(valorDaComparacao > 0)
+    		{
+    			JOptionPane.showMessageDialog(this, "a data de inÌcio est· maior que a do fim, por favor insira outra data");
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
     }
     
     private Time obterHoraInicio()
@@ -718,6 +826,27 @@ public final class CadastroFesta extends javax.swing.JFrame {
         int minuto = minutosSpin.getValue();        
         Time horaInicio = new Time(hora, minuto, 0);
         return horaInicio;
+    }
+    
+    private boolean criarLocalizacaoEhPossivel()
+    {
+    	String bairro = textoBairro.getText();
+        String cep = textoCEP.getText();
+        String rua = textoRua.getText();
+        String cidade = textoCidade.getText();  
+        
+        if(VerificadorCamposFormulario.campoComAte25CaracteresEhValido(bairro, "bairro") == true
+        		&& VerificadorCamposFormulario.campoComAte25CaracteresEhValido(cep, "cep") == true
+        		&& VerificadorCamposFormulario.campoComAte25CaracteresEhValido(rua, "rua") == true
+        		&& VerificadorCamposFormulario.campoComAte25CaracteresEhValido(cidade, "cidade") == true 
+        		&& VerificadorCamposFormulario.campoNumericoDeValorAte11EhValido(textoNumero.getText(), "n˙mero") == true)
+        {
+        	return true;
+        }
+        else
+        {
+        	return false;
+        }
     }
     
     private void criarLocalizacao()
@@ -792,5 +921,20 @@ public final class CadastroFesta extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_botaoCancelarActionPerformed
     
-    
+    /*a funcao abaixo verifica se algum dos campos do formulario foi preenchido incorretamente*/
+    private boolean algumDosCamposFoiPreenchidoIncorretamente(String cpf, String quantosConvidados)
+    {
+    	if(VerificadorCamposFormulario.cpfEhValido(cpf) == false)
+    	{
+    		return true;
+    	}
+    	else if(VerificadorCamposFormulario.campoNumericoDeValorAte11EhValido(quantosConvidados, "quantidade de convidados") == false)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
 }

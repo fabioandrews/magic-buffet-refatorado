@@ -27,7 +27,8 @@ import javax.swing.JOptionPane;
  *
  * @author Josiel
  */
-public class TelaBuscar extends javax.swing.JFrame {
+public class TelaBuscar extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form TelaBuscar
@@ -193,8 +194,10 @@ public class TelaBuscar extends javax.swing.JFrame {
             }
         }
         else 
-            if(FestaRB.isSelected()) {
+            if(FestaRB.isSelected() && VerificadorCamposFormulario.dataEhValida(data.getCalendar())) 
+            {
                 Calendar date = data.getCalendar();
+                
                 String dataBusca = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + date.get(Calendar.DAY_OF_MONTH); 
                 
                 

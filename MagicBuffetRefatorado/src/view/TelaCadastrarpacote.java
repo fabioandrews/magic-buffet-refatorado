@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
  *
  * @author Josiel
  */
-public class TelaCadastrarpacote extends javax.swing.JFrame {
+public class TelaCadastrarpacote extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form TelaCadastrarpacote
@@ -34,6 +35,8 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         
         DAOItens = FabricaDeDAO.criarItemDAO();
         DAOPacotes = FabricaDeDAO.criarPacoteDAO();
+        
+        precoFoiCalculado = false; //o usuario so poderah cadastrar o pacote se verificar o preco antes
     }
 
     /**
@@ -71,14 +74,16 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
                 textoNomePacoteActionPerformed(evt);
             }
         });
+        
+        desconto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precoFoiCalculado = false;
+            }
+        });
 
         precoPacote.setText("Pre√ßo do Pacote");
 
-        textoPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoPrecoActionPerformed(evt);
-            }
-        });
+        textoPreco.setEditable(false);
 
         CANCELAR.setText("CANCELAR");
         CANCELAR.addActionListener(new java.awt.event.ActionListener() {
@@ -197,12 +202,6 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textoNomePacoteActionPerformed
     
-    private void textoPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoPrecoActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-    }//GEN-LAST:event_textoPrecoActionPerformed
     
     private void CANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCELARActionPerformed
         this.dispose();
@@ -214,42 +213,54 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         
         Pacote pacote = new Pacote();
         String nome = textoNomePacote.getText();
-        
+        String precoEmString = textoPreco.getText();
         
         if(DAOPacotes.buscarPorNome(nome).getPacoteNome() != null){
             JOptionPane.showMessageDialog(this, "Nome de pacote j√° cadastrado");            
-        }   
-        else {
-        
-        pacote.setPacoteNome(textoNomePacote.getText());        
-        Float preco = Float.parseFloat(textoPreco.getText());
-        pacote.setPrecoPacote(preco);
-        textoPreco.setText(String.valueOf(pacote.getPrecoPacote()));
-        
-        int[] linhaSelecionadas;
-        linhaSelecionadas = getTabela().getSelectedRows();        
-        int linha;
-        float valor = 0;
-        ArrayList<String> itens = new ArrayList();
-        for (int i = 0; i < getTabela().getSelectedRowCount(); i++) {
-            linha = linhaSelecionadas[i];            
-            String idItem = getTabela().getValueAt(linha, 1).toString();            
-            itens.add(idItem);            
         }
-        
-          pacote.setItensPacote(itens);
-        
-        for (String item : pacote.getItensPacote()) {
-            System.out.println(item + " ");
+        else if(nome.length() == 0)
+        {
+        	JOptionPane.showMessageDialog(this, "por favor, informe um nome para o pacote");   
         }
+        else 
+        {
+        	if(this.precoFoiCalculado == true)
+        	{
+        		 pacote.setPacoteNome(textoNomePacote.getText());        
+        	        Float preco = Float.parseFloat(precoEmString);
+        	        pacote.setPrecoPacote(preco);
+        	        textoPreco.setText(String.valueOf(pacote.getPrecoPacote()));
+        	        
+        	        int[] linhaSelecionadas;
+        	        linhaSelecionadas = getTabela().getSelectedRows();        
+        	        int linha;
+        	        float valor = 0;
+        	        ArrayList<String> itens = new ArrayList();
+        	        for (int i = 0; i < getTabela().getSelectedRowCount(); i++) {
+        	            linha = linhaSelecionadas[i];            
+        	            String idItem = getTabela().getValueAt(linha, 1).toString();            
+        	            itens.add(idItem);            
+        	        }
+        	        
+        	          pacote.setItensPacote(itens);
+        	        
+        	        for (String item : pacote.getItensPacote()) {
+        	            System.out.println(item + " ");
+        	        }
+        	        
+        	        UID id = new UID();
+        	      
+        	        pacote.setIdPacote(String.valueOf(id));        
+        	        DAOPacotes.criar(pacote);
+        	        TelaInicial telaInicial = TelaInicial.getInstance();
+        	        this.dispose();
+        	        telaInicial.setVisible(true);
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(this, "calcule o preÁo do pacote antes de salvar");
+        	}
         
-        UID id = new UID();
-      
-        pacote.setIdPacote(String.valueOf(id));        
-        DAOPacotes.criar(pacote);
-        TelaInicial telaInicial = TelaInicial.getInstance();
-        this.dispose();
-        telaInicial.setVisible(true);
         }
     }//GEN-LAST:event_SALVARActionPerformed
     
@@ -257,7 +268,9 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
         Item item;
         if (getTabela().getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Selecione algum item");
-        } else {            
+        } 
+        else 
+        {            
             int[] linhaSelecionadas;
             linhaSelecionadas = getTabela().getSelectedRows();            
             int linha;
@@ -270,10 +283,25 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
                 System.out.println(item.getPrecoUnidade());
                 valor = valor + item.getPrecoUnidade();                
             }
-            if (!desconto.getText().equals("")) {
-                valor = valor - Integer.parseInt(desconto.getText());
+            
+            if(desconto.getText().equals("") == true)
+            {
+            	textoPreco.setText(String.valueOf(valor));
+                
+                this.precoFoiCalculado = true;
             }
-            textoPreco.setText(String.valueOf(valor));
+            else if (VerificadorCamposFormulario.stringEhNumerica(desconto.getText()) == true && Double.valueOf(desconto.getText()) > 0) 
+            {
+                valor = (float) (valor - Double.valueOf(desconto.getText()));
+                textoPreco.setText(String.valueOf(valor));
+                
+                this.precoFoiCalculado = true;
+            }
+            else
+            {
+            	JOptionPane.showMessageDialog(this, "valor para desconto inv·lido. Por favor insira um valor v·lido");
+            	this.precoFoiCalculado = false; //o desconto foi invalido? entao o preco nao pode ser calculado
+            }
         }
     }//GEN-LAST:event_calcularPrecoActionPerformed
 
@@ -325,6 +353,7 @@ public class TelaCadastrarpacote extends javax.swing.JFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextField textoNomePacote;
     private volatile javax.swing.JTextField textoPreco;
+    private boolean precoFoiCalculado;
     // End of variables declaration//GEN-END:variables
 
 	public synchronized javax.swing.JTextField getTextoPreco() {
