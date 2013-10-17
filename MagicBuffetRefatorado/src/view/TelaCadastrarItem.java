@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.text.ParseException;
+
+import javax.swing.JOptionPane;
+
 import InterfaceDAO.DAOComBuscaMultiplaInterface;
 import controler.Item;
 import entidadesDAO.FabricaDeDAO;
@@ -44,7 +48,8 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         textoQuantidade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        textopreco = new javax.swing.JTextField();
+        textopreco = new HintTextField("Ex: 45.00");
+       
         CANCELAR = new javax.swing.JButton();
         SALVAR = new javax.swing.JButton();
 
@@ -191,24 +196,48 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
     private void SALVARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALVARActionPerformed
         Item item = new Item();
         
+        if(algumAtributoImportanteParaCadastroNaoFoiPreenchidoCorretamente() == false)
+        {
+        	String nome = textoNomeItem.getText();
+            String codigo = nome.substring(0, 1) + nome.substring(nome.length() / 2, nome.length() / 2 + 1);
 
-        String nome = textoNomeItem.getText();
-        String codigo = nome.substring(0, 1) + nome.substring(nome.length() / 2, nome.length() / 2 + 1);
-
-        item.setIdItem("MF"+codigo);
-        item.setNomeItem(textoNomeItem.getText());
-        String quantidade = textoQuantidade.getText();
-        item.setQuantidadeTotal(Integer.parseInt(quantidade));
-        Float preco = Float.parseFloat(textopreco.getText());
-        item.setPrecoUnidade(preco);
+            item.setIdItem("MF"+codigo);
+            item.setNomeItem(textoNomeItem.getText());
+            String quantidade = textoQuantidade.getText();
+            item.setQuantidadeTotal(Integer.parseInt(quantidade));
+            Float preco = Float.parseFloat(textopreco.getText());
+            item.setPrecoUnidade(preco);
 
 
-        daoAcessoCadastroDeItens.criar(item);
-        TelaInicial telaInicial = TelaInicial.getInstance();
-        this.dispose();
-        telaInicial.setVisible(true);
+            daoAcessoCadastroDeItens.criar(item);
+            TelaInicial telaInicial = TelaInicial.getInstance();
+            this.dispose();
+            telaInicial.setVisible(true);
+        }
+
+        
 
     }//GEN-LAST:event_SALVARActionPerformed
+    
+    private boolean algumAtributoImportanteParaCadastroNaoFoiPreenchidoCorretamente()
+    {
+    	//atributos importantes: NOmeItem, quantidadeTotal e PrecoUnidade
+    	
+    	String nomeItem = textoNomeItem.getText();
+    	String quantidade = textoQuantidade.getText();
+    	String preco = textopreco.getText();
+    	
+    	if(VerificadorCamposFormulario.campoNumericoDeValorAte11EhValido(quantidade, "quantidade do item") &&
+    			VerificadorCamposFormulario.precoEhValido(preco) &&
+    			VerificadorCamposFormulario.nomeEhValido(nomeItem, "Nome do item"))
+    	{
+    		return false;
+    	}
+    	else
+    	{
+    		return true;
+    	}
+    }
 
     /**
      * @param args the command line arguments
@@ -257,6 +286,6 @@ public class TelaCadastrarItem extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField textoNomeItem;
     private javax.swing.JTextField textoQuantidade;
-    private javax.swing.JTextField textopreco;
+    private HintTextField textopreco;
     // End of variables declaration//GEN-END:variables
 }
